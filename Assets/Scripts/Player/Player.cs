@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private float _forceMultiplier;
+
+    private Vector2 _lastInputDirection = Vector2.zero;
     
     private MainInputAction _mainInputAction;
 
@@ -39,16 +41,12 @@ public class Player : MonoBehaviour
 
     private void Move(InputAction.CallbackContext ctx)
     {
-        Vector2 moveInput = ctx.ReadValue<Vector2>();
-        Debug.Log($"Called Move action {moveInput}");
-        /*this._rigidbody.AddForce(moveInput * this._forceMultiplier / 2, ForceMode.VelocityChange);
-        this._rigidbody.velocity = this._rigidbody.velocity.ClampAll(-this._forceMultiplier, this._forceMultiplier);*/
+        this._lastInputDirection = ctx.ReadValue<Vector2>();
     }
 
     private void Tackle(InputAction.CallbackContext ctx)
     {
-        Debug.Log($"Called Tackle action");
-        this._rigidbody.AddForce(Vector3.forward * this._forceMultiplier / 3, ForceMode.Impulse);
+        this._rigidbody.AddForce(this._lastInputDirection * this._forceMultiplier / 3, ForceMode.Impulse);
         this._rigidbody.velocity = this._rigidbody.velocity.ClampAll(-this._forceMultiplier, this._forceMultiplier);
     }
 
