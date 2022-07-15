@@ -14,10 +14,10 @@ public class BlobShadowCaster : MonoBehaviour
     
     private void Update()
     {
-        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, Mathf.Infinity, _layerMask))
+        if (Physics.Raycast(this.transform.position, Vector3.down, out RaycastHit hit, Mathf.Infinity, this._layerMask))
         {
             this._blobShadow.gameObject.SetActive(true);
-            this._blobShadow.position = hit.point.AddY(_additionalHeight);
+            this._blobShadow.position = hit.point.AddY(this._additionalHeight);
             this._blobShadow.up = hit.normal;
         }
         else
