@@ -4,5 +4,9 @@ using UnityEngine;
 
 public class DiceFace : MonoBehaviour
 {
-    
+    [SerializeField]
+    private MeshRenderer meshRenderer;
+
+    [SerializeField]
+    private Material material;
 }

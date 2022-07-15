@@ -5,5 +5,5 @@ using UnityEngine;
 public class Dice : MonoBehaviour
 {
     [SerializeField]
-    private DiceFace[] diceFaces;
+    private DiceFace[] _diceFaces;
 }

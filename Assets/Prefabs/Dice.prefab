@@ -81,7 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e253793b89923947aebb593ce16a695, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diceFaces:
+  _diceFaces:
   - {fileID: 1634237808155490646}
   - {fileID: 1634237808764689430}
   - {fileID: 1634237808463719352}
@@ -184,6 +184,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fd68994388431143b8cd7b0093cb65e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 1634237807871351682}
+  material: {fileID: 2100000, guid: 1480b892b9cf5884d8c58140d5e84fa9, type: 2}
 --- !u!1 &1634237807917366659
 GameObject:
   m_ObjectHideFlags: 0
@@ -280,6 +282,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fd68994388431143b8cd7b0093cb65e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 1634237807917366660}
+  material: {fileID: 2100000, guid: f2973d73f412b764893245e91d5ff531, type: 2}
 --- !u!1 &1634237808155490643
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,6 +380,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fd68994388431143b8cd7b0093cb65e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 1634237808155490644}
+  material: {fileID: 2100000, guid: 116f799afc4d4d94a953a2f7cf03cf91, type: 2}
 --- !u!1 &1634237808463719333
 GameObject:
   m_ObjectHideFlags: 0
@@ -472,6 +478,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fd68994388431143b8cd7b0093cb65e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 1634237808463719334}
+  material: {fileID: 2100000, guid: 7f80db5e84be3824ab38b45496cf2f92, type: 2}
 --- !u!1 &1634237808764689427
 GameObject:
   m_ObjectHideFlags: 0
@@ -568,6 +576,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fd68994388431143b8cd7b0093cb65e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 1634237808764689428}
+  material: {fileID: 2100000, guid: 698cadce3a6a54c4f8e2df30dfdc3ccf, type: 2}
 --- !u!1 &1634237809153659277
 GameObject:
   m_ObjectHideFlags: 0
@@ -664,3 +674,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fd68994388431143b8cd7b0093cb65e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 1634237809153659278}
+  material: {fileID: 2100000, guid: 0c2885772cb42b841bbe9a3015fc58dc, type: 2}
