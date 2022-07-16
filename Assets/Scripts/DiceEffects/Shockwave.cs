@@ -18,6 +18,9 @@ public class Shockwave : MonoBehaviour
     [SerializeField, Range(0f, 1f)]
     private float _shakeTrauma = 0.4f;
 
+    [SerializeField]
+    private GameObject _shockwaveView = null;
+
     private Collider[] _colliders;
     
     public void ApplyShockwave(Vector3 position, ShockwaveData shockwaveData)
@@ -48,10 +51,15 @@ public class Shockwave : MonoBehaviour
                 targetRigidbody.AddForce(direction * force, ForceMode.Impulse);
             }
         }
+
+        if (this._shockwaveView != null)
+        {
+            Instantiate(this._shockwaveView, position, this._shockwaveView.transform.rotation);
+        }
         
         FindObjectOfType<CameraShake>().SetTrauma(_shakeTrauma); // TODO: Remove FindObjectOfType.
     }
-
+    
     private void Awake()
     {
         _colliders = new Collider[10]; // TODO: Replace with some static max number of players.
