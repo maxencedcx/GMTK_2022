@@ -52,7 +52,7 @@ MonoBehaviour:
   _rigidbody: {fileID: 4800052093827480019}
   _movementForceMultiplier: 115
   _collisionForceMultiplier: 25
-  _collisionYForce: 0.5
+  _collisionYForce: 0.3
 --- !u!114 &1017683270172039950
 MonoBehaviour:
   m_ObjectHideFlags: 0

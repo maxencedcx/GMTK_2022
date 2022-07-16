@@ -26,30 +26,10 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions
 
     private Vector3 _lastInputDirection = Vector3.zero;
 
-    private List<Collider> _currentCollisions = new ();
-
+    private readonly List<Collider> _currentCollisions = new ();
+    
 
     #region Unity Native Functions
-
-    private void Awake()
-    {
-        InputSystem.onDeviceChange +=
-            (device, change) =>
-            {
-                switch (change)
-                {
-                    case InputDeviceChange.Added:
-                        // New Device.
-                        break;
-                    case InputDeviceChange.Disconnected:
-                        // Device got unplugged.
-                        break;
-                    case InputDeviceChange.Reconnected:
-                        // Plugged back in.
-                        break;
-                }
-            };
-    }
 
     private void FixedUpdate()
     {
@@ -70,7 +50,7 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions
         if (collision.gameObject.TryGetComponent<Dice>(out _))
         {
             Vector3 direction = (collision.transform.position - this.transform.position).normalized;
-            direction.y = this._collisionYForce;
+            direction.y = Mathf.Max(0f, this._collisionYForce - direction.y) ;
             collision.rigidbody.AddForce(direction * this._collisionForceMultiplier, ForceMode.Impulse);
             collision.rigidbody.AddTorque(UnityEngine.Random.Range(-360, 360), UnityEngine.Random.Range(-360, 360), UnityEngine.Random.Range(-360, 360));
         }
