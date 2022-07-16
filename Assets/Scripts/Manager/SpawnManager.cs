@@ -2,15 +2,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class SpawnManager : MonoBehaviour
+public class SpawnManager : RSLib.Singleton<SpawnManager>
 {
     public static int PlayerIndex = -1;
     
     [SerializeField]
     private List<Transform> _spawnPoints;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+        
         InputSystem.onDeviceChange +=
             (device, change) =>
             {
