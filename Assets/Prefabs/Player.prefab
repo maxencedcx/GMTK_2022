@@ -371,22 +371,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4800052093827480022}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: OnChangeEffect
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 1f6dcbea-519b-4caa-931d-4cfe8f2534b2
-    m_ActionName: CubeChoice/ChangeEffect[/XInputControllerWindows/leftTrigger,/XInputControllerWindows1/leftTrigger,/XInputControllerWindows/rightTrigger,/XInputControllerWindows1/rightTrigger,/Keyboard/q,/Keyboard/e]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4800052093827480022}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
         m_MethodName: OnValidateEffect
         m_Mode: 0
         m_Arguments:
@@ -399,6 +383,38 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 1a179ac7-cdec-44c1-83dd-80d8d19b3fa7
     m_ActionName: CubeChoice/ValidateEffect[/XInputControllerWindows/buttonSouth,/XInputControllerWindows1/buttonSouth,/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4800052093827480022}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnSelectLeftEffect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 6f6635cf-86b1-47ac-9883-d0ac8268ea7d
+    m_ActionName: CubeChoice/SelectLeftEffect[/Keyboard/q,/XInputControllerWindows/leftTrigger,/XInputControllerWindows1/leftTrigger]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4800052093827480022}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnSelectRightEffect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 6e7b4ff7-2155-4276-b942-4f0594ad5738
+    m_ActionName: CubeChoice/SelectRightEffect[/Keyboard/e,/XInputControllerWindows/rightTrigger,/XInputControllerWindows1/rightTrigger]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player

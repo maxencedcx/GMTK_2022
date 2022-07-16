@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAction.ICubeChoiceActions
+public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAction.IDiceFaceChoiceActions
 {
     // PHYSICS
     [SerializeField]
@@ -51,15 +51,15 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
 
     private InputActionMap _playerActionMap;
     
-    private InputActionMap _cubeChoiceActionMap;
+    private InputActionMap _diceFaceChoiceActionMap;
     
 
     #region Unity Native Functions
 
     private void Awake()
     {
-        this._playerActionMap = this._playerInput.actions.FindActionMap("Player");
-        this._cubeChoiceActionMap = this._playerInput.actions.FindActionMap("CubeChoice");
+        this._playerActionMap = this._playerInput.actions.FindActionMap(nameof(MainInputAction.Player));
+        this._diceFaceChoiceActionMap = this._playerInput.actions.FindActionMap(nameof(MainInputAction.DiceFaceChoice));
     }
 
     private void Start()
@@ -128,12 +128,12 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
 
     public void DisableCubeChoiceInputs()
     {
-        this._cubeChoiceActionMap.Disable();
+        this._diceFaceChoiceActionMap.Disable();
     }
 
     public void EnableCubeChoiceInputs()
     {
-        this._cubeChoiceActionMap.Enable();
+        this._diceFaceChoiceActionMap.Enable();
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -191,21 +191,27 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
         }
     }
 
-    public void OnChangeEffect(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            int direction = context.ReadValue<int>();
-            Manager.DiceFaceChoiceManager.Instance.ChangeSelectedEffect(direction);
-            Debug.Log($"OnChangeEffect");
-        }
-    }
-
     public void OnValidateEffect(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
             Manager.DiceFaceChoiceManager.Instance.ValidateChoice();
+        }
+    }
+
+    public void OnSelectLeftEffect(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Manager.DiceFaceChoiceManager.Instance.ChangeSelectedEffect(-1);
+        }
+    }
+
+    public void OnSelectRightEffect(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Manager.DiceFaceChoiceManager.Instance.ChangeSelectedEffect(1);
         }
     }
 

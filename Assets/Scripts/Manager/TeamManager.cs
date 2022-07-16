@@ -17,6 +17,10 @@ namespace Manager
 
         public bool AreTeamsValid => this.Players.Select(p => p.Team).Distinct().Count() > 1;
 
+        public List<Player> PinkPlayers => this.Players.Where(p => p.Team == Team.PINK).ToList();
+
+        public List<Player> BluePlayers => this.Players.Where(p => p.Team == Team.BLUE).ToList();
+
         public void RegisterPlayer(Player player)
         {
             if (this.Players.Contains(player))

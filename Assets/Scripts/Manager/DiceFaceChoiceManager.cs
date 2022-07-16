@@ -3,7 +3,9 @@ using UnityEngine;
 
 namespace Manager
 {
+    using System;
     using System.Linq;
+    using Random = UnityEngine.Random;
 
     public class DiceFaceChoiceManager : RSLib.Singleton<DiceFaceChoiceManager>
     {
@@ -13,7 +15,15 @@ namespace Manager
         [SerializeField]
         private Transform Dice;
 
+        private readonly Dictionary<Team, List<int>> _playerChoiceIndexes = new Dictionary<Team, List<int>>()
+        {
+            {Team.BLUE, new List<int>()},
+            {Team.PINK, new List<int>()},
+        };
+
         private Player _currentPlayerChoosing;
+        
+        public DiceEffectType SelectedDiceEffectType { get; private set; }
 
         public void RotateCube(Vector3 direction)
         {
@@ -22,7 +32,7 @@ namespace Manager
 
         public void ValidateChoice()
         {
-            Manager.GameManager.Instance.AddDiceFace((DiceEffectType.SHOCKWAVE, Random.Range(0, 6)));
+            Manager.GameManager.Instance.AddDiceFace((this.SelectedDiceEffectType, Random.Range(0, 6)));
             this.DiceChoiceParent.SetActive(false);
             Manager.GameManager.Instance.State = GameState.RUNNING;
             this._currentPlayerChoosing.DisableCubeChoiceInputs();
@@ -31,7 +41,8 @@ namespace Manager
 
         public void ChangeSelectedEffect(int direction)
         {
-            
+            this.SelectedDiceEffectType = (DiceEffectType)Mathf.Clamp((int)this.SelectedDiceEffectType + direction, (int)DiceEffectType.NONE + 1,Enum.GetValues(typeof(DiceEffectType)).Length);
+            Debug.Log($"chose {this.SelectedDiceEffectType}");
         }
 
         public void DisableAllPlayerInputs()
@@ -52,6 +63,34 @@ namespace Manager
             {
                 player.EnablePlayerInputs();
             }
+        }
+
+        public int GetNewPlayerIndexForTeam(Team team)
+        {
+            List<Player> players;
+            
+            switch (team)
+            {
+                case Team.BLUE:
+                    players = Manager.TeamManager.Instance.BluePlayers;
+                    break;
+                case Team.PINK:
+                    players = Manager.TeamManager.Instance.PinkPlayers;
+                    break;
+                default:
+                    return 0;
+            }
+            
+            Player player = players.FirstOrDefault(p => !this._playerChoiceIndexes[team].Contains(p.PlayerIndex));
+
+            if (player == null)
+            {
+                this._playerChoiceIndexes[team].Clear();
+                player = players.First();
+            }
+                    
+            this._playerChoiceIndexes[team].Add(player.PlayerIndex);
+            return player.PlayerIndex;
         }
 
         public void StartChoice(int playerIndex)
