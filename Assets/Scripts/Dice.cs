@@ -49,8 +49,8 @@ public class Dice : MonoBehaviour
         
         diceEffect.OnEffectStart(new DiceEffectContext());
         
-        this._activeEffects.Add(diceEffect);
         this.EffectAdded?.Invoke(diceEffectType);
+        this._activeEffects.Add(diceEffect);
     }
 
     public void RemoveEffect(DiceEffect diceEffect)
