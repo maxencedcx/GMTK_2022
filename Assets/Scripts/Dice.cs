@@ -7,8 +7,6 @@ public class Dice : MonoBehaviour
     [SerializeField]
     private DiceFace[] _diceFaces = null;
 
-    private DiceFace _highestFace;
-
     [SerializeField]
     private Rigidbody _rigidbody;
 
@@ -16,7 +14,9 @@ public class Dice : MonoBehaviour
 
     [SerializeField]
     private DiceEffectsTable _diceEffectsTable = null;
-    
+
+    private DiceFace _highestFace;
+
     private System.Collections.Generic.List<DiceEffect> _activeEffects = new();
 
     public event System.Action<DiceEffectType> EffectAdded;
@@ -34,7 +34,11 @@ public class Dice : MonoBehaviour
                 diceEffect = new RunningDice(this, this._diceEffectsTable._runningDiceEffectData, this._diceEffectsTable._runningDiceData);
                 break;
             case DiceEffectType.MINI_DICE:
+                diceEffect = new MiniDice(this, this._diceEffectsTable._miniDiceEffectData, this._diceEffectsTable._miniDiceData);
+                break;
             case DiceEffectType.GIANT_DICE:
+                diceEffect = new GiantDice(this, this._diceEffectsTable._giantDiceEffectData, this._diceEffectsTable._giantDiceData);
+                break;
             case DiceEffectType.NONE:
             default:
                 Debug.LogError($"Unhandled effect type {diceEffectType}!");
@@ -44,8 +48,8 @@ public class Dice : MonoBehaviour
         
         diceEffect.OnEffectStart(new DiceEffectContext());
         
-        this._activeEffects.Add(diceEffect);
         this.EffectAdded?.Invoke(diceEffectType);
+        this._activeEffects.Add(diceEffect);
     }
 
     public void RemoveEffect(DiceEffect diceEffect)
@@ -77,6 +81,7 @@ public class Dice : MonoBehaviour
             activeEffect.Update();
             if (activeEffect.IsOver)
             {
+                activeEffect.OnEffectOver();
                 this.RemoveEffect(activeEffect);
             }
         }
@@ -109,6 +114,8 @@ public class Dice : MonoBehaviour
         {
             DrawButton("Add Shockwave", () => Obj.AddEffect(DiceEffectType.SHOCKWAVE));
             DrawButton("Add Running Dice", () => Obj.AddEffect(DiceEffectType.RUNNING_DICE));
+            DrawButton("Add Mini Dice", () => Obj.AddEffect(DiceEffectType.MINI_DICE));
+            DrawButton("Add Giant Dice", () => Obj.AddEffect(DiceEffectType.GIANT_DICE));
         }
     }
 #endif

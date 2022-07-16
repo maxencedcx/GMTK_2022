@@ -9,8 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0dd470ae5f39056499868694809639e5, type: 3}
-  m_Name: EffectData_MiniDice
+  m_Script: {fileID: 11500000, guid: 9743bcae42f017444ab9f87a3189fb3d, type: 3}
+  m_Name: DiceEffectData_GiantDice
   m_EditorClassIdentifier: 
-  _scale: 1
-  _scaleDuration: 0.2
+  _duration: 5
+  _autoApplyCooldown:
+    _value: 2
+    _enabled: 0
+  _applyOnLand: 0
+  _applyInstantly: 1

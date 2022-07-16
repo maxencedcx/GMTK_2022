@@ -5,10 +5,10 @@ using UnityEngine;
 public class DiceFace : MonoBehaviour
 {
     [SerializeField]
-    private MeshRenderer _meshRenderer;
+    private MeshRenderer _meshRenderer = null;
 
     [SerializeField]
-    private Material _material;
+    private Material _material = null;
 
     public DiceEffectType EffectType { get; private set; }
     
