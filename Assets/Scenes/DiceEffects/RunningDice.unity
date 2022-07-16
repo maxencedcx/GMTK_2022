@@ -420,6 +420,7 @@ MonoBehaviour:
   _diceFaces: []
   _rigidbody: {fileID: 170686770}
   _initialForce: 0
+  _diceEffectsTable: {fileID: 11400000, guid: ed5e233d1c89ee5479056a091378659b, type: 2}
 --- !u!54 &170686770
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -774,7 +775,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1465487442}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.101344585, y: 0.5196476, z: 0.77077174}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -28,15 +28,15 @@ public class ShockwaveTest : MonoBehaviour
         this._shockwave.OnEffectStart(new DiceEffectContext());
     }
 
-    private void Update()
-    {
-        this._shockwave?.Update();
-        
-        if (this._shockwave is {IsOver: true})
-        {
-            this._shockwave = null;
-        }
-    }
+    // private void Update()
+    // {
+    //     this._shockwave?.Update();
+    //     
+    //     if (this._shockwave is {IsOver: true})
+    //     {
+    //         this._shockwave = null;
+    //     }
+    // }
 
     private void OnDrawGizmosSelected()
     {

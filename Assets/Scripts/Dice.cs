@@ -58,6 +58,20 @@ public class Dice : MonoBehaviour
         this._rigidbody.AddTorque(UnityEngine.Random.Range(-360, 360), UnityEngine.Random.Range(-360, 360), UnityEngine.Random.Range(-360, 360), ForceMode.Impulse);
     }
 
+    private void Update()
+    {
+        for (int i = this._activeEffects.Count - 1; i >= 0; --i)
+        {
+            DiceEffect activeEffect = this._activeEffects[i];
+            
+            activeEffect.Update();
+            if (activeEffect.IsOver)
+            {
+                this._activeEffects.RemoveAt(i);
+            }
+        }
+    }
+
     [ContextMenu("Get Highest Face")]
     private DiceFace GetHighestFace()
     {
@@ -76,4 +90,16 @@ public class Dice : MonoBehaviour
 
         return _highestFace;
     }
+    
+#if UNITY_EDITOR
+    [UnityEditor.CustomEditor(typeof(Dice))]
+    public class DiceEditor : RSLib.EditorUtilities.ButtonProviderEditor<Dice>
+    {
+        protected override void DrawButtons()
+        {
+            DrawButton("Add Shockwave", () => Obj.AddEffect(DiceEffectType.SHOCKWAVE));
+            DrawButton("Add Running Dice", () => Obj.AddEffect(DiceEffectType.RUNNING_DICE));
+        }
+    }
+#endif
 }
