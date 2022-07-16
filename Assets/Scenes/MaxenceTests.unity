@@ -273,6 +273,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timerText: {fileID: 1195172952}
+  _gameTimer: {fileID: 11400000, guid: 388d54297a0732b4bb2f328d66a365f6, type: 2}
 --- !u!1 &106531937
 GameObject:
   m_ObjectHideFlags: 0
@@ -1226,6 +1227,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dontDestroy: 0
   _verbose: 0
+  GameDurationInSeconds: 180
+  _gameTimer: {fileID: 11400000, guid: 388d54297a0732b4bb2f328d66a365f6, type: 2}
   _dicePrefab: {fileID: 1634237807752868068, guid: e243db6a730ecdd4a8418b887e3ec95c, type: 3}
   _diceSpawnPoint: {fileID: 595608234}
   _diceSpawningForce: 10

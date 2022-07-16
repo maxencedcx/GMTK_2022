@@ -53,7 +53,7 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
     // GAMEPLAY
     public Team Team { get; private set; }
 
-    public bool IsPlayerReady { get; private set; } = false;
+    public bool IsPlayerReady { get; set; } = false;
 
     public int PlayerIndex => this._playerInput.playerIndex;
     
@@ -230,7 +230,7 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
 
     public void SetTeam(Team team)
     {
-        if (this.Team == team)
+        if (this.Team == team || Manager.GameManager.Instance.State != GameState.LOBBY)
         {
             return;
         }

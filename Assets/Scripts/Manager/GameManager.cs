@@ -1,7 +1,9 @@
 namespace Manager
 {
+    using System;
     using System.Collections;
     using System.Collections.Generic;
+    using Unity.VisualScripting;
     using UnityEngine;
     using Random = UnityEngine.Random;
 
@@ -9,6 +11,14 @@ namespace Manager
     {
         // GAME MANAGEMENT
         public GameState State { get; set; } = GameState.LOBBY;
+
+        [SerializeField]
+        private float GameDurationInSeconds = 180;
+
+        [SerializeField]
+        private RSLib.Data.Float _gameTimer;
+
+        private bool _isTimerOver => this._gameTimer.Value <= 0f;
 
         // DICES SPAWN
         [SerializeField]
@@ -51,6 +61,21 @@ namespace Manager
 
             this._blueTeamScore.Value = 0;
             this._pinkTeamScore.Value = 0;
+            this._gameTimer.Value = this.GameDurationInSeconds * 1000;
+        }
+
+        private void Update()
+        {
+            if (this._gameTimer > 0f && this.State == GameState.RUNNING)
+            {
+                this._gameTimer.Value -= Time.deltaTime * 1000;
+
+                if (this._gameTimer.Value <= 0f
+                    && this._blueTeamScore.Value != this._pinkTeamScore.Value)
+                {
+                    this.EndGame();
+                }
+            }
         }
 
         #region Game Management
@@ -71,13 +96,22 @@ namespace Manager
 
         private IEnumerator StartGame()
         {
-            TeamManager.Instance.DisableTeamChoosers();
+            TeamManager.Instance.SetActiveTeamChoosers(false);
+            TeamManager.Instance.UnreadyAllPlayers();
             this.State = GameState.STARTING;
             
             yield return new WaitForSeconds(3);
 
             this.State = GameState.RUNNING;
             this.GenerateDice(this._diceSpawnPoint.position, true);
+        }
+
+        private void EndGame()
+        {
+            this.DestroyAllDices();
+            this.State = GameState.LOBBY;
+            TeamManager.Instance.SetActiveTeamChoosers(true);
+            this._gameTimer.Value = this.GameDurationInSeconds * 1000;
         }
 
         #endregion
@@ -95,8 +129,15 @@ namespace Manager
                     this._blueTeamScore += 1;
                     break;
             }
-            
-            this.StartCoroutine(this.ScoreGoalCoroutine(triggeredGoalTeam));
+
+            if (this._isTimerOver)
+            {
+                this.EndGame();
+            }
+            else
+            {
+                this.StartCoroutine(this.ScoreGoalCoroutine(triggeredGoalTeam));
+            }
         }
 
         private IEnumerator ScoreGoalCoroutine(Team triggeredGoalTeam)
