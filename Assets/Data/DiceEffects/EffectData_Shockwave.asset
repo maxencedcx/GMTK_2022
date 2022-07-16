@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Range: 5
   ForceMinMax: {x: 5, y: 50}
+  LayerMask:
+    serializedVersion: 2
+    m_Bits: 2147483647
   Trauma: 0.75
   ParticlesSpawner:
     _globalOffset: {x: 0, y: 0, z: 0}

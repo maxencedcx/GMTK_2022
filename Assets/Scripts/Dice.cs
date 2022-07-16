@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -20,6 +19,17 @@ public class Dice : MonoBehaviour
     private System.Collections.Generic.List<DiceEffect> _activeEffects = new();
 
     public event System.Action<DiceEffectType> EffectAdded;
+
+    private float _stationarySince = -1;
+
+    [SerializeField] [Range(0.1f, 2f)]
+    private float _triggerFaceEffectTiming;
+
+    public bool IsStationary => this._stationarySince > 0f;
+
+    public bool ShouldTriggerEffect => this.IsStationary && !this._triggeredLastStationaryEffect && Time.time >= this._stationarySince + this._triggerFaceEffectTiming;
+
+    private bool _triggeredLastStationaryEffect = false;
     
     public void AddEffect(DiceEffectType diceEffectType)
     {
@@ -83,6 +93,30 @@ public class Dice : MonoBehaviour
             {
                 activeEffect.OnEffectOver();
                 this.RemoveEffect(activeEffect);
+            }
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (this._rigidbody.velocity != Vector3.zero)
+        {
+            this._stationarySince = -1;
+        }
+        else if (!this.IsStationary)
+        {
+            this._triggeredLastStationaryEffect = false;
+            this._stationarySince = Time.time;
+        }
+
+        if (this.ShouldTriggerEffect)
+        {
+            DiceEffectType effectType = this.GetHighestFace().EffectType;
+            if (effectType != DiceEffectType.NONE)
+            {
+                Debug.Log($"triggering {effectType}");
+                this._triggeredLastStationaryEffect = true;
+                this.AddEffect(effectType);
             }
         }
     }

@@ -691,7 +691,7 @@ MonoBehaviour:
   _diceSpawningForce: 10
   _blueTeamScore: {fileID: 11400000, guid: 6fa4cb28b35ed804b8cdbe99d50ba57c, type: 2}
   _pinkTeamScore: {fileID: 11400000, guid: 468b0c4ae07a7104a88129805d2321cd, type: 2}
-  _effectsIncompatibilities: {fileID: 0}
+  _effectsIncompatibilities: {fileID: 11400000, guid: 0ff7320f1a3b1dc4eb3e7597962fad65, type: 2}
 --- !u!1 &595608233
 GameObject:
   m_ObjectHideFlags: 0

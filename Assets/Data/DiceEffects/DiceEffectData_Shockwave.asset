@@ -17,4 +17,4 @@ MonoBehaviour:
     _value: 2
     _enabled: 0
   _applyOnLand: 0
-  _applyInstantly: 0
+  _applyInstantly: 1
