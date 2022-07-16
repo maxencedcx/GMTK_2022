@@ -154,7 +154,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 116f799afc4d4d94a953a2f7cf03cf91, type: 2}
+  - {fileID: 2100000, guid: 403459ea9ce179d429844fc03df7749a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -252,7 +252,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 116f799afc4d4d94a953a2f7cf03cf91, type: 2}
+  - {fileID: 2100000, guid: 403459ea9ce179d429844fc03df7749a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -350,7 +350,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 116f799afc4d4d94a953a2f7cf03cf91, type: 2}
+  - {fileID: 2100000, guid: 403459ea9ce179d429844fc03df7749a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -448,7 +448,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 116f799afc4d4d94a953a2f7cf03cf91, type: 2}
+  - {fileID: 2100000, guid: 403459ea9ce179d429844fc03df7749a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -546,7 +546,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 116f799afc4d4d94a953a2f7cf03cf91, type: 2}
+  - {fileID: 2100000, guid: 403459ea9ce179d429844fc03df7749a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -644,7 +644,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 116f799afc4d4d94a953a2f7cf03cf91, type: 2}
+  - {fileID: 2100000, guid: 403459ea9ce179d429844fc03df7749a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -691,6 +691,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 76f82e825a61f5241b5dd6b5f733d0a9, type: 2}
+    - target: {fileID: 4593127170362496153, guid: eff6ccfae3dd2d1409c01566d1b24f3e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8845629433215038092, guid: eff6ccfae3dd2d1409c01566d1b24f3e, type: 3}
       propertyPath: m_Name
       value: BlobShadowCaster
