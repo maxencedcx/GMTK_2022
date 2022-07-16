@@ -9,4 +9,11 @@ public class DiceFace : MonoBehaviour
 
     [SerializeField]
     private Material _material;
+
+    public DiceEffectType EffectType { get; private set; }
+    
+    public void SetEffectType(DiceEffectType diceEffectType)
+    {
+        EffectType = diceEffectType;
+    }
 }

@@ -22,23 +22,23 @@ public class RunningDiceTest : MonoBehaviour
         this._runningDice = new RunningDice(this.GetComponent<Dice>(), _diceEffectData, this._runningDiceData);
     }
 
-    private void Update()
-    {
-        DiceEffectContext context = new()
-        {
-            Players = this._players
-        };
-        
-        Vector3 currentFleeDirection = this._runningDice.GetFleeDirection(context);
-        this._fleeDirection = Vector3.SmoothDamp(this._fleeDirection, currentFleeDirection, ref this._refFleeDirectionSmoothing, this._runningDiceData.FleeDirectionSmoothing);
-        this._fleeDirection.Normalize();
-        
-        this._runningDice.Update();
-        if (this._runningDice.IsOver)
-        {
-            this._runningDice = null;
-        }
-    }
+    // private void Update()
+    // {
+    //     DiceEffectContext context = new()
+    //     {
+    //         Players = this._players
+    //     };
+    //     
+    //     Vector3 currentFleeDirection = this._runningDice.GetFleeDirection(context);
+    //     this._fleeDirection = Vector3.SmoothDamp(this._fleeDirection, currentFleeDirection, ref this._refFleeDirectionSmoothing, this._runningDiceData.FleeDirectionSmoothing);
+    //     this._fleeDirection.Normalize();
+    //     
+    //     this._runningDice.Update();
+    //     if (this._runningDice.IsOver)
+    //     {
+    //         this._runningDice = null;
+    //     }
+    // }
 
     private void OnDrawGizmosSelected()
     {

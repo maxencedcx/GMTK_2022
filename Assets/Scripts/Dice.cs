@@ -15,6 +15,45 @@ public class Dice : MonoBehaviour
     [SerializeField]
     private float _initialForce;
 
+    [SerializeField]
+    private DiceEffectsTable _diceEffectsTable = null;
+    
+    private System.Collections.Generic.List<DiceEffect> _activeEffects = new();
+
+    public event System.Action<DiceEffectType> EffectAdded;
+    
+    public void AddEffect(DiceEffectType diceEffectType)
+    {
+        DiceEffect diceEffect;
+        
+        switch (diceEffectType)
+        {
+            case DiceEffectType.SHOCKWAVE:
+                diceEffect = new Shockwave(this, this._diceEffectsTable._shockwaveEffectData, this._diceEffectsTable._shockwaveData);
+                break;
+            case DiceEffectType.RUNNING_DICE:
+                diceEffect = new RunningDice(this, this._diceEffectsTable._runningDiceEffectData, this._diceEffectsTable._runningDiceData);
+                break;
+            case DiceEffectType.MINI_DICE:
+            case DiceEffectType.GIANT_DICE:
+            case DiceEffectType.NONE:
+            default:
+                Debug.LogError($"Unhandled effect type {diceEffectType}!");
+                diceEffect = null;
+                return;
+        }
+        
+        diceEffect.OnEffectStart(new DiceEffectContext());
+        
+        this._activeEffects.Add(diceEffect);
+        this.EffectAdded?.Invoke(diceEffectType);
+    }
+
+    public void RemoveEffect(DiceEffect diceEffect)
+    {
+        this._activeEffects.Remove(diceEffect);
+    }
+    
     private void Awake()
     {
         this._rigidbody ??= this.GetComponent<Rigidbody>();
@@ -25,6 +64,20 @@ public class Dice : MonoBehaviour
         this.transform.rotation = UnityEngine.Random.rotation;
         this._rigidbody.AddForce(Vector3.forward * this._initialForce, ForceMode.Impulse);
         this._rigidbody.AddTorque(UnityEngine.Random.Range(-360, 360), UnityEngine.Random.Range(-360, 360), UnityEngine.Random.Range(-360, 360), ForceMode.Impulse);
+    }
+
+    private void Update()
+    {
+        for (int i = this._activeEffects.Count - 1; i >= 0; --i)
+        {
+            DiceEffect activeEffect = this._activeEffects[i];
+            
+            activeEffect.Update();
+            if (activeEffect.IsOver)
+            {
+                this.RemoveEffect(activeEffect);
+            }
+        }
     }
 
     [ContextMenu("Get Highest Face")]
@@ -45,4 +98,16 @@ public class Dice : MonoBehaviour
 
         return _highestFace;
     }
+    
+#if UNITY_EDITOR
+    [UnityEditor.CustomEditor(typeof(Dice))]
+    public class DiceEditor : RSLib.EditorUtilities.ButtonProviderEditor<Dice>
+    {
+        protected override void DrawButtons()
+        {
+            DrawButton("Add Shockwave", () => Obj.AddEffect(DiceEffectType.SHOCKWAVE));
+            DrawButton("Add Running Dice", () => Obj.AddEffect(DiceEffectType.RUNNING_DICE));
+        }
+    }
+#endif
 }

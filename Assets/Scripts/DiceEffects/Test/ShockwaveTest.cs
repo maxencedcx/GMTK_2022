@@ -20,7 +20,7 @@ public class ShockwaveTest : MonoBehaviour
 
     private void Awake()
     {
-        this._shockwave = new Shockwave(this.GetComponent<Dice>(), this._shockwaveEffectData, this._shockwaveData, this._layerMask);
+        this._shockwave = new Shockwave(this.GetComponent<Dice>(), this._shockwaveEffectData, this._shockwaveData);
     }
 
     private void Start()
@@ -28,15 +28,15 @@ public class ShockwaveTest : MonoBehaviour
         this._shockwave.OnEffectStart(new DiceEffectContext());
     }
 
-    private void Update()
-    {
-        this._shockwave?.Update();
-        
-        if (this._shockwave is {IsOver: true})
-        {
-            this._shockwave = null;
-        }
-    }
+    // private void Update()
+    // {
+    //     this._shockwave?.Update();
+    //     
+    //     if (this._shockwave is {IsOver: true})
+    //     {
+    //         this._shockwave = null;
+    //     }
+    // }
 
     private void OnDrawGizmosSelected()
     {
