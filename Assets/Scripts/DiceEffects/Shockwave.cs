@@ -3,15 +3,13 @@ using UnityEngine;
 
 public class Shockwave : DiceEffect
 {
-    public Shockwave(Dice dice, DiceEffectData diceEffectData, ShockwaveData shockwaveData, LayerMask layerMask) : base(dice, diceEffectData)
+    public Shockwave(Dice dice, DiceEffectData diceEffectData, ShockwaveData shockwaveData) : base(dice, diceEffectData)
     {
         this._shockwaveData = shockwaveData;
-        this._layerMask = layerMask;
         _colliders = new Collider[10]; // TODO: Replace with some static max number of players.
     }
 
     private ShockwaveData _shockwaveData;
-    private LayerMask _layerMask;
     private Collider[] _colliders;
 
     public override DiceEffectType EffectType => DiceEffectType.SHOCKWAVE;
@@ -27,7 +25,7 @@ public class Shockwave : DiceEffect
         Transform diceTransform = _dice.transform;
         Vector3 dicePosition = diceTransform.position;
         
-        int collidersCount = Physics.OverlapSphereNonAlloc(dicePosition, this._shockwaveData.Range, this._colliders, this._layerMask);
+        int collidersCount = Physics.OverlapSphereNonAlloc(dicePosition, this._shockwaveData.Range, this._colliders, this._shockwaveData.LayerMask);
         if (collidersCount > 0)
         {
             for (int i = 0; i < collidersCount; ++i)

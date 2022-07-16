@@ -20,7 +20,7 @@ public class ShockwaveTest : MonoBehaviour
 
     private void Awake()
     {
-        this._shockwave = new Shockwave(this.GetComponent<Dice>(), this._shockwaveEffectData, this._shockwaveData, this._layerMask);
+        this._shockwave = new Shockwave(this.GetComponent<Dice>(), this._shockwaveEffectData, this._shockwaveData);
     }
 
     private void Start()

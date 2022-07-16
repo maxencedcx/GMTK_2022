@@ -5,6 +5,7 @@ public abstract class DiceEffect
     public DiceEffect(Dice dice, DiceEffectData diceEffectData)
     {
         this._dice = dice;
+        this._dice.EffectAdded += OnEffectAdded;
         this.DiceEffectData = diceEffectData;
     }
 
@@ -18,6 +19,10 @@ public abstract class DiceEffect
     public float Lifetime { get; private set; }
 
     public bool IsOver => this.Lifetime > this.DiceEffectData.Duration;
+    
+    protected virtual void OnEffectAdded(DiceEffectType effectType)
+    {
+    }
     
     public abstract bool CanApply(DiceEffectContext diceEffectContext);
 
