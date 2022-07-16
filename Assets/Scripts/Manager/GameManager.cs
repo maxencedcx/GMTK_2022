@@ -1,5 +1,6 @@
 namespace Manager
 {
+    using System.Collections;
     using UnityEngine;
 
     public class GameManager : RSLib.Singleton<GameManager>
@@ -16,16 +17,23 @@ namespace Manager
         {
             if (this.State != GameState.LOBBY
                 || !Manager.TeamManager.Instance.IsThereEnoughPlayers
-                || !Manager.TeamManager.Instance.AreAllPlayersReady)
+                || !Manager.TeamManager.Instance.AreAllPlayersReady
+                || !Manager.TeamManager.Instance.AreTeamsValid)
             {
                 return false;
             }
 
-            Debug.Log($"launch game!");
+            this.StartCoroutine(this.StartGame());
+            return true;
+        }
+        
+        private IEnumerator StartGame()
+        {
+            Manager.TeamManager.Instance.DisableTeamChoosers();
+            this.State = GameState.STARTING;
+            yield return new WaitForSeconds(3);
             this.State = GameState.RUNNING;
             Instantiate(this._dicePrefab, this._diceSpawnPoint);
-            Manager.TeamManager.Instance.DisableTeamChoosers();
-            return true;
         }
     }
 }

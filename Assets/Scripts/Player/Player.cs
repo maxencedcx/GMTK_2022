@@ -120,6 +120,7 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions
     {
         if (!this.IsPlayerReady)
         {
+            this._rigidbody.velocity = Vector3.zero;
             this.Team = team;
             this._meshRenderer.material.SetColor("_Color", team.GetTeamColor());
         }

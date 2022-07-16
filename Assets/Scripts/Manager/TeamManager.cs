@@ -15,6 +15,8 @@ namespace Manager
 
         public bool IsThereEnoughPlayers => this.Players.Count > 1;
 
+        public bool AreTeamsValid => this.Players.Select(p => p.Team).Distinct().Count() > 1;
+
         public void RegisterPlayer(Player player)
         {
             if (this.Players.Contains(player))
