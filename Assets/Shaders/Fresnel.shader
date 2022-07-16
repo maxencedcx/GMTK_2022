@@ -1,6 +1,6 @@
 // Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
 
-Shader "CustomShader/Rim Light" {
+Shader "GMTK/Fresnel" {
  
     Properties {
         _Color ("Main Color", Color) = (1,1,1,1)
