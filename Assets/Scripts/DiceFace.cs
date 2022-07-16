@@ -11,12 +11,6 @@ public class DiceFace : MonoBehaviour
     }
     
     [SerializeField]
-    private MeshRenderer _meshRenderer = null;
-
-    [SerializeField]
-    private Material _material = null;
-
-    [SerializeField]
     private DiceEffectMaterial[] _diceEffectMaterials = null;
     
     [SerializeField]
