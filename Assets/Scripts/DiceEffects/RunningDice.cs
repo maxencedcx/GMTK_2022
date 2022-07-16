@@ -1,53 +1,43 @@
 using RSLib.Extensions;
 using UnityEngine;
 
-public class RunningDice : MonoBehaviour
+public class RunningDice : DiceEffect
 {
-    [SerializeField]
-    private Transform[] _players = null;
-
-    [SerializeField, Min(1f)]
-    private float _detectionRange = 5f;
-
-    [SerializeField, Min(0f)]
-    private float _fleeDirectionSmoothing = 0f;
-
-    private Vector3 _refFleeDirectionSmoothing;
-    private Vector3 _fleeDirection;
+    public RunningDice(Dice dice, DiceEffectData diceEffectData, RunningDiceData runningDiceData) : base(dice, diceEffectData)
+    {
+        this._runningDiceData = runningDiceData;
+    }
     
-    private Vector3 GetFleeDirection()
+    private RunningDiceData _runningDiceData;
+    
+    public override bool CanApply(DiceEffectContext diceEffectContext)
+    {
+        return true;
+    }
+
+    protected override void Apply(DiceEffectContext diceEffectContext)
+    {
+        
+    }
+
+    public Vector3 GetFleeDirection(DiceEffectContext diceEffectContext)
     {
         Vector3 toPlayers = Vector3.zero;
 
-        for (int i = this._players.Length - 1; i >= 0; --i)
+        for (int i = diceEffectContext.Players.Length - 1; i >= 0; --i)
         {
-            Transform player = this._players[i];
-            Vector3 toPlayer = player.position.WithY(0f) - this.transform.position.WithY(0f);
+            Transform player = diceEffectContext.Players[i];
+            Vector3 toPlayer = player.position.WithY(0f) - this._dice.transform.position.WithY(0f);
 
-            if (toPlayer.sqrMagnitude > this._detectionRange * this._detectionRange)
+            if (toPlayer.sqrMagnitude > this._runningDiceData.DetectionRangeSqr)
             {
                 continue;
             }
 
-            float distancePercentage = toPlayer.magnitude / this._detectionRange;
+            float distancePercentage = toPlayer.magnitude / this._runningDiceData.DetectionRange;
             toPlayers += toPlayer * (1f - distancePercentage); // The closer the player is, the more influence it has on flee direction.
         }
 
         return -toPlayers.normalized;
-    }
-    
-    private void Update()
-    {
-        this._fleeDirection = Vector3.SmoothDamp(this._fleeDirection, this.GetFleeDirection(), ref this._refFleeDirectionSmoothing, this._fleeDirectionSmoothing);
-        this._fleeDirection.Normalize();
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Vector3 position = this.transform.position;
-        
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(position, this._detectionRange);
-        Gizmos.DrawLine(position, position + this._fleeDirection);
     }
 }

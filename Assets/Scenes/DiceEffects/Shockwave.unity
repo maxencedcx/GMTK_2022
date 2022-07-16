@@ -475,6 +475,7 @@ GameObject:
   m_Component:
   - component: {fileID: 170686767}
   - component: {fileID: 170686766}
+  - component: {fileID: 170686768}
   m_Layer: 0
   m_Name: Shockwave
   m_TagString: Untagged
@@ -494,14 +495,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0bf016ce36598f45b049636e211be21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shockwaveData:
-    Range: 5
-    ForceMinMax: {x: 5, y: 25}
+  _shockwaveEffectData: {fileID: 11400000, guid: 388db152249f5484ea8af83f62a499a3, type: 2}
+  _shockwaveData: {fileID: 11400000, guid: ccec4ccaa49641a4882a406a31fd0709, type: 2}
   _layerMask:
     serializedVersion: 2
     m_Bits: 2147483647
-  _shakeTrauma: 0.4
-  _shockwaveView: {fileID: 7229467772525569202, guid: ea8784b0347cfb24da4f973568ba7a98, type: 3}
 --- !u!4 &170686767
 Transform:
   m_ObjectHideFlags: 0
@@ -518,6 +516,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &170686768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170686765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e253793b89923947aebb593ce16a695, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _diceFaces: []
 --- !u!1 &328407919
 GameObject:
   m_ObjectHideFlags: 0
