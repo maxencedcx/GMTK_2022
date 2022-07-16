@@ -1,16 +1,14 @@
 namespace Manager
 {
-    using System;
     using System.Collections;
     using System.Collections.Generic;
-    using Unity.Mathematics;
     using UnityEngine;
     using Random = UnityEngine.Random;
 
     public class GameManager : RSLib.Singleton<GameManager>
     {
         // GAME MANAGEMENT
-        public GameState State { get; private set; } = GameState.LOBBY;
+        public GameState State { get; set; } = GameState.LOBBY;
 
         // DICES SPAWN
         [SerializeField]
@@ -26,6 +24,8 @@ namespace Manager
         private CameraShake _cameraShake = null;
         
         private List<Dice> _dices = new();
+
+        private DiceSettings _diceSettings = new DiceSettings();
         
         // SCORE
         [SerializeField]
@@ -33,6 +33,9 @@ namespace Manager
         
         [SerializeField]
         private RSLib.Data.Int _pinkTeamScore;
+
+        [SerializeField]
+        private float _restartPauseTime = 1.5f;
 
         // EFFECTS
         [SerializeField]
@@ -98,8 +101,13 @@ namespace Manager
 
         private IEnumerator ScoreGoalCoroutine()
         {
+            this.State = GameState.PAUSED;
             this.DestroyAllDices();
-            yield return new WaitForSeconds(1.5f);
+
+            Manager.DiceFaceChoiceManager.Instance.StartChoice(1);
+            yield return new WaitUntil(() => this.State == GameState.RUNNING);
+            
+            yield return new WaitForSeconds(this._restartPauseTime);
             this.GenerateDice(this._diceSpawnPoint.position, true);
         }
 
@@ -118,7 +126,13 @@ namespace Manager
                 dice.Rigidbody.AddTorque(Random.Range(-360, 360), Random.Range(-360, 360), Random.Range(-360, 360), ForceMode.Impulse);
             }
             
+            dice.ApplySettings(this._diceSettings);
             return dice;
+        }
+
+        public void AddDiceFace((DiceEffectType diceEffectType, int index) newDiceFace)
+        {
+            this._diceSettings = new DiceSettings(this._diceSettings.DiceEffectFaces, newDiceFace);
         }
 
         public void DestroyAllDices()

@@ -1,3 +1,4 @@
+using Manager;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -74,12 +75,15 @@ public class Dice : MonoBehaviour
 
     private void Start()
     {
-        Manager.GameManager.Instance.RegisterDice(this);
+        GameManager.Instance.RegisterDice(this);
     }
 
     private void OnDestroy()
     {
-        Manager.GameManager.Instance.UnregisterDice(this);
+        if (GameManager.Exists())
+        {
+            GameManager.Instance.UnregisterDice(this);
+        }
     }
 
     private void Update()
@@ -121,23 +125,36 @@ public class Dice : MonoBehaviour
         }
     }
 
+    public void ApplySettings(DiceSettings diceSettings)
+    {
+        if (diceSettings == null)
+        {
+            return;
+        }
+        
+        for (int i = 0; i < diceSettings.DiceEffectFaces.Length; i++)
+        {
+            this._diceFaces[i].SetEffectType(diceSettings.DiceEffectFaces[i]);
+        }
+    }
+
     [ContextMenu("Get Highest Face")]
     private DiceFace GetHighestFace()
     {
         float highestPos = float.MinValue;
         
-        for (int i = 0; i < _diceFaces.Length; i++)
+        for (int i = 0; i < this._diceFaces.Length; i++)
         {
-            float posY = _diceFaces[i].transform.position.y;
+            float posY = this._diceFaces[i].transform.position.y;
 
             if (posY > highestPos)
             {
                 highestPos = posY;
-                _highestFace = _diceFaces[i];
+                this._highestFace = this._diceFaces[i];
             }
         }
 
-        return _highestFace;
+        return this._highestFace;
     }
     
 #if UNITY_EDITOR
@@ -146,10 +163,10 @@ public class Dice : MonoBehaviour
     {
         protected override void DrawButtons()
         {
-            DrawButton("Add Shockwave", () => Obj.AddEffect(DiceEffectType.SHOCKWAVE));
-            DrawButton("Add Running Dice", () => Obj.AddEffect(DiceEffectType.RUNNING_DICE));
-            DrawButton("Add Mini Dice", () => Obj.AddEffect(DiceEffectType.MINI_DICE));
-            DrawButton("Add Giant Dice", () => Obj.AddEffect(DiceEffectType.GIANT_DICE));
+            this.DrawButton("Add Shockwave", () => this.Obj.AddEffect(DiceEffectType.SHOCKWAVE));
+            this.DrawButton("Add Running Dice", () => this.Obj.AddEffect(DiceEffectType.RUNNING_DICE));
+            this.DrawButton("Add Mini Dice", () => this.Obj.AddEffect(DiceEffectType.MINI_DICE));
+            this.DrawButton("Add Giant Dice", () => this.Obj.AddEffect(DiceEffectType.GIANT_DICE));
         }
     }
 #endif

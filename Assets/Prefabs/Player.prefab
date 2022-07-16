@@ -248,6 +248,7 @@ MonoBehaviour:
   _animator: {fileID: 391956355469049764}
   _blueBlobShadow: {fileID: 624730216887539127}
   _pinkBlobShadow: {fileID: 8270249076215860418}
+  _playerInput: {fileID: 1017683270172039950}
 --- !u!114 &1017683270172039950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -322,46 +323,6 @@ MonoBehaviour:
     m_ActionId: a1a4ebc9-e5ae-44b2-a630-2ba5814984d5
     m_ActionName: Player/Tackle[/Keyboard/space]
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 6e30208e-7af1-4a7f-b12c-f7307b273615
-    m_ActionName: UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 7a39d795-06be-4501-b01a-da8fb713d7e1
-    m_ActionName: UI/Submit[/Keyboard/enter]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 1a4d63b6-1d06-4740-91ca-7c0ad2da337f
-    m_ActionName: UI/Cancel[/Keyboard/escape]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 0078c67d-f08a-4ff8-bb80-9beeaf2e3b81
-    m_ActionName: UI/Point[/Mouse/position]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 098c34e0-a36d-40dc-aa66-33976b815e7f
-    m_ActionName: UI/Click[/Mouse/leftButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 6954f10b-12f1-4f2b-a66a-fc387a3f9b0b
-    m_ActionName: UI/ScrollWheel[/Mouse/scroll]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 70aa80bb-fb3c-4a1e-8f43-d40f1f879673
-    m_ActionName: UI/MiddleClick[/Mouse/middleButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 944b7214-7564-473c-80d9-c869f0fe8e59
-    m_ActionName: UI/RightClick[/Mouse/rightButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: b0fc12b8-e76b-48f0-ba90-7d3a417bbd95
-    m_ActionName: UI/TrackedDevicePosition
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 3df3f6dd-b3a6-4a2f-b4d4-3ad1396c2af2
-    m_ActionName: UI/TrackedDeviceOrientation
-  - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4800052093827480022}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
@@ -377,6 +338,54 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 9e10e169-faeb-40c4-bdb3-0fc838bae313
     m_ActionName: Player/PlayerReady[/Keyboard/q,/XInputControllerWindows/buttonNorth,/XInputControllerWindows1/buttonNorth]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4800052093827480022}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnRotate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 269475b5-f6f3-4cbf-8036-f53a0209bd02
+    m_ActionName: CubeChoice/Rotate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow,/XInputControllerWindows/dpad/up,/XInputControllerWindows1/dpad/up,/XInputControllerWindows/dpad/down,/XInputControllerWindows1/dpad/down,/XInputControllerWindows/dpad/left,/XInputControllerWindows1/dpad/left,/XInputControllerWindows/dpad/right,/XInputControllerWindows1/dpad/right]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4800052093827480022}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnChangeEffect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 1f6dcbea-519b-4caa-931d-4cfe8f2534b2
+    m_ActionName: CubeChoice/ChangeEffect[/XInputControllerWindows/leftTrigger,/XInputControllerWindows1/leftTrigger,/XInputControllerWindows/rightTrigger,/XInputControllerWindows1/rightTrigger,/Keyboard/q,/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4800052093827480022}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnValidateEffect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 1a179ac7-cdec-44c1-83dd-80d8d19b3fa7
+    m_ActionName: CubeChoice/ValidateEffect[/XInputControllerWindows/buttonSouth,/XInputControllerWindows1/buttonSouth,/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player
