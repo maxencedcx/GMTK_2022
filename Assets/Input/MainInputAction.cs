@@ -244,7 +244,7 @@ public partial class @MainInputAction : IInputActionCollection2, IDisposable
             ]
         },
         {
-            ""name"": ""CubeChoice"",
+            ""name"": ""DiceFaceChoice"",
             ""id"": ""4f28be93-cd3e-4a5a-8f67-76a131fac998"",
             ""actions"": [
                 {
@@ -257,18 +257,27 @@ public partial class @MainInputAction : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""ChangeEffect"",
-                    ""type"": ""Value"",
-                    ""id"": ""1f6dcbea-519b-4caa-931d-4cfe8f2534b2"",
-                    ""expectedControlType"": ""Axis"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
                     ""name"": ""ValidateEffect"",
                     ""type"": ""Button"",
                     ""id"": ""1a179ac7-cdec-44c1-83dd-80d8d19b3fa7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SelectLeftEffect"",
+                    ""type"": ""Button"",
+                    ""id"": ""6f6635cf-86b1-47ac-9883-d0ac8268ea7d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SelectRightEffect"",
+                    ""type"": ""Button"",
+                    ""id"": ""6e7b4ff7-2155-4276-b942-4f0594ad5738"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -431,72 +440,6 @@ public partial class @MainInputAction : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""LeftRightTriggers"",
-                    ""id"": ""3e9fbccc-61cb-43e0-b054-7c1b5acd2d25"",
-                    ""path"": ""1DAxis"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ChangeEffect"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""negative"",
-                    ""id"": ""0c3b2505-633f-44e1-b4ee-fcce4c012633"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""ChangeEffect"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""positive"",
-                    ""id"": ""35d3da3d-7ac7-489b-a2ae-3768a08ab53c"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""ChangeEffect"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""QE"",
-                    ""id"": ""c1349707-8a83-466e-8e89-da4ea389c745"",
-                    ""path"": ""1DAxis"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ChangeEffect"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""negative"",
-                    ""id"": ""654cf19f-ae8c-4513-8eb5-36eb0f401e3a"",
-                    ""path"": ""<Keyboard>/q"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""ChangeEffect"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""positive"",
-                    ""id"": ""0d05a9d9-150c-4844-8df5-d4c798c3fe2f"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""ChangeEffect"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
                     ""name"": """",
                     ""id"": ""b85f9384-82a5-4ba4-bf9c-8c785ad4c304"",
                     ""path"": ""<Gamepad>/buttonSouth"",
@@ -515,6 +458,50 @@ public partial class @MainInputAction : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""ValidateEffect"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""98c0d18a-12c9-4041-a7cc-a677c6333835"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""SelectLeftEffect"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""422623fb-5050-4539-8475-b525cc681c7c"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""SelectLeftEffect"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c24dbb41-cd1c-41c7-b9cd-d5b427050891"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""SelectRightEffect"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c5e93ede-ee48-46f6-8830-21be636a07fc"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectRightEffect"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -590,11 +577,12 @@ public partial class @MainInputAction : IInputActionCollection2, IDisposable
         m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
         m_Player_Tackle = m_Player.FindAction("Tackle", throwIfNotFound: true);
         m_Player_PlayerReady = m_Player.FindAction("PlayerReady", throwIfNotFound: true);
-        // CubeChoice
-        m_CubeChoice = asset.FindActionMap("CubeChoice", throwIfNotFound: true);
-        m_CubeChoice_Rotate = m_CubeChoice.FindAction("Rotate", throwIfNotFound: true);
-        m_CubeChoice_ChangeEffect = m_CubeChoice.FindAction("ChangeEffect", throwIfNotFound: true);
-        m_CubeChoice_ValidateEffect = m_CubeChoice.FindAction("ValidateEffect", throwIfNotFound: true);
+        // DiceFaceChoice
+        m_DiceFaceChoice = asset.FindActionMap("DiceFaceChoice", throwIfNotFound: true);
+        m_DiceFaceChoice_Rotate = m_DiceFaceChoice.FindAction("Rotate", throwIfNotFound: true);
+        m_DiceFaceChoice_ValidateEffect = m_DiceFaceChoice.FindAction("ValidateEffect", throwIfNotFound: true);
+        m_DiceFaceChoice_SelectLeftEffect = m_DiceFaceChoice.FindAction("SelectLeftEffect", throwIfNotFound: true);
+        m_DiceFaceChoice_SelectRightEffect = m_DiceFaceChoice.FindAction("SelectRightEffect", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -708,54 +696,62 @@ public partial class @MainInputAction : IInputActionCollection2, IDisposable
     }
     public PlayerActions @Player => new PlayerActions(this);
 
-    // CubeChoice
-    private readonly InputActionMap m_CubeChoice;
-    private ICubeChoiceActions m_CubeChoiceActionsCallbackInterface;
-    private readonly InputAction m_CubeChoice_Rotate;
-    private readonly InputAction m_CubeChoice_ChangeEffect;
-    private readonly InputAction m_CubeChoice_ValidateEffect;
-    public struct CubeChoiceActions
+    // DiceFaceChoice
+    private readonly InputActionMap m_DiceFaceChoice;
+    private IDiceFaceChoiceActions m_DiceFaceChoiceActionsCallbackInterface;
+    private readonly InputAction m_DiceFaceChoice_Rotate;
+    private readonly InputAction m_DiceFaceChoice_ValidateEffect;
+    private readonly InputAction m_DiceFaceChoice_SelectLeftEffect;
+    private readonly InputAction m_DiceFaceChoice_SelectRightEffect;
+    public struct DiceFaceChoiceActions
     {
         private @MainInputAction m_Wrapper;
-        public CubeChoiceActions(@MainInputAction wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Rotate => m_Wrapper.m_CubeChoice_Rotate;
-        public InputAction @ChangeEffect => m_Wrapper.m_CubeChoice_ChangeEffect;
-        public InputAction @ValidateEffect => m_Wrapper.m_CubeChoice_ValidateEffect;
-        public InputActionMap Get() { return m_Wrapper.m_CubeChoice; }
+        public DiceFaceChoiceActions(@MainInputAction wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Rotate => m_Wrapper.m_DiceFaceChoice_Rotate;
+        public InputAction @ValidateEffect => m_Wrapper.m_DiceFaceChoice_ValidateEffect;
+        public InputAction @SelectLeftEffect => m_Wrapper.m_DiceFaceChoice_SelectLeftEffect;
+        public InputAction @SelectRightEffect => m_Wrapper.m_DiceFaceChoice_SelectRightEffect;
+        public InputActionMap Get() { return m_Wrapper.m_DiceFaceChoice; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(CubeChoiceActions set) { return set.Get(); }
-        public void SetCallbacks(ICubeChoiceActions instance)
+        public static implicit operator InputActionMap(DiceFaceChoiceActions set) { return set.Get(); }
+        public void SetCallbacks(IDiceFaceChoiceActions instance)
         {
-            if (m_Wrapper.m_CubeChoiceActionsCallbackInterface != null)
+            if (m_Wrapper.m_DiceFaceChoiceActionsCallbackInterface != null)
             {
-                @Rotate.started -= m_Wrapper.m_CubeChoiceActionsCallbackInterface.OnRotate;
-                @Rotate.performed -= m_Wrapper.m_CubeChoiceActionsCallbackInterface.OnRotate;
-                @Rotate.canceled -= m_Wrapper.m_CubeChoiceActionsCallbackInterface.OnRotate;
-                @ChangeEffect.started -= m_Wrapper.m_CubeChoiceActionsCallbackInterface.OnChangeEffect;
-                @ChangeEffect.performed -= m_Wrapper.m_CubeChoiceActionsCallbackInterface.OnChangeEffect;
-                @ChangeEffect.canceled -= m_Wrapper.m_CubeChoiceActionsCallbackInterface.OnChangeEffect;
-                @ValidateEffect.started -= m_Wrapper.m_CubeChoiceActionsCallbackInterface.OnValidateEffect;
-                @ValidateEffect.performed -= m_Wrapper.m_CubeChoiceActionsCallbackInterface.OnValidateEffect;
-                @ValidateEffect.canceled -= m_Wrapper.m_CubeChoiceActionsCallbackInterface.OnValidateEffect;
+                @Rotate.started -= m_Wrapper.m_DiceFaceChoiceActionsCallbackInterface.OnRotate;
+                @Rotate.performed -= m_Wrapper.m_DiceFaceChoiceActionsCallbackInterface.OnRotate;
+                @Rotate.canceled -= m_Wrapper.m_DiceFaceChoiceActionsCallbackInterface.OnRotate;
+                @ValidateEffect.started -= m_Wrapper.m_DiceFaceChoiceActionsCallbackInterface.OnValidateEffect;
+                @ValidateEffect.performed -= m_Wrapper.m_DiceFaceChoiceActionsCallbackInterface.OnValidateEffect;
+                @ValidateEffect.canceled -= m_Wrapper.m_DiceFaceChoiceActionsCallbackInterface.OnValidateEffect;
+                @SelectLeftEffect.started -= m_Wrapper.m_DiceFaceChoiceActionsCallbackInterface.OnSelectLeftEffect;
+                @SelectLeftEffect.performed -= m_Wrapper.m_DiceFaceChoiceActionsCallbackInterface.OnSelectLeftEffect;
+                @SelectLeftEffect.canceled -= m_Wrapper.m_DiceFaceChoiceActionsCallbackInterface.OnSelectLeftEffect;
+                @SelectRightEffect.started -= m_Wrapper.m_DiceFaceChoiceActionsCallbackInterface.OnSelectRightEffect;
+                @SelectRightEffect.performed -= m_Wrapper.m_DiceFaceChoiceActionsCallbackInterface.OnSelectRightEffect;
+                @SelectRightEffect.canceled -= m_Wrapper.m_DiceFaceChoiceActionsCallbackInterface.OnSelectRightEffect;
             }
-            m_Wrapper.m_CubeChoiceActionsCallbackInterface = instance;
+            m_Wrapper.m_DiceFaceChoiceActionsCallbackInterface = instance;
             if (instance != null)
             {
                 @Rotate.started += instance.OnRotate;
                 @Rotate.performed += instance.OnRotate;
                 @Rotate.canceled += instance.OnRotate;
-                @ChangeEffect.started += instance.OnChangeEffect;
-                @ChangeEffect.performed += instance.OnChangeEffect;
-                @ChangeEffect.canceled += instance.OnChangeEffect;
                 @ValidateEffect.started += instance.OnValidateEffect;
                 @ValidateEffect.performed += instance.OnValidateEffect;
                 @ValidateEffect.canceled += instance.OnValidateEffect;
+                @SelectLeftEffect.started += instance.OnSelectLeftEffect;
+                @SelectLeftEffect.performed += instance.OnSelectLeftEffect;
+                @SelectLeftEffect.canceled += instance.OnSelectLeftEffect;
+                @SelectRightEffect.started += instance.OnSelectRightEffect;
+                @SelectRightEffect.performed += instance.OnSelectRightEffect;
+                @SelectRightEffect.canceled += instance.OnSelectRightEffect;
             }
         }
     }
-    public CubeChoiceActions @CubeChoice => new CubeChoiceActions(this);
+    public DiceFaceChoiceActions @DiceFaceChoice => new DiceFaceChoiceActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -808,10 +804,11 @@ public partial class @MainInputAction : IInputActionCollection2, IDisposable
         void OnTackle(InputAction.CallbackContext context);
         void OnPlayerReady(InputAction.CallbackContext context);
     }
-    public interface ICubeChoiceActions
+    public interface IDiceFaceChoiceActions
     {
         void OnRotate(InputAction.CallbackContext context);
-        void OnChangeEffect(InputAction.CallbackContext context);
         void OnValidateEffect(InputAction.CallbackContext context);
+        void OnSelectLeftEffect(InputAction.CallbackContext context);
+        void OnSelectRightEffect(InputAction.CallbackContext context);
     }
 }

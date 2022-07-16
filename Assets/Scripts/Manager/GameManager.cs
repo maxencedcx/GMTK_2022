@@ -96,15 +96,16 @@ namespace Manager
                     break;
             }
             
-            this.StartCoroutine(this.ScoreGoalCoroutine());
+            this.StartCoroutine(this.ScoreGoalCoroutine(triggeredGoalTeam));
         }
 
-        private IEnumerator ScoreGoalCoroutine()
+        private IEnumerator ScoreGoalCoroutine(Team triggeredGoalTeam)
         {
             this.State = GameState.PAUSED;
             this.DestroyAllDices();
 
-            Manager.DiceFaceChoiceManager.Instance.StartChoice(1);
+            int playerIndex = Manager.DiceFaceChoiceManager.Instance.GetNewPlayerIndexForTeam(triggeredGoalTeam);
+            Manager.DiceFaceChoiceManager.Instance.StartChoice(playerIndex);
             yield return new WaitUntil(() => this.State == GameState.RUNNING);
             
             yield return new WaitForSeconds(this._restartPauseTime);
