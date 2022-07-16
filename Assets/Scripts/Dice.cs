@@ -12,8 +12,7 @@ public class Dice : MonoBehaviour
     [SerializeField]
     private Rigidbody _rigidbody;
 
-    [SerializeField]
-    private float _initialForce;
+    public Rigidbody Rigidbody => this._rigidbody;
 
     [SerializeField]
     private DiceEffectsTable _diceEffectsTable = null;
@@ -61,9 +60,12 @@ public class Dice : MonoBehaviour
 
     private void Start()
     {
-        this.transform.rotation = UnityEngine.Random.rotation;
-        this._rigidbody.AddForce(Vector3.forward * this._initialForce, ForceMode.Impulse);
-        this._rigidbody.AddTorque(UnityEngine.Random.Range(-360, 360), UnityEngine.Random.Range(-360, 360), UnityEngine.Random.Range(-360, 360), ForceMode.Impulse);
+        Manager.GameManager.Instance.RegisterDice(this);
+    }
+
+    private void OnDestroy()
+    {
+        Manager.GameManager.Instance.UnregisterDice(this);
     }
 
     private void Update()

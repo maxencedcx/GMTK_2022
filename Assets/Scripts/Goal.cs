@@ -6,22 +6,25 @@ public class Goal : MonoBehaviour
     private Team _team = Team.NONE;
 
     [SerializeField]
-    private UnityEngine.Events.UnityEvent _goalTriggered = null;
+    private UnityEngine.Events.UnityEvent<Team> _goalTriggered = null;
 
-    public event System.Action GoalTriggered;
+    public event System.Action<Team> GoalTriggered;
     
     public Team Team => this._team;
 
     [ContextMenu("On Goal Triggered")]
     private void OnGoalTriggered()
     {
-        this._goalTriggered?.Invoke();
-        this.GoalTriggered?.Invoke(); 
+        this._goalTriggered?.Invoke(this._team);
+        this.GoalTriggered?.Invoke(this._team);
+        Manager.GameManager.Instance.ScoreGoal(this._team);
     }
     
     private void OnTriggerEnter(Collider other)
     {
-        Debug.LogError($"Trigger enter (team {Team}).");
-        OnGoalTriggered();
+        if (other.gameObject.TryGetComponent(out Dice dice))
+        {
+            OnGoalTriggered();
+        }
     }
 }
