@@ -22,6 +22,10 @@ public abstract class DiceEffect
     
     protected virtual void OnEffectAdded(DiceEffectType effectType)
     {
+        if (this.EffectType.IsIncompatibleWith(effectType))
+        {
+            this._dice.RemoveEffect(this);
+        }
     }
     
     public abstract bool CanApply(DiceEffectContext diceEffectContext);

@@ -40,10 +40,18 @@ public class Dice : MonoBehaviour
             default:
                 Debug.LogError($"Unhandled effect type {diceEffectType}!");
                 diceEffect = null;
-                break;
+                return;
         }
         
-        EffectAdded?.Invoke(diceEffectType);
+        diceEffect.OnEffectStart(new DiceEffectContext());
+        
+        this._activeEffects.Add(diceEffect);
+        this.EffectAdded?.Invoke(diceEffectType);
+    }
+
+    public void RemoveEffect(DiceEffect diceEffect)
+    {
+        this._activeEffects.Remove(diceEffect);
     }
     
     private void Awake()
@@ -67,7 +75,7 @@ public class Dice : MonoBehaviour
             activeEffect.Update();
             if (activeEffect.IsOver)
             {
-                this._activeEffects.RemoveAt(i);
+                this.RemoveEffect(activeEffect);
             }
         }
     }
