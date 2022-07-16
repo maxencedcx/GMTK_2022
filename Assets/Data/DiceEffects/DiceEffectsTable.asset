@@ -16,3 +16,7 @@ MonoBehaviour:
   _shockwaveData: {fileID: 11400000, guid: ccec4ccaa49641a4882a406a31fd0709, type: 2}
   _runningDiceEffectData: {fileID: 11400000, guid: be9840cf33f6e604289ccb830f358f9b, type: 2}
   _runningDiceData: {fileID: 11400000, guid: 9160089e0631ddb49bf897a693c042a6, type: 2}
+  _miniDiceEffectData: {fileID: 11400000, guid: d683bc5574e1595468e3408a6e12c737, type: 2}
+  _miniDiceData: {fileID: 11400000, guid: 67f493e95d833ac4db7f939a0e6b585e, type: 2}
+  _giantDiceEffectData: {fileID: 11400000, guid: 2c2fce97d19f70b418923243f83c9e43, type: 2}
+  _giantDiceData: {fileID: 11400000, guid: f3234b39786cc7046af2f7abf54e1121, type: 2}
