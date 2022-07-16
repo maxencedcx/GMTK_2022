@@ -1,12 +1,9 @@
 using RSLib.Extensions;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
-using Random = System.Random;
 
-public class Player : MonoBehaviour, MainInputAction.IPlayerActions
+public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAction.ICubeChoiceActions
 {
     // PHYSICS
     [SerializeField]
@@ -45,9 +42,25 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions
     public Team Team { get; private set; }
 
     public bool IsPlayerReady { get; private set; } = false;
+
+    public int PlayerIndex => this._playerInput.playerIndex;
+    
+    // INPUT
+    [SerializeField]
+    private PlayerInput _playerInput;
+
+    private InputActionMap _playerActionMap;
+    
+    private InputActionMap _cubeChoiceActionMap;
     
 
     #region Unity Native Functions
+
+    private void Awake()
+    {
+        this._playerActionMap = this._playerInput.actions.FindActionMap("Player");
+        this._cubeChoiceActionMap = this._playerInput.actions.FindActionMap("CubeChoice");
+    }
 
     private void Start()
     {
@@ -103,6 +116,26 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions
 
     #region Input Handler
 
+    public void DisablePlayerInputs()
+    {
+        this._playerActionMap.Disable();
+    }
+
+    public void EnablePlayerInputs()
+    {
+        this._playerActionMap.Enable();
+    }
+
+    public void DisableCubeChoiceInputs()
+    {
+        this._cubeChoiceActionMap.Disable();
+    }
+
+    public void EnableCubeChoiceInputs()
+    {
+        this._cubeChoiceActionMap.Enable();
+    }
+
     public void OnMove(InputAction.CallbackContext context)
     {
         Vector2 inputValue = context.ReadValue<Vector2>();
@@ -145,6 +178,34 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions
             }
                 
             Manager.GameManager.Instance.TryStartGame();
+        }
+    }
+    
+    public void OnRotate(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Vector2 rotationDirection = context.ReadValue<Vector2>();
+            rotationDirection.y = rotationDirection.x != 0 ? 0 : rotationDirection.y;
+            Manager.DiceFaceChoiceManager.Instance.RotateCube(rotationDirection);
+        }
+    }
+
+    public void OnChangeEffect(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            int direction = context.ReadValue<int>();
+            Manager.DiceFaceChoiceManager.Instance.ChangeSelectedEffect(direction);
+            Debug.Log($"OnChangeEffect");
+        }
+    }
+
+    public void OnValidateEffect(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Manager.DiceFaceChoiceManager.Instance.ValidateChoice();
         }
     }
 
