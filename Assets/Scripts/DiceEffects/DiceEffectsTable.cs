@@ -12,4 +12,12 @@ public class DiceEffectsTable : ScriptableObject
     [Header("RUNNING DICE")]
     public DiceEffectData _runningDiceEffectData;
     public RunningDiceData _runningDiceData;
+    
+    [Header("MINI DICE")]
+    public DiceEffectData _miniDiceEffectData;
+    public SizeModifierData _miniDiceData;
+    
+    [Header("GIANT DICE")]
+    public DiceEffectData _giantDiceEffectData;
+    public SizeModifierData _giantDiceData;
 }

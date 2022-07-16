@@ -93,6 +93,11 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions
 
     public void OnTackle(InputAction.CallbackContext context)
     {
+        if (this.IsPlayerReady && Manager.GameManager.Instance.State == GameState.LOBBY)
+        {
+            return;
+        }
+
         if (context.performed)
         {
             this._rigidbody.AddForce(this._lastInputDirection * this._movementForceMultiplier / 3, ForceMode.Impulse);

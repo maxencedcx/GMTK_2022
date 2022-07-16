@@ -64,6 +64,10 @@ public abstract class DiceEffect
         }
     }
 
+    public virtual void OnEffectOver()
+    {
+    }
+    
     public void Update()
     {
         this.Lifetime += Time.deltaTime;
