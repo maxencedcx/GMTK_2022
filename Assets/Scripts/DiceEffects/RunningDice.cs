@@ -9,7 +9,9 @@ public class RunningDice : DiceEffect
     }
     
     private RunningDiceData _runningDiceData;
-    
+
+    public override DiceEffectType EffectType => DiceEffectType.RUNNING_DICE;
+
     public override bool CanApply(DiceEffectContext diceEffectContext)
     {
         return true;

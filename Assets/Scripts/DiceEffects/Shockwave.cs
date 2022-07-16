@@ -14,6 +14,8 @@ public class Shockwave : DiceEffect
     private LayerMask _layerMask;
     private Collider[] _colliders;
 
+    public override DiceEffectType EffectType => DiceEffectType.SHOCKWAVE;
+    
     public override bool CanApply(DiceEffectContext diceEffectContext)
     {
         // TODO: Check ground.

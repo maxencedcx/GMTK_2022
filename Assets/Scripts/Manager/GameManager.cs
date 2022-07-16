@@ -8,10 +8,15 @@ namespace Manager
         public GameState State { get; private set; } = GameState.LOBBY;
 
         [SerializeField]
-        private GameObject _dicePrefab;
+        private GameObject _dicePrefab = null;
 
         [SerializeField]
-        private Transform _diceSpawnPoint;
+        private Transform _diceSpawnPoint = null;
+
+        [SerializeField]
+        private DiceEffectsIncompatibilitiesTable _effectsIncompatibilities = null;
+
+        public DiceEffectsIncompatibilitiesTable EffectsIncompatibilitiesTable => this._effectsIncompatibilities;
         
         public bool TryStartGame()
         {
@@ -22,11 +27,11 @@ namespace Manager
             {
                 return false;
             }
-
+            
             this.StartCoroutine(this.StartGame());
             return true;
         }
-        
+
         private IEnumerator StartGame()
         {
             Manager.TeamManager.Instance.DisableTeamChoosers();

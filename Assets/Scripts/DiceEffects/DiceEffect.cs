@@ -11,6 +11,8 @@ public abstract class DiceEffect
     protected Dice _dice;
     private float _autoApplyTimer;
     
+    public abstract DiceEffectType EffectType { get; }
+    
     public DiceEffectData DiceEffectData { get; }
 
     public float Lifetime { get; private set; }
