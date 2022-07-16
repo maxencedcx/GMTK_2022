@@ -44,6 +44,12 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
     [SerializeField]
     private RuntimeAnimatorController _pinkAnimator = null;
 
+    [SerializeField]
+    private GameObject _pinkTeamParticles = null;
+
+    [SerializeField]
+    private GameObject _blueTeamParticles = null;
+    
     // GAMEPLAY
     public Team Team { get; private set; }
 
@@ -224,6 +230,11 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
 
     public void SetTeam(Team team)
     {
+        if (this.Team == team)
+        {
+            return;
+        }
+        
         if (!this.IsPlayerReady)
         {
             this.Team = team;
@@ -232,6 +243,9 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
             this._pinkBlobShadow.SetActive(this.Team == Team.PINK);
 
             this._animator.runtimeAnimatorController = this.Team == Team.BLUE ? this._blueAnimator : this._pinkAnimator;
+
+            GameObject particles = this.Team == Team.PINK ? this._pinkTeamParticles : this._blueTeamParticles;
+            Instantiate(particles, transform.position, particles.transform.rotation);
         }
     }
 }

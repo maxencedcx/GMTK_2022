@@ -266,6 +266,8 @@ MonoBehaviour:
   _pinkBlobShadow: {fileID: 8270249076215860418}
   _blueAnimator: {fileID: 9100000, guid: 8c5f4c88d73629e4d9b1ccfa8dad2026, type: 2}
   _pinkAnimator: {fileID: 22100000, guid: fe50d258282b1f949b2495184b54a1be, type: 2}
+  _pinkTeamParticles: {fileID: 7995170261910196790, guid: 81e6ee763312a6440b3fe579e7fff7bb, type: 3}
+  _blueTeamParticles: {fileID: 5824872440604982799, guid: 203d79c4fe3821b4697762809b50857e, type: 3}
   _playerInput: {fileID: 1017683270172039950}
 --- !u!114 &1017683270172039950
 MonoBehaviour:
