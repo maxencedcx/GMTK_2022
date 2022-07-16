@@ -22,6 +22,9 @@ namespace Manager
         [SerializeField]
         private float _diceSpawningForce = 10f;
 
+        [SerializeField]
+        private CameraShake _cameraShake = null;
+        
         private List<Dice> _dices = new();
         
         // SCORE
@@ -37,6 +40,8 @@ namespace Manager
 
         public DiceEffectsIncompatibilitiesTable EffectsIncompatibilitiesTable => this._effectsIncompatibilities;
 
+        public CameraShake CameraShake => this._cameraShake;
+        
         protected override void Awake()
         {
             base.Awake();

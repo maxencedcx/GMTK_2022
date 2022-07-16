@@ -60,8 +60,8 @@ MonoBehaviour:
   - {fileID: 1634237807917366662}
   - {fileID: 1634237807871351684}
   _rigidbody: {fileID: 1634237807752868069}
-  _initialForce: 20
   _diceEffectsTable: {fileID: 11400000, guid: ed5e233d1c89ee5479056a091378659b, type: 2}
+  _triggerFaceEffectTiming: 0.2
 --- !u!65 &1634237807752868067
 BoxCollider:
   m_ObjectHideFlags: 0
