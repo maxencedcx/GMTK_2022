@@ -9,9 +9,40 @@ public abstract class SizeModifier : MonoBehaviour
     [SerializeField]
     private float _scaleDuration = 0f;
 
+    [SerializeField, Range(0f, 1f)]
+    private float _shakeTrauma = 0.4f;
+
+    protected Rigidbody _rigidbody;
+
+
+    private void Start()
+    {
+        _rigidbody = GetComponent<Rigidbody>();
+    }
+
     [ContextMenu("Apply")]
-    protected virtual void Apply() => this.transform.DOScale(_scale, _scaleDuration);
+    public virtual void Apply()
+    {
+        this.transform.DOScale(_scale, _scaleDuration);
+        FindObjectOfType<CameraShake>().SetTrauma(_shakeTrauma); // TODO: Remove FindObjectOfType.
+    }
 
     [ContextMenu("Revert")]
-    protected void Revert() => this.transform.DOScale(1f, _scaleDuration);
+    public virtual void Revert()
+    {
+        this.transform.DOScale(1f, _scaleDuration);
+    }
+
+
+#if UNITY_EDITOR
+    [UnityEditor.CustomEditor(typeof(SizeModifier))]
+    public class SizeModifierEditor : RSLib.EditorUtilities.ButtonProviderEditor<SizeModifier>
+    {
+        protected override void DrawButtons()
+        {
+            DrawButton("Apply", Obj.Apply);
+            DrawButton("Revert", Obj.Revert);
+        }
+    }
+#endif
 }
