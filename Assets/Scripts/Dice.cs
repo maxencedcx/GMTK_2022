@@ -9,7 +9,7 @@ public class Dice : MonoBehaviour
     [SerializeField]
     private DiceFace[] _diceFaces = null;
 
-    private DiceFace highestFace;
+    private DiceFace _highestFace;
 
     [ContextMenu("Get Highest Face")]
     private DiceFace GetHighestFace()
@@ -23,10 +23,10 @@ public class Dice : MonoBehaviour
             if (posY > highestPos)
             {
                 highestPos = posY;
-                highestFace = _diceFaces[i];
+                _highestFace = _diceFaces[i];
             }
         }
 
-        return highestFace;
+        return _highestFace;
     }
 }
