@@ -37,7 +37,13 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
 
     [SerializeField]
     private GameObject _pinkBlobShadow = null;
-    
+
+    [SerializeField]
+    private RuntimeAnimatorController _blueAnimator = null;
+
+    [SerializeField]
+    private RuntimeAnimatorController _pinkAnimator = null;
+
     // GAMEPLAY
     public Team Team { get; private set; }
 
@@ -53,7 +59,6 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
     
     private InputActionMap _cubeChoiceActionMap;
     
-
     #region Unity Native Functions
 
     private void Awake()
@@ -81,7 +86,7 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
 
             if (this._lastInputDirection.x != 0f)
             {
-                this._spriteRenderer.flipX = this._lastInputDirection.x < 0f;
+                this._spriteRenderer.flipX = this.Team == Team.PINK ? this._lastInputDirection.x > 0f : this._lastInputDirection.x < 0f;
             }
         }
         else
@@ -219,6 +224,8 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
 
             this._blueBlobShadow.SetActive(this.Team == Team.BLUE);
             this._pinkBlobShadow.SetActive(this.Team == Team.PINK);
+
+            this._animator.runtimeAnimatorController = this.Team == Team.BLUE ? this._blueAnimator : this._pinkAnimator;
         }
     }
 }

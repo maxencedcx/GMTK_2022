@@ -201,6 +201,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24b020547892eab469253f34ee95cf58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _axis: 0
+  _negate: 0
+  _reverseZ: 0
 --- !u!1 &4800052093827480023
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,6 +264,8 @@ MonoBehaviour:
   _animator: {fileID: 391956355469049764}
   _blueBlobShadow: {fileID: 624730216887539127}
   _pinkBlobShadow: {fileID: 8270249076215860418}
+  _blueAnimator: {fileID: 9100000, guid: 8c5f4c88d73629e4d9b1ccfa8dad2026, type: 2}
+  _pinkAnimator: {fileID: 22100000, guid: fe50d258282b1f949b2495184b54a1be, type: 2}
   _playerInput: {fileID: 1017683270172039950}
 --- !u!114 &1017683270172039950
 MonoBehaviour:
