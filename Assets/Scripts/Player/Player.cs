@@ -28,6 +28,18 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions
     // VIEW
     [SerializeField]
     private MeshRenderer _meshRenderer;
+
+    [SerializeField]
+    private SpriteRenderer _spriteRenderer = null;
+    
+    [SerializeField]
+    private Animator _animator = null;
+
+    [SerializeField]
+    private GameObject _blueBlobShadow = null;
+
+    [SerializeField]
+    private GameObject _pinkBlobShadow = null;
     
     // GAMEPLAY
     public Team Team { get; private set; }
@@ -52,6 +64,16 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions
         if (this._lastInputDirection != Vector3.zero)
         {
             this._rigidbody.AddForce(this._lastInputDirection * this._movementForceMultiplier, ForceMode.Acceleration);
+            this._animator.SetBool("Running", true);
+
+            if (this._lastInputDirection.x != 0f)
+            {
+                this._spriteRenderer.flipX = this._lastInputDirection.x < 0f;
+            }
+        }
+        else
+        {
+            this._animator.SetBool("Running", false);
         }
     }
 
@@ -115,6 +137,13 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions
         if (context.performed)
         {
             this.IsPlayerReady = this.Team != Team.NONE && !this.IsPlayerReady;
+            if (this.IsPlayerReady)
+            {
+                // TODO: Player can still dash and not change its team.
+                this._rigidbody.NullifyMovement();
+                this._animator.SetBool("Running", false);
+            }
+                
             Manager.GameManager.Instance.TryStartGame();
         }
     }
@@ -125,9 +154,10 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions
     {
         if (!this.IsPlayerReady)
         {
-            this._rigidbody.velocity = Vector3.zero;
             this.Team = team;
-            this._meshRenderer.material.SetColor("_Color", team.GetTeamColor());
+
+            this._blueBlobShadow.SetActive(this.Team == Team.BLUE);
+            this._pinkBlobShadow.SetActive(this.Team == Team.PINK);
         }
     }
 }
