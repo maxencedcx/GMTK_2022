@@ -59,6 +59,6 @@ public class Shockwave : DiceEffect
         base.OnEffectApplied(diceEffectContext);
         
         this._shockwaveData.ParticlesSpawner.SpawnParticles(_dice.transform.position);
-        UnityEngine.Object.FindObjectOfType<CameraShake>().SetTrauma(this._shockwaveData.Trauma); // TODO: Remove FindObjectOfType.
+        Manager.GameManager.Instance.CameraShake?.SetTrauma(this._shockwaveData.Trauma); // TODO: Remove FindObjectOfType.
     }
 }
