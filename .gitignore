@@ -61,4 +61,5 @@ crashlytics-build.properties
 
 .idea/
 
-UserSettings/Layouts/*
+/UserSettings/Layouts/*
+/UserSettings/*
