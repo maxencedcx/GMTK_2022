@@ -53,6 +53,15 @@ public partial class @MainInputAction : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PlayerReady"",
+                    ""type"": ""Button"",
+                    ""id"": ""9e10e169-faeb-40c4-bdb3-0fc838bae313"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -168,33 +177,11 @@ public partial class @MainInputAction : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""3ea4d645-4504-4529-b061-ab81934c3752"",
-                    ""path"": ""<Joystick>/stick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Joystick"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""143bb1cd-cc10-4eca-a2f0-a3664166fe91"",
                     ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
-                    ""action"": ""Shoot"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""ee3d0cd2-254e-47a7-a8cb-bc94d9658c54"",
-                    ""path"": ""<Joystick>/trigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Joystick"",
                     ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -229,6 +216,28 @@ public partial class @MainInputAction : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Tackle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1898de92-dda9-41d9-998d-858dda7cc878"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""PlayerReady"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""376ee246-792f-4707-ad30-c43c3477d71f"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""PlayerReady"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -819,6 +828,7 @@ public partial class @MainInputAction : IInputActionCollection2, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
         m_Player_Tackle = m_Player.FindAction("Tackle", throwIfNotFound: true);
+        m_Player_PlayerReady = m_Player.FindAction("PlayerReady", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -893,6 +903,7 @@ public partial class @MainInputAction : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Shoot;
     private readonly InputAction m_Player_Tackle;
+    private readonly InputAction m_Player_PlayerReady;
     public struct PlayerActions
     {
         private @MainInputAction m_Wrapper;
@@ -900,6 +911,7 @@ public partial class @MainInputAction : IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
         public InputAction @Tackle => m_Wrapper.m_Player_Tackle;
+        public InputAction @PlayerReady => m_Wrapper.m_Player_PlayerReady;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -918,6 +930,9 @@ public partial class @MainInputAction : IInputActionCollection2, IDisposable
                 @Tackle.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTackle;
                 @Tackle.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTackle;
                 @Tackle.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTackle;
+                @PlayerReady.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerReady;
+                @PlayerReady.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerReady;
+                @PlayerReady.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerReady;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -931,6 +946,9 @@ public partial class @MainInputAction : IInputActionCollection2, IDisposable
                 @Tackle.started += instance.OnTackle;
                 @Tackle.performed += instance.OnTackle;
                 @Tackle.canceled += instance.OnTackle;
+                @PlayerReady.started += instance.OnPlayerReady;
+                @PlayerReady.performed += instance.OnPlayerReady;
+                @PlayerReady.canceled += instance.OnPlayerReady;
             }
         }
     }
@@ -1090,6 +1108,7 @@ public partial class @MainInputAction : IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
         void OnTackle(InputAction.CallbackContext context);
+        void OnPlayerReady(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

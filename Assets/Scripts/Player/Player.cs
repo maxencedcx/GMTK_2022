@@ -8,10 +8,9 @@ using Random = System.Random;
 
 public class Player : MonoBehaviour, MainInputAction.IPlayerActions
 {
+    // PHYSICS
     [SerializeField]
     private Rigidbody _rigidbody;
-
-    #region Forces
 
     [SerializeField]
     private float _movementForceMultiplier;
@@ -22,37 +21,34 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions
     [SerializeField] [Range(0f, 1f)]
     private float _collisionYForce;
 
-    #endregion
-
     private Vector3 _lastInputDirection = Vector3.zero;
 
-    private List<Collider> _currentCollisions = new ();
+    private readonly List<Collider> _currentCollisions = new();
+    
+    // VIEW
+    [SerializeField]
+    private MeshRenderer _meshRenderer;
+    
+    // GAMEPLAY
+    public Team Team { get; private set; }
 
+    public bool IsPlayerReady { get; private set; } = false;
+    
 
     #region Unity Native Functions
 
-    private void Awake()
+    private void Start()
     {
-        InputSystem.onDeviceChange +=
-            (device, change) =>
-            {
-                switch (change)
-                {
-                    case InputDeviceChange.Added:
-                        // New Device.
-                        break;
-                    case InputDeviceChange.Disconnected:
-                        // Device got unplugged.
-                        break;
-                    case InputDeviceChange.Reconnected:
-                        // Plugged back in.
-                        break;
-                }
-            };
+        Manager.TeamManager.Instance.RegisterPlayer(this);
     }
 
     private void FixedUpdate()
     {
+        if (this.IsPlayerReady && Manager.GameManager.Instance.State == GameState.LOBBY)
+        {
+            return;
+        }
+        
         if (this._lastInputDirection != Vector3.zero)
         {
             this._rigidbody.AddForce(this._lastInputDirection * this._movementForceMultiplier, ForceMode.Acceleration);
@@ -70,7 +66,7 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions
         if (collision.gameObject.TryGetComponent<Dice>(out _))
         {
             Vector3 direction = (collision.transform.position - this.transform.position).normalized;
-            direction.y = this._collisionYForce;
+            direction.y = Mathf.Max(0f, this._collisionYForce - direction.y) ;
             collision.rigidbody.AddForce(direction * this._collisionForceMultiplier, ForceMode.Impulse);
             collision.rigidbody.AddTorque(UnityEngine.Random.Range(-360, 360), UnityEngine.Random.Range(-360, 360), UnityEngine.Random.Range(-360, 360));
         }
@@ -104,5 +100,28 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions
         }
     }
 
+    public void OnPlayerReady(InputAction.CallbackContext context)
+    {
+        if (Manager.GameManager.Instance.State != GameState.LOBBY)
+        {
+            return;
+        }
+        
+        if (context.performed)
+        {
+            this.IsPlayerReady = this.Team != Team.NONE && !this.IsPlayerReady;
+            Manager.GameManager.Instance.TryStartGame();
+        }
+    }
+
     #endregion
+
+    public void SetTeam(Team team)
+    {
+        if (!this.IsPlayerReady)
+        {
+            this.Team = team;
+            this._meshRenderer.material.SetColor("_Color", team.GetTeamColor());
+        }
+    }
 }

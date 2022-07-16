@@ -52,7 +52,8 @@ MonoBehaviour:
   _rigidbody: {fileID: 4800052093827480019}
   _movementForceMultiplier: 115
   _collisionForceMultiplier: 25
-  _collisionYForce: 0.5
+  _collisionYForce: 0.3
+  _meshRenderer: {fileID: 4800052093827480029}
 --- !u!114 &1017683270172039950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,6 +167,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 3df3f6dd-b3a6-4a2f-b4d4-3ad1396c2af2
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4800052093827480022}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnPlayerReady
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 9e10e169-faeb-40c4-bdb3-0fc838bae313
+    m_ActionName: Player/PlayerReady[/Keyboard/q,/XInputControllerWindows/buttonNorth,/XInputControllerWindows1/buttonNorth]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player
@@ -229,7 +246,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: c8e05840e62635c43b7c83632d09ebfd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
