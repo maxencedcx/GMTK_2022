@@ -15,6 +15,6 @@ MonoBehaviour:
   _duration: 10
   _autoApplyCooldown:
     _value: 2
-    _enabled: 1
-  _applyOnLand: 1
-  _applyInstantly: 1
+    _enabled: 0
+  _applyOnLand: 0
+  _applyInstantly: 0
