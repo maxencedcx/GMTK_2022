@@ -5,8 +5,8 @@ using UnityEngine;
 public class DiceFace : MonoBehaviour
 {
     [SerializeField]
-    private MeshRenderer meshRenderer;
+    private MeshRenderer _meshRenderer;
 
     [SerializeField]
-    private Material material;
+    private Material _material;
 }
