@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9743bcae42f017444ab9f87a3189fb3d, type: 3}
   m_Name: DiceEffectData_MiniDice
   m_EditorClassIdentifier: 
-  _duration: 5
+  _duration: 10
   _autoApplyCooldown:
     _value: 2
     _enabled: 0
