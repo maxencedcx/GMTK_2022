@@ -34,12 +34,6 @@ public class Supporters : MonoBehaviour
         StartCoroutine(this.GoalAnimationCoroutine());
     }
 
-    [ContextMenu("Goal")]
-    private void OnGoal()
-    {
-        this.OnGoal(Team.BLUE);
-    }
-    
     private System.Collections.IEnumerator GoalAnimationCoroutine()
     {
         yield return new WaitForSeconds(Random.Range(0f, 0.6f));

@@ -1,3 +1,4 @@
+using System.Linq;
 using Manager;
 using UnityEngine;
 
@@ -136,9 +137,10 @@ public class Dice : MonoBehaviour
         if (this.ShouldTriggerEffect)
         {
             DiceEffectType effectType = this.GetHighestFace().EffectType;
-            if (effectType != DiceEffectType.NONE)
+
+            if (effectType != DiceEffectType.NONE
+                && effectType == DiceEffectType.TELEPORT && this._activeEffects.All(o => o.EffectType != DiceEffectType.TELEPORT))
             {
-                Debug.Log($"triggering {effectType}");
                 this._triggeredLastStationaryEffect = true;
                 this.AddEffect(effectType);
             }
