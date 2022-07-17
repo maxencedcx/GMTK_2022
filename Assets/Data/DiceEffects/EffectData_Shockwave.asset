@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EffectData_Shockwave
   m_EditorClassIdentifier: 
   Range: 4
-  ForceMinMax: {x: 100, y: 300}
+  ForceMinMax: {x: 75, y: 200}
   LayerMask:
     serializedVersion: 2
     m_Bits: 2147483647
