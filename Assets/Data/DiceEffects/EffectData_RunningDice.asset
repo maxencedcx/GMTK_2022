@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac1430dc0431bfd449c7f447ad4d8ca3, type: 3}
   m_Name: EffectData_RunningDice
   m_EditorClassIdentifier: 
-  _detectionRange: 5
+  _detectionRange: 8
   _fleeDirectionSmoothing: 0.1
-  _fleeDirectionForce: 0.8
+  _fleeDirectionForce: 1

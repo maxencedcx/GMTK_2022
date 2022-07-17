@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dd470ae5f39056499868694809639e5, type: 3}
   m_Name: EffectData_MiniDice
   m_EditorClassIdentifier: 
-  _scale: 0.3
-  _scaleDuration: 0.1
+  _scale: 0.5
+  _scaleDuration: 0.5
