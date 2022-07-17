@@ -37,10 +37,14 @@ public class Dice : MonoBehaviour
     public bool IsTeleporting;
     
     private bool _triggeredLastStationaryEffect = false;
+
+    private DiceFace _lastTriggeredDiceFace = null; 
     
     public bool IsStationary => this._stationarySince > 0f;
 
-    public bool ShouldTriggerEffect => this.IsStationary && !this._triggeredLastStationaryEffect && Time.time >= this._stationarySince + this._triggerFaceEffectTiming;
+    public bool ShouldTriggerEffect => this.IsStationary
+                                       && !this._triggeredLastStationaryEffect
+                                       && Time.time >= this._stationarySince + this._triggerFaceEffectTiming;
 
     public void AddEffect(DiceEffectType diceEffectType)
     {
@@ -112,13 +116,13 @@ public class Dice : MonoBehaviour
     
     private void FixedUpdate()
     {
-        if (this._rigidbody.velocity.magnitude > (Vector3.one * this._stationaryAllowance * 2).magnitude)
+        if (this._rigidbody.velocity.magnitude > (Vector3.one * this._stationaryAllowance * 2.5f).magnitude)
         {
             this._stationarySince = -1;
         }
         else if (!this.IsStationary && this._rigidbody.velocity.magnitude <= (Vector3.one * this._stationaryAllowance).magnitude)
         {
-            this._triggeredLastStationaryEffect = false;
+            this._triggeredLastStationaryEffect = this.GetHighestFace() == this._lastTriggeredDiceFace;
             this._stationarySince = Time.time;
         }
                 
@@ -136,14 +140,15 @@ public class Dice : MonoBehaviour
 
         if (this.ShouldTriggerEffect)
         {
-            DiceEffectType effectType = this.GetHighestFace().EffectType;
+            DiceFace diceFace = this.GetHighestFace();
 
-            if (effectType != DiceEffectType.NONE
-                && (effectType != DiceEffectType.TELEPORT
+            if (diceFace.EffectType != DiceEffectType.NONE
+                && (diceFace.EffectType != DiceEffectType.TELEPORT
                     || this._activeEffects.All(o => o.EffectType != DiceEffectType.TELEPORT)))
             {
+                this._lastTriggeredDiceFace = diceFace;
                 this._triggeredLastStationaryEffect = true;
-                this.AddEffect(effectType);
+                this.AddEffect(diceFace.EffectType);
             }
         }
     }
