@@ -36,7 +36,7 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
     
     private Vector3 _lastInputDirection = Vector3.zero;
 
-    public bool IsStatic => this._lastInputDirection == Vector3.zero;
+    public bool IsStationary => this._lastInputDirection == Vector3.zero;
 
     private readonly HashSet<Collider> _currentCollisions = new();
     
@@ -143,7 +143,7 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
                  && collision.gameObject.TryGetComponent(out Player collidingPlayer)
                  && collidingPlayer.IsPlayerReady == false)
         {
-            float forceMultiplier = collidingPlayer.IsStatic ? this._staticPlayerCollisionForceMultiplier : this._diceCollisionForceMultiplier;
+            float forceMultiplier = collidingPlayer.IsStationary ? this._staticPlayerCollisionForceMultiplier : this._diceCollisionForceMultiplier;
             forceMultiplier *= this.IsTackling ? this._tacklingCollisionForceMultiplier : 1f;
             collision.rigidbody.AddForce(collisionDirection * forceMultiplier, ForceMode.Impulse);
         }
@@ -198,8 +198,9 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
 
     public void OnTackle(InputAction.CallbackContext context)
     {
-        if (this.IsPlayerReady && Manager.GameManager.Instance.State == GameState.LOBBY
-            || !this._canTackle)
+        if ((this.IsPlayerReady && Manager.GameManager.Instance.State == GameState.LOBBY)
+            || !this._canTackle
+            || !this.IsStationary)
         {
             return;
         }
@@ -217,7 +218,6 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
     {
         this.IsTackling = true;
         yield return new WaitForSeconds(0.1f);
-        Debug.LogWarning($"EndOfTackle");
         this.IsTackling = false;
     }
 
