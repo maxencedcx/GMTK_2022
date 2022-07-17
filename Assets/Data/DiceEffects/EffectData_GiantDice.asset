@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scale: 3
   _scaleDuration: 0.1
+  Clip: {fileID: 11400000, guid: 8121815258b624245ae3558fd36e0ccc, type: 2}

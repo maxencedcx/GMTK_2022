@@ -24,6 +24,11 @@ public abstract class SizeModifier : DiceEffect
     protected override void Apply(DiceEffectContext diceEffectContext)
     {
         this._dice.transform.DOScale(_sizeModifierData.Scale, _sizeModifierData.ScaleDuration);
+
+        if (this._sizeModifierData.Clip != null)
+        {
+            RSLib.Audio.AudioManager.PlaySound(this._sizeModifierData.Clip);
+        }
     }
 
     public virtual void Revert()
