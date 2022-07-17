@@ -15,7 +15,7 @@ public class TeleportingDice : DiceEffect
     
     public override bool CanApply(DiceEffectContext diceEffectContext)
     {
-        return true;
+        return !this._dice.IsTeleporting;
     }
 
     protected override void Apply(DiceEffectContext diceEffectContext)
