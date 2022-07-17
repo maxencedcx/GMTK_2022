@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _duration: 15
   _autoApplyCooldown:
-    _value: 5
+    _value: 4
     _enabled: 1
   _applyOnLand: 0
   _applyInstantly: 1
