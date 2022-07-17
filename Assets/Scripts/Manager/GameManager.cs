@@ -1,10 +1,11 @@
 namespace Manager
 {
+    using DG.Tweening;
     using System.Collections;
     using System.Collections.Generic;
+    using TMPro;
     using UnityEngine;
     using UnityEngine.InputSystem;
-    using DG.Tweening;
     using Random = UnityEngine.Random;
 
     public class GameManager : RSLib.Singleton<GameManager>
@@ -15,10 +16,17 @@ namespace Manager
         [SerializeField]
         private float GameDurationInSeconds = 180;
 
+        // TIMER
         [SerializeField]
         private RSLib.Data.Float _gameTimer;
 
         private bool _isTimerOver => this._gameTimer.Value <= 0f;
+
+        [SerializeField]
+        private GameObject CountdownObject;
+
+        [SerializeField]
+        private TextMeshProUGUI CountdownText;
 
         // DICES SPAWN
         [SerializeField]
@@ -121,10 +129,26 @@ namespace Manager
             
             MusicManager.Instance.PlayGameMusic();
             
-            yield return new WaitForSeconds(3);
+            yield return this.CountDownCoroutine(3);
 
             this.State = GameState.RUNNING;
             this.GenerateDice(this._diceSpawnPoint.position, true);
+        }
+
+        private IEnumerator CountDownCoroutine(int seconds)
+        {
+            this.CountdownObject.SetActive(true);
+            
+            while (seconds > 0)
+            {
+                this.CountdownText.text = seconds.ToString();
+                this.CountdownText.transform.localScale = Vector3.one;
+                this.CountdownText.transform.DOScale(Vector3.zero, 1).SetEase(Ease.InQuint);
+                yield return new WaitForSeconds(1);
+                seconds -= 1;
+            }
+
+            this.CountdownObject.SetActive(false);
         }
 
         private void EndGame()
