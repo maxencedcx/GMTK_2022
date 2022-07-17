@@ -1562,6 +1562,7 @@ MonoBehaviour:
   _pinkTeamScore: {fileID: 11400000, guid: 468b0c4ae07a7104a88129805d2321cd, type: 2}
   _restartPauseTime: 1.5
   _effectsIncompatibilities: {fileID: 11400000, guid: 0ff7320f1a3b1dc4eb3e7597962fad65, type: 2}
+  _playerInputManager: {fileID: 720491662}
 --- !u!1 &595608233
 GameObject:
   m_ObjectHideFlags: 0
@@ -1754,8 +1755,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 720491661}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -17.781036, y: 2.9077506, z: -9.9166355}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

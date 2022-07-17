@@ -3,6 +3,7 @@ namespace Manager
     using System.Collections;
     using System.Collections.Generic;
     using UnityEngine;
+    using UnityEngine.InputSystem;
     using Random = UnityEngine.Random;
 
     public class GameManager : RSLib.Singleton<GameManager>
@@ -60,6 +61,11 @@ namespace Manager
 
         public CameraShake CameraShake => this._cameraShake;
         
+        // REFS
+        
+        [SerializeField]
+        private PlayerInputManager _playerInputManager;
+        
         protected override void Awake()
         {
             base.Awake();
@@ -101,6 +107,7 @@ namespace Manager
 
         private IEnumerator StartGame()
         {
+            this._playerInputManager.DisableJoining();
             Manager.UIManager.Instance.SetActiveHowToPlay(false);
             Manager.UIManager.Instance.SetActiveEndGame(false);
             TeamManager.Instance.SetActiveTeamChoosers(false);
@@ -118,6 +125,7 @@ namespace Manager
             Manager.UIManager.Instance.DisplayEndGame(this.WinningTeam);
             this.DestroyAllDices();
             this.State = GameState.LOBBY;
+            this._playerInputManager.EnableJoining();
             TeamManager.Instance.SetActiveTeamChoosers(true);
             this._gameTimer.Value = this.GameDurationInSeconds * 1000;
 
