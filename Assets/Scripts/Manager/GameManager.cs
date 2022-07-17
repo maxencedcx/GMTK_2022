@@ -100,6 +100,11 @@ namespace Manager
                     this.EndGame();
                 }
             }
+            
+            if (Keyboard.current.escapeKey.wasPressedThisFrame)
+            {
+                RSLib.Helpers.QuitPlatformDependent();
+            }
         }
 
         #region Game Management
