@@ -4,24 +4,30 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Dice : MonoBehaviour
 {
-    [SerializeField]
-    private DiceFace[] _diceFaces = null;
-
+    // PHYSICS
     [SerializeField]
     private Rigidbody _rigidbody;
 
     public Rigidbody Rigidbody => this._rigidbody;
+
+    private float _stationarySince = -1;
+
+    [SerializeField]
+    private float _stationaryAllowance = 0f;
+
+    // DICE FACES
+    [SerializeField]
+    private DiceFace[] _diceFaces = null;
 
     [SerializeField]
     private DiceEffectsTable _diceEffectsTable = null;
 
     private DiceFace _highestFace;
 
+    // EFFECts
     private System.Collections.Generic.List<DiceEffect> _activeEffects = new();
 
     public event System.Action<DiceEffectType> EffectAdded;
-
-    private float _stationarySince = -1;
 
     [SerializeField] [Range(0.1f, 2f)]
     private float _triggerFaceEffectTiming;
@@ -29,12 +35,12 @@ public class Dice : MonoBehaviour
     [HideInInspector]
     public bool IsTeleporting;
     
+    private bool _triggeredLastStationaryEffect = false;
+    
     public bool IsStationary => this._stationarySince > 0f;
 
     public bool ShouldTriggerEffect => this.IsStationary && !this._triggeredLastStationaryEffect && Time.time >= this._stationarySince + this._triggerFaceEffectTiming;
 
-    private bool _triggeredLastStationaryEffect = false;
-    
     public void AddEffect(DiceEffectType diceEffectType)
     {
         DiceEffect diceEffect;
@@ -120,11 +126,11 @@ public class Dice : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (this._rigidbody.velocity != Vector3.zero)
+        if (this._rigidbody.velocity.magnitude > (Vector3.one * this._stationaryAllowance * 2).magnitude)
         {
             this._stationarySince = -1;
         }
-        else if (!this.IsStationary)
+        else if (!this.IsStationary && this._rigidbody.velocity.magnitude <= (Vector3.one * this._stationaryAllowance).magnitude)
         {
             this._triggeredLastStationaryEffect = false;
             this._stationarySince = Time.time;
