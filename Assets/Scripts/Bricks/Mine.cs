@@ -10,6 +10,9 @@ public class Mine : MonoBehaviour
 
     private MeshRenderer _meshRenderer;
 
+    [SerializeField]
+    private float _waitForNewMine = 3f;
+
     private void Start()
     {
         _collider = GetComponent<SphereCollider>();
@@ -34,7 +37,7 @@ public class Mine : MonoBehaviour
         ExplodeFeedback();
 
         Destroy();
-        StartCoroutine(NewMine(3f));
+        StartCoroutine(NewMine());
     }
 
     private void ExplodeFeedback()
@@ -49,9 +52,9 @@ public class Mine : MonoBehaviour
         _meshRenderer.enabled = false;
     }
 
-    private IEnumerator NewMine(float waitForNewMine)
+    private IEnumerator NewMine()
     {
-        yield return RSLib.Yield.SharedYields.WaitForSeconds(waitForNewMine);
+        yield return RSLib.Yield.SharedYields.WaitForSeconds(_waitForNewMine);
         Respawn();
     }
 }
