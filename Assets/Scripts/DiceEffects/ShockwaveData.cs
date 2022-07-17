@@ -9,4 +9,6 @@ public class ShockwaveData : UnityEngine.ScriptableObject
     public float Trauma;
 
     public RSLib.ParticlesSpawner ParticlesSpawner;
+
+    public RSLib.Audio.ClipProvider Clip;
 }

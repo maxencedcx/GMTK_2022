@@ -23,3 +23,4 @@ MonoBehaviour:
     _particles:
     - Prefab: {fileID: 7229467772525569202, guid: ea8784b0347cfb24da4f973568ba7a98, type: 3}
       Offset: {x: 0, y: 0, z: 0}
+  Clip: {fileID: 11400000, guid: 00b4fef533a18e048948a5501d24bacf, type: 2}

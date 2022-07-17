@@ -34,6 +34,11 @@ public class Shockwave : DiceEffect
         base.OnEffectApplied(diceEffectContext);
         
         this._shockwaveData.ParticlesSpawner.SpawnParticles(_dice.transform.position);
-        Manager.GameManager.Instance.CameraShake?.SetTrauma(this._shockwaveData.Trauma); // TODO: Remove FindObjectOfType.
+        Manager.GameManager.Instance.CameraShake?.SetTrauma(this._shockwaveData.Trauma);
+
+        if (this._shockwaveData.Clip != null)
+        {
+            RSLib.Audio.AudioManager.PlaySound(this._shockwaveData.Clip);
+        }
     }
 }

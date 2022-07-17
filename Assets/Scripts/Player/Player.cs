@@ -71,6 +71,16 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
     [SerializeField]
     private GameObject _blueTeamParticles = null;
     
+    // VIEW
+    [SerializeField]
+    private RSLib.Audio.ClipProvider _tackleClip = null;
+    
+    [SerializeField]
+    private RSLib.Audio.ClipProvider _bumpClip = null;
+
+    [SerializeField]
+    private RSLib.Audio.ClipProvider _setTeamClip = null;
+    
     // GAMEPLAY
     public Team Team { get; private set; }
 
@@ -141,6 +151,8 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
             collisionDirection.y = Mathf.Max(0f, this._diceCollisionYForce - collisionDirection.y) ;
             collision.rigidbody.AddForce(collisionDirection * forceMultiplier, ForceMode.Impulse);
             collision.rigidbody.AddTorque(Random.Range(-360, 360), Random.Range(-360, 360), Random.Range(-360, 360));
+            
+            RSLib.Audio.AudioManager.PlaySound(this._bumpClip);
         }
         else if (this._lastInputDirection != Vector3.zero
                  && collision.gameObject.TryGetComponent(out Player collidingPlayer)
@@ -213,6 +225,8 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
             this._rigidbody.AddForce(this._lastInputDirection * this._tacklingForceMultiplier, ForceMode.Impulse);
             this.StartCoroutine(this.TackleCooldownCoroutine());
             this.StartCoroutine(this.OnTackleCoroutine());
+            
+            RSLib.Audio.AudioManager.PlaySound(this._tackleClip);
         }
     }
 
@@ -298,6 +312,8 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
 
             GameObject particles = this.Team == Team.PINK ? this._pinkTeamParticles : this._blueTeamParticles;
             Instantiate(particles, this.transform.position, particles.transform.rotation);
+            
+            RSLib.Audio.AudioManager.PlaySound(this._setTeamClip);
         }
     }
 

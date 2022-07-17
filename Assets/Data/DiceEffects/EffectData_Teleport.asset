@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: EffectData_Teleport
   m_EditorClassIdentifier: 
   NullifyMovement: 0
+  ScaleTweenDuration: 0.2
   Trauma: 0.3
   ParticlesSpawnerOnTeleported:
     _globalOffset: {x: 0, y: 0, z: 0}
@@ -24,3 +25,4 @@ MonoBehaviour:
     _particles:
     - Prefab: {fileID: 6240797271270267718, guid: 78aa40a1030099643ade79b79c4933d9, type: 3}
       Offset: {x: 0, y: 0, z: 0}
+  Clip: {fileID: 11400000, guid: a77e742b67132be48b352857baf764eb, type: 2}

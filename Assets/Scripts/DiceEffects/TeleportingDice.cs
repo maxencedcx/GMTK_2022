@@ -46,6 +46,12 @@ public class TeleportingDice : DiceEffect
         tween = this._dice.transform.DOScale(scale, this._teleportingDiceData.ScaleTweenDuration);
         Manager.GameManager.Instance.CameraShake.AddTrauma(this._teleportingDiceData.Trauma);
         this._teleportingDiceData.ParticlesSpawnerOnTeleported.SpawnParticles(target.position);
+
+        if (this._teleportingDiceData.Clip != null)
+        {
+            RSLib.Audio.AudioManager.PlaySound(this._teleportingDiceData.Clip);
+        }
+        
         yield return tween.WaitForCompletion();
         
         this._dice.IsTeleporting = false;
