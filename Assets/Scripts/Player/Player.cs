@@ -150,7 +150,15 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
     public void OnMove(InputAction.CallbackContext context)
     {
         Vector2 inputValue = context.ReadValue<Vector2>();
-        this._lastInputDirection = new Vector3(inputValue.x, 0, inputValue.y);
+
+        if (context.performed && inputValue.magnitude > 0.4f)
+        {
+            this._lastInputDirection = new Vector3(inputValue.x, 0, inputValue.y);
+        }
+        else
+        {
+            this._lastInputDirection = Vector3.zero;
+        }
     }
 
     public void OnShoot(InputAction.CallbackContext context)
