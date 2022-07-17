@@ -1258,8 +1258,8 @@ MonoBehaviour:
   _verbose: 0
   GameDurationInSeconds: 180
   _gameTimer: {fileID: 11400000, guid: 388d54297a0732b4bb2f328d66a365f6, type: 2}
-  CountdownObject: {fileID: 0}
-  CountdownText: {fileID: 0}
+  CountdownObject: {fileID: 423305297}
+  CountdownText: {fileID: 738708887}
   _dicePrefab: {fileID: 1634237807752868068, guid: e243db6a730ecdd4a8418b887e3ec95c, type: 3}
   _diceSpawnPoint: {fileID: 595608234}
   _diceSpawningForce: 10
@@ -1636,6 +1636,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 155665604}
     m_Modifications:
+    - target: {fileID: 2846962972116555372, guid: a979af2f16295b542871341468da4471, type: 3}
+      propertyPath: m_Size.y
+      value: 2.1568248
+      objectReference: {fileID: 0}
+    - target: {fileID: 2846962972116555372, guid: a979af2f16295b542871341468da4471, type: 3}
+      propertyPath: m_Size.z
+      value: 3.4924874
+      objectReference: {fileID: 0}
+    - target: {fileID: 2846962972116555372, guid: a979af2f16295b542871341468da4471, type: 3}
+      propertyPath: m_Center.x
+      value: -3.4460377e-14
+      objectReference: {fileID: 0}
+    - target: {fileID: 2846962972116555372, guid: a979af2f16295b542871341468da4471, type: 3}
+      propertyPath: m_Center.y
+      value: -0.3150132
+      objectReference: {fileID: 0}
+    - target: {fileID: 2846962972116555372, guid: a979af2f16295b542871341468da4471, type: 3}
+      propertyPath: m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3544568626975877086, guid: a979af2f16295b542871341468da4471, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -1650,7 +1670,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4867859124040878693, guid: a979af2f16295b542871341468da4471, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.76
+      value: -2.62
       objectReference: {fileID: 0}
     - target: {fileID: 4867859124040878693, guid: a979af2f16295b542871341468da4471, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3116,7 +3136,7 @@ MonoBehaviour:
   - {fileID: 1819885453}
   - {fileID: 1006816905}
   - {fileID: 2133331515}
-  _moveDuration: 0
+  _moveDuration: 2
 --- !u!4 &1436661639
 Transform:
   m_ObjectHideFlags: 0
@@ -3231,6 +3251,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 155665604}
     m_Modifications:
+    - target: {fileID: 2846962972116555372, guid: a979af2f16295b542871341468da4471, type: 3}
+      propertyPath: m_Size.y
+      value: 2.0721397
+      objectReference: {fileID: 0}
+    - target: {fileID: 2846962972116555372, guid: a979af2f16295b542871341468da4471, type: 3}
+      propertyPath: m_Size.z
+      value: 3.4365704
+      objectReference: {fileID: 0}
+    - target: {fileID: 2846962972116555372, guid: a979af2f16295b542871341468da4471, type: 3}
+      propertyPath: m_Center.x
+      value: 9.028961e-15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2846962972116555372, guid: a979af2f16295b542871341468da4471, type: 3}
+      propertyPath: m_Center.y
+      value: 0.2729286
+      objectReference: {fileID: 0}
+    - target: {fileID: 2846962972116555372, guid: a979af2f16295b542871341468da4471, type: 3}
+      propertyPath: m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3544568626975877086, guid: a979af2f16295b542871341468da4471, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -3245,7 +3285,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4867859124040878693, guid: a979af2f16295b542871341468da4471, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.76
+      value: -2.62
       objectReference: {fileID: 0}
     - target: {fileID: 4867859124040878693, guid: a979af2f16295b542871341468da4471, type: 3}
       propertyPath: m_LocalPosition.z
