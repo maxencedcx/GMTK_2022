@@ -258,7 +258,7 @@ MonoBehaviour:
   _movementForceMultiplier: 115
   _diceCollisionForceMultiplier: 25
   _diceCollisionYForce: 0.3
-  _staticPlayerCollisionForceMultiplier: 20
+  _staticPlayerCollisionForceMultiplier: 30
   _playerCollisionForceMultiplier: 5
   _tacklingCollisionForceMultiplier: 1.5
   _tackleCooldown: 1
