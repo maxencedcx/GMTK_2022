@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 570259b816304309851900592f2fee65, type: 3}
   m_Name: EffectData_Shockwave
   m_EditorClassIdentifier: 
-  Range: 5
-  ForceMinMax: {x: 5, y: 50}
+  Range: 4
+  ForceMinMax: {x: 100, y: 300}
   LayerMask:
     serializedVersion: 2
     m_Bits: 2147483647
@@ -23,3 +23,4 @@ MonoBehaviour:
     _particles:
     - Prefab: {fileID: 7229467772525569202, guid: ea8784b0347cfb24da4f973568ba7a98, type: 3}
       Offset: {x: 0, y: 0, z: 0}
+  Clip: {fileID: 11400000, guid: 00b4fef533a18e048948a5501d24bacf, type: 2}

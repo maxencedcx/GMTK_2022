@@ -8,6 +8,12 @@ public class Goal : MonoBehaviour
     [SerializeField]
     private UnityEngine.Events.UnityEvent<Team> _goalTriggered = null;
 
+    [SerializeField]
+    private RSLib.Audio.ClipProvider _goalClip = null;
+    
+    [UnityEngine.RangeAttribute(0f, 1f)]
+    public float Trauma;
+    
     public event System.Action<Team> GoalTriggered;
     
     public Team Team => this._team;
@@ -18,6 +24,9 @@ public class Goal : MonoBehaviour
         this._goalTriggered?.Invoke(this._team);
         this.GoalTriggered?.Invoke(this._team);
         Manager.GameManager.Instance.ScoreGoal(this._team);
+        
+        Manager.GameManager.Instance.CameraShake.AddTrauma(this.Trauma);
+        RSLib.Audio.AudioManager.PlaySound(this._goalClip);
     }
     
     private void OnTriggerEnter(Collider other)

@@ -12,5 +12,7 @@ public class TeleportingDiceData : ScriptableObject
 
     public RSLib.ParticlesSpawner ParticlesSpawnerOnTeleported;
     public RSLib.ParticlesSpawner ParticlesSpawnerOnPrepare;
+
+    public RSLib.Audio.ClipProvider Clip;
 }
 
