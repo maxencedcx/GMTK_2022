@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63fa30861d0c3a44b99061b5e51ae44b, type: 3}
+  m_Name: EffectData_Teleport
+  m_EditorClassIdentifier: 
+  NullifyMovement: 0
+  Trauma: 0.3
+  ParticlesSpawnerOnTeleported:
+    _globalOffset: {x: 0, y: 0, z: 0}
+    _particles:
+    - Prefab: {fileID: 2067462253812001200, guid: 2cc3c6d5ff4456345a91253142e2fd1c, type: 3}
+      Offset: {x: 0, y: 0, z: 0}
+  ParticlesSpawnerOnPrepare:
+    _globalOffset: {x: 0, y: 0, z: 0}
+    _particles:
+    - Prefab: {fileID: 6240797271270267718, guid: 78aa40a1030099643ade79b79c4933d9, type: 3}
+      Offset: {x: 0, y: 0, z: 0}

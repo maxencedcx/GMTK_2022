@@ -12,7 +12,7 @@ public abstract class SizeModifier : DiceEffect
 
     public override bool CanApply(DiceEffectContext diceEffectContext)
     {
-        return true;
+        return !this._dice.IsTeleporting;
     }
 
     public override void OnEffectOver()

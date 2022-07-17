@@ -16,9 +16,6 @@ public class PlayerFaceCamera : MonoBehaviour
     [SerializeField]
     private bool _negate = false;
 
-    [SerializeField]
-    private bool _reverseZ = false;
-    
     private Transform _mainCameraTransform;
 
     private void Awake()

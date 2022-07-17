@@ -37,6 +37,12 @@ public class SpawnManager : RSLib.Singleton<SpawnManager>
         {
             return;
         }
+
+        if (PlayerIndex == -1)
+        {
+            Manager.UIManager.Instance.SetActiveGameTitle(false);
+            Manager.UIManager.Instance.SetActiveHowToPlay(true);
+        }
         
         playerInput.transform.position = this._spawnPoints[++PlayerIndex].position;
     }

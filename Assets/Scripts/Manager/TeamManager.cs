@@ -36,24 +36,24 @@ namespace Manager
             player.SetTeam(team);
         }
 
+        public void UnreadyAllPlayers()
+        {
+            foreach (Player player in this.Players)
+            {
+                player.IsPlayerReady = false;
+            }
+        }
+
         #region TeamChoosers
 
-        public void DisableTeamChoosers()
+        public void SetActiveTeamChoosers(bool active)
         {
             for (int i = this._teamChoosers.Count - 1; i >= 0; i--)
             {
-                this._teamChoosers[i].SetActive(false);
+                this._teamChoosers[i].SetActive(active);
             }
         }
         
-        public void EnableTeamChoosers()
-        {
-            for (int i = this._teamChoosers.Count - 1; i >= 0; i--)
-            {
-                this._teamChoosers[i].SetActive(true);
-            }
-        }
-
         #endregion
     }
 }

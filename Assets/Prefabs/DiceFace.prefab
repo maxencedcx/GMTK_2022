@@ -180,8 +180,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fd68994388431143b8cd7b0093cb65e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _meshRenderer: {fileID: 6840203574115914066}
-  _material: {fileID: 0}
   _diceEffectMaterials:
   - EffectType: 1
     Material: {fileID: 0}
@@ -191,4 +189,6 @@ MonoBehaviour:
     Material: {fileID: 0}
   - EffectType: 4
     Material: {fileID: 0}
+  _faceRenderer: {fileID: 6840203574115914066}
   _effectTypeMaterial: {fileID: 5771716905596584108}
+  _invisibleMaterial: {fileID: 2100000, guid: 628416be38ad02340b19f623046067cd, type: 2}

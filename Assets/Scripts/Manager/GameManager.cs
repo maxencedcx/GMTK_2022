@@ -1,7 +1,9 @@
 namespace Manager
 {
+    using System;
     using System.Collections;
     using System.Collections.Generic;
+    using Unity.VisualScripting;
     using UnityEngine;
     using Random = UnityEngine.Random;
 
@@ -9,6 +11,14 @@ namespace Manager
     {
         // GAME MANAGEMENT
         public GameState State { get; set; } = GameState.LOBBY;
+
+        [SerializeField]
+        private float GameDurationInSeconds = 180;
+
+        [SerializeField]
+        private RSLib.Data.Float _gameTimer;
+
+        private bool _isTimerOver => this._gameTimer.Value <= 0f;
 
         // DICES SPAWN
         [SerializeField]
@@ -36,6 +46,13 @@ namespace Manager
 
         [SerializeField]
         private float _restartPauseTime = 1.5f;
+        
+        public Team WinningTeam => (this._blueTeamScore.Value - this._pinkTeamScore.Value) switch
+        {
+            > 0 => Team.BLUE,
+            < 0 => Team.PINK,
+            _ => Team.NONE
+        };
 
         // EFFECTS
         [SerializeField]
@@ -51,6 +68,21 @@ namespace Manager
 
             this._blueTeamScore.Value = 0;
             this._pinkTeamScore.Value = 0;
+            this._gameTimer.Value = this.GameDurationInSeconds * 1000;
+        }
+
+        private void Update()
+        {
+            if (this._gameTimer > 0f && this.State == GameState.RUNNING)
+            {
+                this._gameTimer.Value -= Time.deltaTime * 1000;
+
+                if (this._gameTimer.Value <= 0f
+                    && this._blueTeamScore.Value != this._pinkTeamScore.Value)
+                {
+                    this.EndGame();
+                }
+            }
         }
 
         #region Game Management
@@ -71,13 +103,25 @@ namespace Manager
 
         private IEnumerator StartGame()
         {
-            TeamManager.Instance.DisableTeamChoosers();
+            Manager.UIManager.Instance.SetActiveHowToPlay(false);
+            Manager.UIManager.Instance.SetActiveEndGame(false);
+            TeamManager.Instance.SetActiveTeamChoosers(false);
+            TeamManager.Instance.UnreadyAllPlayers();
             this.State = GameState.STARTING;
             
             yield return new WaitForSeconds(3);
 
             this.State = GameState.RUNNING;
             this.GenerateDice(this._diceSpawnPoint.position, true);
+        }
+
+        private void EndGame()
+        {
+            Manager.UIManager.Instance.DisplayEndGame(this.WinningTeam);
+            this.DestroyAllDices();
+            this.State = GameState.LOBBY;
+            TeamManager.Instance.SetActiveTeamChoosers(true);
+            this._gameTimer.Value = this.GameDurationInSeconds * 1000;
         }
 
         #endregion
@@ -95,18 +139,25 @@ namespace Manager
                     this._blueTeamScore += 1;
                     break;
             }
-            
-            this.StartCoroutine(this.ScoreGoalCoroutine(triggeredGoalTeam));
+
+            if (this._isTimerOver)
+            {
+                this.EndGame();
+            }
+            else
+            {
+                this.StartCoroutine(this.ScoreGoalCoroutine(triggeredGoalTeam));
+            }
         }
 
         private IEnumerator ScoreGoalCoroutine(Team triggeredGoalTeam)
         {
-            this.State = GameState.PAUSED;
             this.DestroyAllDices();
 
-            int playerIndex = Manager.DiceFaceChoiceManager.Instance.GetNewPlayerIndexForTeam(triggeredGoalTeam);
-            Manager.DiceFaceChoiceManager.Instance.StartChoice(playerIndex);
-            yield return new WaitUntil(() => this.State == GameState.RUNNING);
+            // this.State = GameState.PAUSED;
+            // int playerIndex = Manager.DiceFaceChoiceManager.Instance.GetNewPlayerIndexForTeam(triggeredGoalTeam);
+            // Manager.DiceFaceChoiceManager.Instance.StartChoice(playerIndex);
+            // yield return new WaitUntil(() => this.State == GameState.RUNNING);
             
             yield return new WaitForSeconds(this._restartPauseTime);
             this.GenerateDice(this._diceSpawnPoint.position, true);

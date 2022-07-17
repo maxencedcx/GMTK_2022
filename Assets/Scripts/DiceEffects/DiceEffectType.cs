@@ -4,7 +4,9 @@ public enum DiceEffectType
     SHOCKWAVE,
     RUNNING_DICE,
     MINI_DICE,
-    GIANT_DICE
+    GIANT_DICE,
+    TELEPORT,
+    INVISIBLE
 }
 
 public static class DiceEffectTypeExtensions

@@ -18,6 +18,11 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
     [SerializeField] [Range(0f, 1f)]
     private float _collisionYForce;
 
+    [SerializeField]
+    private float _tackleCooldown = 0.5f;
+
+    private bool _canTackle = true;
+    
     private Vector3 _lastInputDirection = Vector3.zero;
 
     private readonly List<Collider> _currentCollisions = new();
@@ -53,7 +58,7 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
     // GAMEPLAY
     public Team Team { get; private set; }
 
-    public bool IsPlayerReady { get; private set; } = false;
+    public bool IsPlayerReady { get; set; } = false;
 
     public int PlayerIndex => this._playerInput.playerIndex;
     
@@ -150,7 +155,15 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
     public void OnMove(InputAction.CallbackContext context)
     {
         Vector2 inputValue = context.ReadValue<Vector2>();
-        this._lastInputDirection = new Vector3(inputValue.x, 0, inputValue.y);
+
+        if (context.performed && inputValue.magnitude > 0.4f)
+        {
+            this._lastInputDirection = new Vector3(inputValue.x, 0, inputValue.y);
+        }
+        else
+        {
+            this._lastInputDirection = Vector3.zero;
+        }
     }
 
     public void OnShoot(InputAction.CallbackContext context)
@@ -159,7 +172,8 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
 
     public void OnTackle(InputAction.CallbackContext context)
     {
-        if (this.IsPlayerReady && Manager.GameManager.Instance.State == GameState.LOBBY)
+        if (this.IsPlayerReady && Manager.GameManager.Instance.State == GameState.LOBBY
+            || !this._canTackle)
         {
             return;
         }
@@ -168,6 +182,7 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
         {
             this._rigidbody.AddForce(this._lastInputDirection * this._movementForceMultiplier / 3, ForceMode.Impulse);
             this._rigidbody.velocity = this._rigidbody.velocity.ClampAll(-this._movementForceMultiplier, this._movementForceMultiplier);
+            this.StartCoroutine(this.TackleCooldownCoroutine());
         }
     }
 
@@ -230,7 +245,7 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
 
     public void SetTeam(Team team)
     {
-        if (this.Team == team)
+        if (this.Team == team || Manager.GameManager.Instance.State != GameState.LOBBY)
         {
             return;
         }
@@ -247,5 +262,12 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
             GameObject particles = this.Team == Team.PINK ? this._pinkTeamParticles : this._blueTeamParticles;
             Instantiate(particles, transform.position, particles.transform.rotation);
         }
+    }
+
+    private System.Collections.IEnumerator TackleCooldownCoroutine()
+    {
+        this._canTackle = false;
+        yield return RSLib.Yield.SharedYields.WaitForSeconds(_tackleCooldown);
+        this._canTackle = true;
     }
 }
