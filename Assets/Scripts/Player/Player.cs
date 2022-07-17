@@ -49,6 +49,9 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
 
     [SerializeField]
     private GameObject _blueTeamParticles = null;
+
+    [SerializeField]
+    private GameObject _diceHitParticles = null;
     
     // GAMEPLAY
     public Team Team { get; private set; }
@@ -109,12 +112,15 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
         }
         
         this._currentCollisions.Add(collision.collider);
+        
         if (collision.gameObject.TryGetComponent<Dice>(out _))
         {
             Vector3 direction = (collision.transform.position - this.transform.position).normalized;
-            direction.y = Mathf.Max(0f, this._collisionYForce - direction.y) ;
+            direction.y = Mathf.Max(0f, this._collisionYForce - direction.y);
             collision.rigidbody.AddForce(direction * this._collisionForceMultiplier, ForceMode.Impulse);
             collision.rigidbody.AddTorque(UnityEngine.Random.Range(-360, 360), UnityEngine.Random.Range(-360, 360), UnityEngine.Random.Range(-360, 360));
+
+            Instantiate(this._diceHitParticles, collision.GetContact(0).point + this._rigidbody.velocity.normalized, this._diceHitParticles.transform.rotation);
         }
     }
 

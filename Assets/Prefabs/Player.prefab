@@ -203,7 +203,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _axis: 0
   _negate: 0
-  _reverseZ: 0
 --- !u!1 &4800052093827480023
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,6 +267,7 @@ MonoBehaviour:
   _pinkAnimator: {fileID: 22100000, guid: fe50d258282b1f949b2495184b54a1be, type: 2}
   _pinkTeamParticles: {fileID: 7995170261910196790, guid: 81e6ee763312a6440b3fe579e7fff7bb, type: 3}
   _blueTeamParticles: {fileID: 5824872440604982799, guid: 203d79c4fe3821b4697762809b50857e, type: 3}
+  _diceHitParticles: {fileID: 6358804545531343572, guid: a3f221b01b991a54ab57d631f8b3838d, type: 3}
   _playerInput: {fileID: 1017683270172039950}
 --- !u!114 &1017683270172039950
 MonoBehaviour:
