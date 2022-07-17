@@ -20,7 +20,6 @@ namespace Manager
         [SerializeField]
         private RSLib.Data.Float _gameTimer;
 
-        private bool _isTimerOver => this._gameTimer.Value <= 0f;
 
         [SerializeField]
         private GameObject CountdownObject;
@@ -184,7 +183,7 @@ namespace Manager
 
             ChangeColorCircles();
 
-            if (this._isTimerOver)
+            if (this.IsTimerOver)
             {
                 this.EndGame();
             }

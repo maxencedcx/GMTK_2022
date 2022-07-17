@@ -22,6 +22,9 @@ public class TimerView : MonoBehaviour
     private UnityEngine.Color _finalSecColor;
 
     [SerializeField]
+    private GameObject _goldenDiceImage = null;
+    
+    [SerializeField]
     private AudioSource _finalCountdownSource = null;
     
     private DG.Tweening.Tween _punchEffect;
@@ -54,6 +57,8 @@ public class TimerView : MonoBehaviour
                 this._finalCountdownSource.Stop();
             }
         }
+        
+        this._goldenDiceImage.SetActive(Manager.GameManager.Instance.WinningTeam == Team.NONE && Manager.GameManager.Instance.IsTimerOver);
 
         this._previousSeconds = t.Seconds;
     }
