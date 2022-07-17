@@ -1664,6 +1664,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1827373277}
     m_Modifications:
+    - target: {fileID: 2952602205505785739, guid: 52b8203543523d843aad03fbd787c759, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5854809531862064467, guid: 52b8203543523d843aad03fbd787c759, type: 3}
       propertyPath: m_Name
       value: StatsPanel
@@ -2161,7 +2165,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8191593797671621654, guid: 6764d4a7d6687844796afc72d4599121, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8191593797671621654, guid: 6764d4a7d6687844796afc72d4599121, type: 3}
       propertyPath: m_AnchorMax.x
