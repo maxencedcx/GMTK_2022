@@ -122,6 +122,9 @@ namespace Manager
             this.State = GameState.LOBBY;
             TeamManager.Instance.SetActiveTeamChoosers(true);
             this._gameTimer.Value = this.GameDurationInSeconds * 1000;
+
+            this._blueTeamScore.Value = 0;
+            this._pinkTeamScore.Value = 0;
         }
 
         #endregion
