@@ -2,6 +2,7 @@ using RSLib.Extensions;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAction.IDiceFaceChoiceActions
 {
@@ -12,11 +13,17 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
     [SerializeField]
     private float _movementForceMultiplier;
 
-    [SerializeField]
-    private float _collisionForceMultiplier;
+    [FormerlySerializedAs("_collisionForceMultiplier")] [SerializeField]
+    private float _diceCollisionForceMultiplier;
 
-    [SerializeField] [Range(0f, 1f)]
-    private float _collisionYForce;
+    [FormerlySerializedAs("_collisionYForce")] [SerializeField] [Range(0f, 1f)]
+    private float _diceCollisionYForce;
+
+    [SerializeField]
+    private float _staticPlayerCollisionForceMultiplier;
+
+    [SerializeField]
+    private float _playerCollisionForceMultiplier;
 
     [SerializeField]
     private float _tackleCooldown = 0.5f;
@@ -25,7 +32,9 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
     
     private Vector3 _lastInputDirection = Vector3.zero;
 
-    private readonly List<Collider> _currentCollisions = new();
+    public bool IsStatic => this._lastInputDirection == Vector3.zero;
+
+    private readonly HashSet<Collider> _currentCollisions = new();
     
     // VIEW
     [SerializeField]
@@ -114,15 +123,23 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
         }
         
         this._currentCollisions.Add(collision.collider);
+        Vector3 collisionDirection = (collision.transform.position - this.transform.position).normalized;
+        
         if (collision.gameObject.TryGetComponent<Dice>(out _))
         {
-            Vector3 direction = (collision.transform.position - this.transform.position).normalized;
-            direction.y = Mathf.Max(0f, this._collisionYForce - direction.y) ;
-            collision.rigidbody.AddForce(direction * this._collisionForceMultiplier, ForceMode.Impulse);
-            collision.rigidbody.AddTorque(UnityEngine.Random.Range(-360, 360), UnityEngine.Random.Range(-360, 360), UnityEngine.Random.Range(-360, 360));
+            collisionDirection.y = Mathf.Max(0f, this._diceCollisionYForce - collisionDirection.y) ;
+            collision.rigidbody.AddForce(collisionDirection * this._diceCollisionForceMultiplier, ForceMode.Impulse);
+            collision.rigidbody.AddTorque(Random.Range(-360, 360), Random.Range(-360, 360), Random.Range(-360, 360));
+        }
+        else if (this._lastInputDirection != Vector3.zero
+                 && collision.gameObject.TryGetComponent(out Player collidingPlayer)
+                 && collidingPlayer.IsPlayerReady == false)
+        {
+            float forceMultiplier = collidingPlayer.IsStatic ? this._staticPlayerCollisionForceMultiplier : this._diceCollisionForceMultiplier;
+            collision.rigidbody.AddForce(collisionDirection * forceMultiplier, ForceMode.Impulse);
         }
     }
-
+    
     private void OnCollisionExit(Collision other)
     {
         this._currentCollisions.Remove(other.collider);
@@ -260,14 +277,14 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
             this._animator.runtimeAnimatorController = this.Team == Team.BLUE ? this._blueAnimator : this._pinkAnimator;
 
             GameObject particles = this.Team == Team.PINK ? this._pinkTeamParticles : this._blueTeamParticles;
-            Instantiate(particles, transform.position, particles.transform.rotation);
+            Instantiate(particles, this.transform.position, particles.transform.rotation);
         }
     }
 
     private System.Collections.IEnumerator TackleCooldownCoroutine()
     {
         this._canTackle = false;
-        yield return RSLib.Yield.SharedYields.WaitForSeconds(_tackleCooldown);
+        yield return RSLib.Yield.SharedYields.WaitForSeconds(this._tackleCooldown);
         this._canTackle = true;
     }
 }

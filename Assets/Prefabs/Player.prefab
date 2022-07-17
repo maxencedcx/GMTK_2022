@@ -203,7 +203,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _axis: 0
   _negate: 0
-  _reverseZ: 0
 --- !u!1 &4800052093827480023
 GameObject:
   m_ObjectHideFlags: 0
@@ -257,8 +256,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 4800052093827480019}
   _movementForceMultiplier: 115
-  _collisionForceMultiplier: 25
-  _collisionYForce: 0.3
+  _diceCollisionForceMultiplier: 25
+  _diceCollisionYForce: 0.3
+  _staticPlayerCollisionForceMultiplier: 20
+  _playerCollisionForceMultiplier: 5
   _tackleCooldown: 1
   _meshRenderer: {fileID: 4800052093827480029}
   _spriteRenderer: {fileID: 2361755584743634429}
