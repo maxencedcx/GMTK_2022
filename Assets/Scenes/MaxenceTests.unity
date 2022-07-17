@@ -577,8 +577,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5146013ca0b338c4b88b267bd46f7a59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _angle: 180
-  _speed: -90
+  _angle: 120
+  _speed: 60
 --- !u!1 &244861899
 GameObject:
   m_ObjectHideFlags: 0
@@ -3854,8 +3854,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5146013ca0b338c4b88b267bd46f7a59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _angle: 180
-  _speed: 90
+  _angle: 120
+  _speed: 60
 --- !u!4 &1766849859
 Transform:
   m_ObjectHideFlags: 0
