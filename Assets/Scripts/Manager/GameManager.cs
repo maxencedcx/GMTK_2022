@@ -46,6 +46,13 @@ namespace Manager
 
         [SerializeField]
         private float _restartPauseTime = 1.5f;
+        
+        public Team WinningTeam => (this._blueTeamScore.Value - this._pinkTeamScore.Value) switch
+        {
+            > 0 => Team.BLUE,
+            < 0 => Team.PINK,
+            _ => Team.NONE
+        };
 
         // EFFECTS
         [SerializeField]
@@ -96,6 +103,8 @@ namespace Manager
 
         private IEnumerator StartGame()
         {
+            Manager.UIManager.Instance.SetActiveHowToPlay(false);
+            Manager.UIManager.Instance.SetActiveEndGame(false);
             TeamManager.Instance.SetActiveTeamChoosers(false);
             TeamManager.Instance.UnreadyAllPlayers();
             this.State = GameState.STARTING;
@@ -108,6 +117,7 @@ namespace Manager
 
         private void EndGame()
         {
+            Manager.UIManager.Instance.DisplayEndGame(this.WinningTeam);
             this.DestroyAllDices();
             this.State = GameState.LOBBY;
             TeamManager.Instance.SetActiveTeamChoosers(true);
@@ -142,9 +152,9 @@ namespace Manager
 
         private IEnumerator ScoreGoalCoroutine(Team triggeredGoalTeam)
         {
-            this.State = GameState.PAUSED;
             this.DestroyAllDices();
 
+            // this.State = GameState.PAUSED;
             // int playerIndex = Manager.DiceFaceChoiceManager.Instance.GetNewPlayerIndexForTeam(triggeredGoalTeam);
             // Manager.DiceFaceChoiceManager.Instance.StartChoice(playerIndex);
             // yield return new WaitUntil(() => this.State == GameState.RUNNING);
