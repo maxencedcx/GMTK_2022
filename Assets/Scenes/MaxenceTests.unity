@@ -1649,6 +1649,7 @@ MonoBehaviour:
   _diceSpawnPoint: {fileID: 595608234}
   _diceSpawningForce: 10
   _cameraShake: {fileID: 934372144}
+  _circleMaterial: {fileID: 2100000, guid: 136b07a3184648b4583cf70b43032aec, type: 2}
   _blueTeamScore: {fileID: 11400000, guid: 6fa4cb28b35ed804b8cdbe99d50ba57c, type: 2}
   _pinkTeamScore: {fileID: 11400000, guid: 468b0c4ae07a7104a88129805d2321cd, type: 2}
   _restartPauseTime: 1.5

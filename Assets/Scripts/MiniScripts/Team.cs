@@ -13,7 +13,7 @@ public static class TeamExtensions
     {
         return team switch
         {
-            Team.BLUE => new Color32(72, 145, 160, 255),
+            Team.BLUE => new Color32(62, 135, 150, 255),
             Team.PINK => new Color32(160, 72, 91, 255),
             _ => Color.white
         };

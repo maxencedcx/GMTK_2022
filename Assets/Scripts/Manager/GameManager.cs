@@ -4,6 +4,7 @@ namespace Manager
     using System.Collections.Generic;
     using UnityEngine;
     using UnityEngine.InputSystem;
+    using DG.Tweening;
     using Random = UnityEngine.Random;
 
     public class GameManager : RSLib.Singleton<GameManager>
@@ -31,7 +32,10 @@ namespace Manager
 
         [SerializeField]
         private CameraShake _cameraShake = null;
-        
+
+        [SerializeField]
+        private Material _circleMaterial;
+
         private List<Dice> _dices = new();
 
         private DiceSettings _diceSettings = new DiceSettings();
@@ -73,6 +77,7 @@ namespace Manager
             this._blueTeamScore.Value = 0;
             this._pinkTeamScore.Value = 0;
             this._gameTimer.Value = this.GameDurationInSeconds * 1000;
+            this._circleMaterial.color = new Color32(126, 15, 0, 255);
         }
 
         private void Update()
@@ -153,6 +158,8 @@ namespace Manager
                     break;
             }
 
+            ChangeColorCircles();
+
             if (this._isTimerOver)
             {
                 this.EndGame();
@@ -162,6 +169,13 @@ namespace Manager
                 this.StartCoroutine(this.ScoreGoalCoroutine(triggeredGoalTeam));
             }
         }
+
+        private void ChangeColorCircles()
+        {
+            Color nextColor = this.WinningTeam != Team.NONE ? this.WinningTeam.GetTeamColor() : new Color32(126, 15, 0, 255);
+            _circleMaterial.DOColor(nextColor, 0.5f);
+        }
+
 
         private IEnumerator ScoreGoalCoroutine(Team triggeredGoalTeam)
         {
