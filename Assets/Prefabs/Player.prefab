@@ -256,6 +256,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 4800052093827480019}
   _movementForceMultiplier: 105
+  _tacklingForceMultiplier: 35
   _diceCollisionForceMultiplier: 60
   _diceCollisionYForce: 0.1
   _staticPlayerCollisionForceMultiplier: 40
