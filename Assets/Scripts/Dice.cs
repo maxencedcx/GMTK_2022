@@ -139,7 +139,8 @@ public class Dice : MonoBehaviour
             DiceEffectType effectType = this.GetHighestFace().EffectType;
 
             if (effectType != DiceEffectType.NONE
-                && effectType == DiceEffectType.TELEPORT && this._activeEffects.All(o => o.EffectType != DiceEffectType.TELEPORT))
+                && (effectType != DiceEffectType.TELEPORT
+                    || this._activeEffects.All(o => o.EffectType != DiceEffectType.TELEPORT)))
             {
                 this._triggeredLastStationaryEffect = true;
                 this.AddEffect(effectType);

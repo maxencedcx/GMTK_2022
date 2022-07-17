@@ -4,12 +4,12 @@ public class DiceSettings
     {
         this.DiceEffectFaces = new[]
         {
+            DiceEffectType.SHOCKWAVE,
+            DiceEffectType.RUNNING_DICE,
+            DiceEffectType.MINI_DICE,
+            DiceEffectType.GIANT_DICE,
             DiceEffectType.TELEPORT,
-            DiceEffectType.TELEPORT,
-            DiceEffectType.TELEPORT,
-            DiceEffectType.TELEPORT,
-            DiceEffectType.TELEPORT,
-            DiceEffectType.TELEPORT,
+            DiceEffectType.INVISIBLE,
         };
     }
     
