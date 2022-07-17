@@ -68,16 +68,16 @@ public abstract class DiceEffect
     {
     }
     
-    public void Update()
+    public void FixedUpdate()
     {
-        this.Lifetime += Time.deltaTime;
+        this.Lifetime += Time.fixedDeltaTime;
 
         if (this.DiceEffectData.AutoApply)
         {
-            this._autoApplyTimer += Time.deltaTime;
+            this._autoApplyTimer += Time.fixedDeltaTime;
             if (this._autoApplyTimer > this.DiceEffectData.Cooldown)
             {
-                this.TryApply(new DiceEffectContext());
+                this.TryApply(new DiceEffectContext() {Players = Manager.TeamManager.Instance.Players});
             }
         }
     }

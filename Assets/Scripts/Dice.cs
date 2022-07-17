@@ -72,7 +72,7 @@ public class Dice : MonoBehaviour
                 return;
         }
         
-        diceEffect.OnEffectStart(new DiceEffectContext());
+        diceEffect.OnEffectStart(new DiceEffectContext() {Players = Manager.TeamManager.Instance.Players});
         
         this.EffectAdded?.Invoke(diceEffectType);
         this._activeEffects.Add(diceEffect);
@@ -108,22 +108,7 @@ public class Dice : MonoBehaviour
             GameManager.Instance.UnregisterDice(this);
         }
     }
-
-    private void Update()
-    {
-        for (int i = this._activeEffects.Count - 1; i >= 0; --i)
-        {
-            DiceEffect activeEffect = this._activeEffects[i];
-            
-            activeEffect.Update();
-            if (activeEffect.IsOver)
-            {
-                activeEffect.OnEffectOver();
-                this.RemoveEffect(activeEffect);
-            }
-        }
-    }
-
+    
     private void FixedUpdate()
     {
         if (this._rigidbody.velocity.magnitude > (Vector3.one * this._stationaryAllowance * 2).magnitude)
@@ -134,6 +119,18 @@ public class Dice : MonoBehaviour
         {
             this._triggeredLastStationaryEffect = false;
             this._stationarySince = Time.time;
+        }
+                
+        for (int i = this._activeEffects.Count - 1; i >= 0; --i)
+        {
+            DiceEffect activeEffect = this._activeEffects[i];
+            
+            activeEffect.FixedUpdate();
+            if (activeEffect.IsOver)
+            {
+                activeEffect.OnEffectOver();
+                this.RemoveEffect(activeEffect);
+            }
         }
 
         if (this.ShouldTriggerEffect)

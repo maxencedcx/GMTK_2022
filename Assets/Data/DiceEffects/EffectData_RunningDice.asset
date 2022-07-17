@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _detectionRange: 5
   _fleeDirectionSmoothing: 0.1
+  _fleeDirectionForce: 0.8
