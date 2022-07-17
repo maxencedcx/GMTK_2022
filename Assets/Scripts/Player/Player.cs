@@ -112,6 +112,7 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
     private void Start()
     {
         Manager.TeamManager.Instance.RegisterPlayer(this);
+        Manager.CameraManager.Instance.RegisterTarget(this.transform);
     }
 
     private void FixedUpdate()

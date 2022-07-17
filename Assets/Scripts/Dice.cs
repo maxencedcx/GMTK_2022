@@ -104,6 +104,7 @@ public class Dice : MonoBehaviour
     private void Start()
     {
         GameManager.Instance.RegisterDice(this);
+        CameraManager.Instance.RegisterTarget(this.transform);
     }
 
     private void OnDestroy()
@@ -111,6 +112,11 @@ public class Dice : MonoBehaviour
         if (GameManager.Exists())
         {
             GameManager.Instance.UnregisterDice(this);
+        }
+
+        if (CameraManager.Exists())
+        {
+            CameraManager.Instance.UnregisterTarget(this.transform);
         }
     }
     
