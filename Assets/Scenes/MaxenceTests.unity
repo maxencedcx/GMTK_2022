@@ -2315,7 +2315,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Use Joystick to move
 
-    Press A to dash
+    Press X to dash
 
     Press Y to be ready'
   m_isRightToLeft: 0
@@ -2914,7 +2914,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1184377785}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6600ac046cc6418e8b2e5a37972b8be2, type: 3}
+  m_Script: {fileID: 11500000, guid: 4b4540beb7af4a8ebd73710f825db93b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _dontDestroy: 0
