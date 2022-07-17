@@ -19,17 +19,16 @@ public class RunningDice : DiceEffect
 
     protected override void Apply(DiceEffectContext diceEffectContext)
     {
-        
+        this._dice.Rigidbody.AddForce(this.GetFleeDirection(diceEffectContext) * this._runningDiceData.FleeDirectionForce, ForceMode.Impulse);
     }
 
     public Vector3 GetFleeDirection(DiceEffectContext diceEffectContext)
     {
         Vector3 toPlayers = Vector3.zero;
 
-        for (int i = diceEffectContext.Players.Length - 1; i >= 0; --i)
+        foreach (Player player in diceEffectContext.Players)
         {
-            Transform player = diceEffectContext.Players[i];
-            Vector3 toPlayer = player.position.WithY(0f) - this._dice.transform.position.WithY(0f);
+            Vector3 toPlayer = player.transform.position.WithY(0f) - this._dice.transform.position.WithY(0f);
 
             if (toPlayer.sqrMagnitude > this._runningDiceData.DetectionRangeSqr)
             {

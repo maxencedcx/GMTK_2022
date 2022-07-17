@@ -1,3 +1,4 @@
+using System.Linq;
 using Manager;
 using UnityEngine;
 
@@ -36,10 +37,14 @@ public class Dice : MonoBehaviour
     public bool IsTeleporting;
     
     private bool _triggeredLastStationaryEffect = false;
+
+    private DiceFace _lastTriggeredDiceFace = null; 
     
     public bool IsStationary => this._stationarySince > 0f;
 
-    public bool ShouldTriggerEffect => this.IsStationary && !this._triggeredLastStationaryEffect && Time.time >= this._stationarySince + this._triggerFaceEffectTiming;
+    public bool ShouldTriggerEffect => this.IsStationary
+                                       && !this._triggeredLastStationaryEffect
+                                       && Time.time >= this._stationarySince + this._triggerFaceEffectTiming;
 
     public void AddEffect(DiceEffectType diceEffectType)
     {
@@ -72,7 +77,7 @@ public class Dice : MonoBehaviour
                 return;
         }
         
-        diceEffect.OnEffectStart(new DiceEffectContext());
+        diceEffect.OnEffectStart(new DiceEffectContext() {Players = Manager.TeamManager.Instance.Players});
         
         this.EffectAdded?.Invoke(diceEffectType);
         this._activeEffects.Add(diceEffect);
@@ -108,42 +113,42 @@ public class Dice : MonoBehaviour
             GameManager.Instance.UnregisterDice(this);
         }
     }
-
-    private void Update()
+    
+    private void FixedUpdate()
     {
+        if (this._rigidbody.velocity.magnitude > (Vector3.one * this._stationaryAllowance * 2.5f).magnitude)
+        {
+            this._stationarySince = -1;
+        }
+        else if (!this.IsStationary && this._rigidbody.velocity.magnitude <= (Vector3.one * this._stationaryAllowance).magnitude)
+        {
+            this._triggeredLastStationaryEffect = this.GetHighestFace() == this._lastTriggeredDiceFace;
+            this._stationarySince = Time.time;
+        }
+                
         for (int i = this._activeEffects.Count - 1; i >= 0; --i)
         {
             DiceEffect activeEffect = this._activeEffects[i];
             
-            activeEffect.Update();
+            activeEffect.FixedUpdate();
             if (activeEffect.IsOver)
             {
                 activeEffect.OnEffectOver();
                 this.RemoveEffect(activeEffect);
             }
         }
-    }
-
-    private void FixedUpdate()
-    {
-        if (this._rigidbody.velocity.magnitude > (Vector3.one * this._stationaryAllowance * 2).magnitude)
-        {
-            this._stationarySince = -1;
-        }
-        else if (!this.IsStationary && this._rigidbody.velocity.magnitude <= (Vector3.one * this._stationaryAllowance).magnitude)
-        {
-            this._triggeredLastStationaryEffect = false;
-            this._stationarySince = Time.time;
-        }
 
         if (this.ShouldTriggerEffect)
         {
-            DiceEffectType effectType = this.GetHighestFace().EffectType;
-            if (effectType != DiceEffectType.NONE)
+            DiceFace diceFace = this.GetHighestFace();
+
+            if (diceFace.EffectType != DiceEffectType.NONE
+                && (diceFace.EffectType != DiceEffectType.TELEPORT
+                    || this._activeEffects.All(o => o.EffectType != DiceEffectType.TELEPORT)))
             {
-                Debug.Log($"triggering {effectType}");
+                this._lastTriggeredDiceFace = diceFace;
                 this._triggeredLastStationaryEffect = true;
-                this.AddEffect(effectType);
+                this.AddEffect(diceFace.EffectType);
             }
         }
     }

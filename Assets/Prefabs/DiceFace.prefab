@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 6700132624290339012}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.03, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.4830418, y: 0.4830418, z: 0.4830418}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6840203574115914068}
@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 0f84168511432454aa0d70c074df7ec9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -182,13 +182,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _diceEffectMaterials:
   - EffectType: 1
-    Material: {fileID: 0}
+    Material: {fileID: 2100000, guid: c60a03c7affaeeb44957288bdcea10a1, type: 2}
   - EffectType: 2
-    Material: {fileID: 0}
+    Material: {fileID: 2100000, guid: 47b8e9a28ab64a84b838d0f4806a8dc1, type: 2}
   - EffectType: 3
-    Material: {fileID: 0}
+    Material: {fileID: 2100000, guid: ff5b15cf936da6549842b476af120e8e, type: 2}
   - EffectType: 4
-    Material: {fileID: 0}
+    Material: {fileID: 2100000, guid: 223b6a8239ded82488445129935f279e, type: 2}
+  - EffectType: 5
+    Material: {fileID: 2100000, guid: 5f0599b7b7a45704ea87e5606c389f8b, type: 2}
+  - EffectType: 6
+    Material: {fileID: 2100000, guid: 560a9ceaca360ce43a33f268c5a8fb8b, type: 2}
   _faceRenderer: {fileID: 6840203574115914066}
   _effectTypeMaterial: {fileID: 5771716905596584108}
   _invisibleMaterial: {fileID: 2100000, guid: 628416be38ad02340b19f623046067cd, type: 2}

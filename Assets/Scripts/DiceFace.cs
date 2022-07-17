@@ -49,5 +49,6 @@ public class DiceFace : MonoBehaviour
     public void SetInvisible(bool state)
     {
         this._faceRenderer.material = state ? this._invisibleMaterial : this._initMaterial;
+        this._effectTypeMaterial.gameObject.SetActive(!state);
     }
 }
