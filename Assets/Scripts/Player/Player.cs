@@ -72,7 +72,10 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
 
     [SerializeField]
     private GameObject _blueTeamParticles = null;
-    
+
+    [SerializeField]
+    private GameObject _diceHitParticles = null;
+
     // VIEW
     [SerializeField]
     private RSLib.Audio.ClipProvider _tackleClip = null;
@@ -163,6 +166,7 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
             collision.rigidbody.AddTorque(Random.Range(-360, 360), Random.Range(-360, 360), Random.Range(-360, 360));
             
             RSLib.Audio.AudioManager.PlaySound(this._bumpClip);
+            Instantiate(_diceHitParticles, collision.GetContact(0).point + this._rigidbody.velocity.normalized, this._diceHitParticles.transform.rotation);
         }
         else if (this._lastInputDirection != Vector3.zero
                  && collision.gameObject.TryGetComponent(out Player collidingPlayer)

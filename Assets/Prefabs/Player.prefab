@@ -385,8 +385,9 @@ MonoBehaviour:
   _pinkAnimator: {fileID: 22100000, guid: fe50d258282b1f949b2495184b54a1be, type: 2}
   _pinkTeamParticles: {fileID: 7995170261910196790, guid: 81e6ee763312a6440b3fe579e7fff7bb, type: 3}
   _blueTeamParticles: {fileID: 5824872440604982799, guid: 203d79c4fe3821b4697762809b50857e, type: 3}
+  _diceHitParticles: {fileID: 6358804545531343572, guid: a3f221b01b991a54ab57d631f8b3838d, type: 3}
   _tackleClip: {fileID: 11400000, guid: 2fbbb7a1d3e18d347b1e87adbb6162db, type: 2}
-  _tackleHitClip: {fileID: 0}
+  _tackleHitClip: {fileID: 11400000, guid: 528b8432bc35ae1429c0eb4e37d39517, type: 2}
   _bumpClip: {fileID: 11400000, guid: a411ab13555cb564e9ed5eda652e4382, type: 2}
   _setTeamClip: {fileID: 11400000, guid: 2460f621089b38f428f8e814fda89cc5, type: 2}
   _indexPlayer: {fileID: 7223282805376764429}

@@ -11,8 +11,7 @@ namespace Manager
         private GameObject _howToPlayObject;
         
         // GAME TITLE
-        [SerializeField]
-        private GameObject _gameTitleObject;
+        public GameObject _gameTitleObject;
 
         // END GAME
         [SerializeField]

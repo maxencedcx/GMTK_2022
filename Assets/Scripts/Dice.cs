@@ -25,7 +25,7 @@ public class Dice : MonoBehaviour
 
     private DiceFace _highestFace;
 
-    // EFFECts
+    // EFFECTS
     private System.Collections.Generic.List<DiceEffect> _activeEffects = new();
 
     public event System.Action<DiceEffectType> EffectAdded;
@@ -33,6 +33,9 @@ public class Dice : MonoBehaviour
     [SerializeField] [Range(0.1f, 2f)]
     private float _triggerFaceEffectTiming;
 
+    [SerializeField]
+    private GameObject _blobShadow = null;
+    
     [SerializeField]
     private RSLib.Audio.ClipProvider _collisionClip = null;
     
@@ -97,6 +100,8 @@ public class Dice : MonoBehaviour
         {
             this._diceFaces[i].SetInvisible(state);
         }
+        
+        this._blobShadow.SetActive(!state);
     }
     
     private void Awake()

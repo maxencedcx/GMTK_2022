@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using DG.Tweening;
+using System.Collections;
 
 public class SpawnManager : RSLib.Singleton<SpawnManager>
 {
@@ -8,6 +10,11 @@ public class SpawnManager : RSLib.Singleton<SpawnManager>
     
     [SerializeField]
     private List<Transform> _spawnPoints;
+
+    [SerializeField]
+    private float _moveDuration;
+
+    private Tween _moveGameTitle;
 
     protected override void Awake()
     {
@@ -40,10 +47,17 @@ public class SpawnManager : RSLib.Singleton<SpawnManager>
 
         if (PlayerIndex == -1)
         {
-            Manager.UIManager.Instance.SetActiveGameTitle(false);
+            StartCoroutine(MoveGameTitle());
             Manager.UIManager.Instance.SetActiveHowToPlay(true);
         }
         
         playerInput.transform.position = this._spawnPoints[++PlayerIndex].position;
+    }
+
+    private IEnumerator MoveGameTitle()
+    {
+        _moveGameTitle = Manager.UIManager.Instance._gameTitleObject.transform.DOMoveY(25, _moveDuration).SetEase(Ease.OutExpo);
+        yield return _moveGameTitle.WaitForCompletion();
+        Manager.UIManager.Instance.SetActiveGameTitle(false);
     }
 }
