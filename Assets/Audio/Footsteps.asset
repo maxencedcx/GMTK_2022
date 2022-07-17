@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Footsteps
   m_EditorClassIdentifier: 
   _mixerGroup: {fileID: 6932038728719141381, guid: 1ec8c024ee2e0c844a668d2c1a533b14, type: 2}
-  _volumeMultiplier: 1
+  _volumeMultiplier: 0.5
   _pitchOffset: 0
   _clipsPlayDatas:
   - _clip: {fileID: 8300000, guid: 511f29a3698da5d4ea08bbcccb80dbcf, type: 3}

@@ -11,6 +11,9 @@ public class Goal : MonoBehaviour
     [SerializeField]
     private RSLib.Audio.ClipProvider _goalClip = null;
     
+    [SerializeField]
+    private RSLib.Audio.ClipProvider _applauseClip = null;
+
     [UnityEngine.RangeAttribute(0f, 1f)]
     public float Trauma;
     
@@ -27,6 +30,7 @@ public class Goal : MonoBehaviour
         
         Manager.GameManager.Instance.CameraShake.AddTrauma(this.Trauma);
         RSLib.Audio.AudioManager.PlaySound(this._goalClip);
+        RSLib.Audio.AudioManager.PlaySound(this._applauseClip);
     }
     
     private void OnTriggerEnter(Collider other)

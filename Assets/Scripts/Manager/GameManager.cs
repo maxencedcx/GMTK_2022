@@ -114,6 +114,8 @@ namespace Manager
             TeamManager.Instance.UnreadyAllPlayers();
             this.State = GameState.STARTING;
             
+            MusicManager.Instance.PlayGameMusic();
+            
             yield return new WaitForSeconds(3);
 
             this.State = GameState.RUNNING;
@@ -131,6 +133,8 @@ namespace Manager
 
             this._blueTeamScore.Value = 0;
             this._pinkTeamScore.Value = 0;
+            
+            MusicManager.Instance.PlayLobbyMusic();
         }
 
         #endregion
