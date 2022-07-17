@@ -273,3 +273,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scoreInt: {fileID: 0}
   _scoreText: {fileID: 3124842935785435526}
+  _punchIntensity: 0.3
+  _punchDuration: 0.1
