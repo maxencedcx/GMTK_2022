@@ -20,3 +20,5 @@ MonoBehaviour:
   _miniDiceData: {fileID: 11400000, guid: 67f493e95d833ac4db7f939a0e6b585e, type: 2}
   _giantDiceEffectData: {fileID: 11400000, guid: 2c2fce97d19f70b418923243f83c9e43, type: 2}
   _giantDiceData: {fileID: 11400000, guid: f3234b39786cc7046af2f7abf54e1121, type: 2}
+  _teleportingDiceEffectData: {fileID: 11400000, guid: b804972ea96a37b4faf205c4f515ce31, type: 2}
+  _TeleportingDiceData: {fileID: 11400000, guid: fa610c8aea7e15849b5cc55d2527906c, type: 2}

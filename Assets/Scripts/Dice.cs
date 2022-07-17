@@ -26,6 +26,9 @@ public class Dice : MonoBehaviour
     [SerializeField] [Range(0.1f, 2f)]
     private float _triggerFaceEffectTiming;
 
+    [HideInInspector]
+    public bool IsTeleporting;
+    
     public bool IsStationary => this._stationarySince > 0f;
 
     public bool ShouldTriggerEffect => this.IsStationary && !this._triggeredLastStationaryEffect && Time.time >= this._stationarySince + this._triggerFaceEffectTiming;
@@ -49,6 +52,9 @@ public class Dice : MonoBehaviour
                 break;
             case DiceEffectType.GIANT_DICE:
                 diceEffect = new GiantDice(this, this._diceEffectsTable._giantDiceEffectData, this._diceEffectsTable._giantDiceData);
+                break;
+            case DiceEffectType.TELEPORT:
+                diceEffect = new TeleportingDice(this, this._diceEffectsTable._teleportingDiceEffectData, this._diceEffectsTable._TeleportingDiceData);
                 break;
             case DiceEffectType.NONE:
             default:
@@ -167,6 +173,7 @@ public class Dice : MonoBehaviour
             this.DrawButton("Add Running Dice", () => this.Obj.AddEffect(DiceEffectType.RUNNING_DICE));
             this.DrawButton("Add Mini Dice", () => this.Obj.AddEffect(DiceEffectType.MINI_DICE));
             this.DrawButton("Add Giant Dice", () => this.Obj.AddEffect(DiceEffectType.GIANT_DICE));
+            this.DrawButton("Add Teleport", () => this.Obj.AddEffect(DiceEffectType.TELEPORT));
         }
     }
 #endif
