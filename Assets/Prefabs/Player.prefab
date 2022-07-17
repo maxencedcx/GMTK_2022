@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 2361755584743634429}
   - component: {fileID: 391956355469049764}
   - component: {fileID: 8870628797117047914}
+  - component: {fileID: 4170125667009772799}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -203,6 +204,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _axis: 0
   _negate: 0
+--- !u!114 &4170125667009772799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786568490353365476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d10f6df044691f449545a394d78ae73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FootstepsClip: {fileID: 11400000, guid: 51ab30f5278568c41becbc268551c2f1, type: 2}
 --- !u!1 &4800052093827480023
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,6 +287,7 @@ MonoBehaviour:
   _pinkTeamParticles: {fileID: 7995170261910196790, guid: 81e6ee763312a6440b3fe579e7fff7bb, type: 3}
   _blueTeamParticles: {fileID: 5824872440604982799, guid: 203d79c4fe3821b4697762809b50857e, type: 3}
   _tackleClip: {fileID: 11400000, guid: 2fbbb7a1d3e18d347b1e87adbb6162db, type: 2}
+  _tackleHitClip: {fileID: 0}
   _bumpClip: {fileID: 11400000, guid: a411ab13555cb564e9ed5eda652e4382, type: 2}
   _setTeamClip: {fileID: 11400000, guid: 2460f621089b38f428f8e814fda89cc5, type: 2}
   _playerInput: {fileID: 1017683270172039950}
