@@ -64,6 +64,7 @@ MonoBehaviour:
   - {fileID: 29948710657037939}
   _diceEffectsTable: {fileID: 11400000, guid: ed5e233d1c89ee5479056a091378659b, type: 2}
   _triggerFaceEffectTiming: 0.1
+  _blobShadow: {fileID: 3685637789626375024}
   _collisionClip: {fileID: 11400000, guid: 498415e8346d78f46aa817f6f2ce7f8b, type: 2}
   IsTeleporting: 0
 --- !u!65 &1634237807752868067
@@ -452,6 +453,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eff6ccfae3dd2d1409c01566d1b24f3e, type: 3}
+--- !u!1 &3685637789626375024 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8845629433215038092, guid: eff6ccfae3dd2d1409c01566d1b24f3e, type: 3}
+  m_PrefabInstance: {fileID: 5325498934203394556}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3685637789626375026 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8845629433215038094, guid: eff6ccfae3dd2d1409c01566d1b24f3e, type: 3}
