@@ -20,6 +20,7 @@ namespace Manager
         [SerializeField]
         private RSLib.Data.Float _gameTimer;
 
+        public bool IsTimerOver => this._gameTimer.Value <= 0f; 
 
         [SerializeField]
         private GameObject CountdownObject;
