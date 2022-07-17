@@ -248,8 +248,13 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
 
     private IEnumerator OnTackleCoroutine()
     {
+        this._animator.SetBool("Tackling", true);
+        this._animator.SetTrigger("Dash");
+
         this.IsTackling = true;
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.2f);
+        
+        this._animator.SetBool("Tackling", false);
         this.IsTackling = false;
     }
 

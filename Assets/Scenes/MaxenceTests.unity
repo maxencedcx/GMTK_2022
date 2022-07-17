@@ -2430,6 +2430,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameTitle
       objectReference: {fileID: 0}
+    - target: {fileID: 8191593797671621655, guid: 6764d4a7d6687844796afc72d4599121, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6764d4a7d6687844796afc72d4599121, type: 3}
 --- !u!224 &1002988017 stripped
@@ -3112,7 +3116,7 @@ MonoBehaviour:
   - {fileID: 1819885453}
   - {fileID: 1006816905}
   - {fileID: 2133331515}
-  _moveDuration: 15
+  _moveDuration: 0
 --- !u!4 &1436661639
 Transform:
   m_ObjectHideFlags: 0
