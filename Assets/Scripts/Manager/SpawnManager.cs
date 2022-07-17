@@ -56,7 +56,7 @@ public class SpawnManager : RSLib.Singleton<SpawnManager>
 
     private IEnumerator MoveGameTitle()
     {
-        _moveGameTitle = Manager.UIManager.Instance._gameTitleObject.transform.DOMoveY(25, _moveDuration).SetEase(Ease.OutExpo);
+        _moveGameTitle = Manager.UIManager.Instance._gameTitleObject.transform.DOMoveY(21, _moveDuration).SetEase(Ease.OutBounce);
         yield return _moveGameTitle.WaitForCompletion();
         Manager.UIManager.Instance.SetActiveGameTitle(false);
     }
