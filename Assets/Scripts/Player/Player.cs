@@ -139,7 +139,7 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
             this._rigidbody.AddForce(this._lastInputDirection * this._movementForceMultiplier, ForceMode.Acceleration);
             this._animator.SetBool("Running", true);
 
-            if (this._lastInputDirection.x != 0f)
+            if (this._lastInputDirection.x != 0f && !IsTackling)
             {
                 this._spriteRenderer.flipX = this.Team == Team.PINK ? this._lastInputDirection.x > 0f : this._lastInputDirection.x < 0f;
             }
@@ -258,7 +258,7 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
         this._animator.SetTrigger("Dash");
 
         this.IsTackling = true;
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.175f);
         
         this._animator.SetBool("Tackling", false);
         this.IsTackling = false;
