@@ -3,6 +3,7 @@ using System;
 using TMPro;
 using UnityEngine;
 using DG.Tweening;
+using Color = UnityEngine.Color;
 
 public class TimerView : MonoBehaviour
 {
@@ -41,6 +42,13 @@ public class TimerView : MonoBehaviour
         TimeSpan t = TimeSpan.FromMilliseconds(args.New);
         this._timerText.text = Mathf.CeilToInt((float)t.TotalSeconds).ToString();
 
+        if (Manager.GameManager.Instance.State == GameState.LOBBY)
+        {
+            this._goldenDiceImage.SetActive(false);
+            this._timerText.color = Color.white;
+            return;
+        }
+        
         if (t.Seconds != this._previousSeconds
             && t.TotalSeconds < 10)
         {
