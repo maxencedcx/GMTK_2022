@@ -17,10 +17,13 @@ public class TimerView : MonoBehaviour
 
     [SerializeField, Range(0.1f, 3)]
     private float _punchDuration;
-
+    
     [SerializeField]
     private UnityEngine.Color _finalSecColor;
 
+    [SerializeField]
+    private AudioSource _finalCountdownSource = null;
+    
     private DG.Tweening.Tween _punchEffect;
 
     private int _previousSeconds;
@@ -45,6 +48,11 @@ public class TimerView : MonoBehaviour
             && t.TotalSeconds < 10)
         {
             OnLastSeconds();
+
+            if (t.TotalSeconds == 0)
+            {
+                this._finalCountdownSource.Stop();
+            }
         }
 
         this._previousSeconds = t.Seconds;
@@ -59,5 +67,10 @@ public class TimerView : MonoBehaviour
     private void OnLastSeconds()
     {
         this._timerText.color = _finalSecColor;
+
+        if (!this._finalCountdownSource.isPlaying)
+        {
+            this._finalCountdownSource.Play();
+        }
     }
 }

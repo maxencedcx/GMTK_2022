@@ -33,6 +33,9 @@ public class Dice : MonoBehaviour
     [SerializeField] [Range(0.1f, 2f)]
     private float _triggerFaceEffectTiming;
 
+    [SerializeField]
+    private RSLib.Audio.ClipProvider _collisionClip = null;
+    
     [HideInInspector]
     public bool IsTeleporting;
     
@@ -184,7 +187,12 @@ public class Dice : MonoBehaviour
 
         return this._highestFace;
     }
-    
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        RSLib.Audio.AudioManager.PlaySound(_collisionClip);
+    }
+
 #if UNITY_EDITOR
     [UnityEditor.CustomEditor(typeof(Dice))]
     public class DiceEditor : RSLib.EditorUtilities.ButtonProviderEditor<Dice>
