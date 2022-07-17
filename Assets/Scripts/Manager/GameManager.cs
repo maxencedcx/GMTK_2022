@@ -145,9 +145,9 @@ namespace Manager
             this.State = GameState.PAUSED;
             this.DestroyAllDices();
 
-            int playerIndex = Manager.DiceFaceChoiceManager.Instance.GetNewPlayerIndexForTeam(triggeredGoalTeam);
-            Manager.DiceFaceChoiceManager.Instance.StartChoice(playerIndex);
-            yield return new WaitUntil(() => this.State == GameState.RUNNING);
+            // int playerIndex = Manager.DiceFaceChoiceManager.Instance.GetNewPlayerIndexForTeam(triggeredGoalTeam);
+            // Manager.DiceFaceChoiceManager.Instance.StartChoice(playerIndex);
+            // yield return new WaitUntil(() => this.State == GameState.RUNNING);
             
             yield return new WaitForSeconds(this._restartPauseTime);
             this.GenerateDice(this._diceSpawnPoint.position, true);
