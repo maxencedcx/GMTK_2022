@@ -152,9 +152,9 @@ namespace Manager
 
         private IEnumerator ScoreGoalCoroutine(Team triggeredGoalTeam)
         {
-            this.State = GameState.PAUSED;
             this.DestroyAllDices();
 
+            // this.State = GameState.PAUSED;
             // int playerIndex = Manager.DiceFaceChoiceManager.Instance.GetNewPlayerIndexForTeam(triggeredGoalTeam);
             // Manager.DiceFaceChoiceManager.Instance.StartChoice(playerIndex);
             // yield return new WaitUntil(() => this.State == GameState.RUNNING);
