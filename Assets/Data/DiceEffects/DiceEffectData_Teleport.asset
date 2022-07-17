@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9743bcae42f017444ab9f87a3189fb3d, type: 3}
   m_Name: DiceEffectData_Teleport
   m_EditorClassIdentifier: 
-  _duration: 15
+  _duration: 18
   _autoApplyCooldown:
-    _value: 4
+    _value: 5
     _enabled: 1
   _applyOnLand: 0
   _applyInstantly: 1
