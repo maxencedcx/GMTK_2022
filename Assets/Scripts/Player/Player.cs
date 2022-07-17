@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
+using TMPro;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAction.IDiceFaceChoiceActions
 {
@@ -83,7 +85,10 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
 
     [SerializeField]
     private RSLib.Audio.ClipProvider _setTeamClip = null;
-    
+
+    [SerializeField]
+    private TextMeshProUGUI _indexPlayer;
+
     // GAMEPLAY
     public Team Team { get; private set; }
 
@@ -112,6 +117,8 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
     private void Start()
     {
         Manager.TeamManager.Instance.RegisterPlayer(this);
+        Manager.CameraManager.Instance.RegisterTarget(this.transform);
+        DisplayPlayerIndex();
     }
 
     private void FixedUpdate()
@@ -309,7 +316,7 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
         if (!this.IsPlayerReady)
         {
             this.Team = team;
-
+            this.UpdatePlayerColor();
             this._blueBlobShadow.SetActive(this.Team == Team.BLUE);
             this._pinkBlobShadow.SetActive(this.Team == Team.PINK);
 
@@ -327,5 +334,16 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
         this._canTackle = false;
         yield return RSLib.Yield.SharedYields.WaitForSeconds(this._tackleCooldown);
         this._canTackle = true;
+    }
+
+    private void DisplayPlayerIndex()
+    {
+        int newPlayerIndex = this.PlayerIndex + 1;
+        _indexPlayer.text = "P" + newPlayerIndex.ToString();
+    }
+
+    private void UpdatePlayerColor()
+    {
+        _indexPlayer.color = Team.GetTeamColor();
     }
 }
