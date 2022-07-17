@@ -14,6 +14,9 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
     [SerializeField]
     private float _movementForceMultiplier;
 
+    [SerializeField]
+    private float _tacklingForceMultiplier;
+
     [FormerlySerializedAs("_collisionForceMultiplier")] [SerializeField]
     private float _diceCollisionForceMultiplier;
 
@@ -207,8 +210,7 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
 
         if (context.performed)
         {
-            this._rigidbody.AddForce(this._lastInputDirection * this._movementForceMultiplier / 3, ForceMode.Impulse);
-            this._rigidbody.velocity = this._rigidbody.velocity.ClampAll(-this._movementForceMultiplier, this._movementForceMultiplier);
+            this._rigidbody.AddForce(this._lastInputDirection * this._tacklingForceMultiplier, ForceMode.Impulse);
             this.StartCoroutine(this.TackleCooldownCoroutine());
             this.StartCoroutine(this.OnTackleCoroutine());
         }

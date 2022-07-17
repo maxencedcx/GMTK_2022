@@ -1,9 +1,9 @@
-using UnityEngine;
+using System.Collections.Generic;
 
 /// <summary>
 /// Data passed in as parameters when calling dice effects methods.
 /// </summary>
 public struct DiceEffectContext
 {
-    public Transform[] Players;
+    public HashSet<Player> Players;
 }
