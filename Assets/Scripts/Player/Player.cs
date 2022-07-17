@@ -76,6 +76,9 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
     private RSLib.Audio.ClipProvider _tackleClip = null;
     
     [SerializeField]
+    private RSLib.Audio.ClipProvider _tackleHitClip = null;
+    
+    [SerializeField]
     private RSLib.Audio.ClipProvider _bumpClip = null;
 
     [SerializeField]
@@ -109,6 +112,7 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
     private void Start()
     {
         Manager.TeamManager.Instance.RegisterPlayer(this);
+        Manager.CameraManager.Instance.RegisterTarget(this.transform);
     }
 
     private void FixedUpdate()
@@ -162,6 +166,8 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
             forceMultiplier *= this.IsTackling ? this._tacklingCollisionForceMultiplier : 1f;
             collision.rigidbody.AddForce(collisionDirection * forceMultiplier, ForceMode.Impulse);
         }
+        
+        RSLib.Audio.AudioManager.PlaySound(this._tackleHitClip);
     }
     
     private void OnCollisionExit(Collision other)

@@ -11,6 +11,9 @@ public class Goal : MonoBehaviour
     [SerializeField]
     private RSLib.Audio.ClipProvider _goalClip = null;
     
+    [UnityEngine.RangeAttribute(0f, 1f)]
+    public float Trauma;
+    
     public event System.Action<Team> GoalTriggered;
     
     public Team Team => this._team;
@@ -22,6 +25,7 @@ public class Goal : MonoBehaviour
         this.GoalTriggered?.Invoke(this._team);
         Manager.GameManager.Instance.ScoreGoal(this._team);
         
+        Manager.GameManager.Instance.CameraShake.AddTrauma(this.Trauma);
         RSLib.Audio.AudioManager.PlaySound(this._goalClip);
     }
     
