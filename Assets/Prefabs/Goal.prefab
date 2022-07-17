@@ -69,6 +69,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _goalClip: {fileID: 11400000, guid: 9352e830b666bde409d1395a58d182b0, type: 2}
+  _applauseClip: {fileID: 11400000, guid: 54a6f097fca91194fbbf9e298ff15789, type: 2}
   Trauma: 0.4
 --- !u!65 &2846962972116555372
 BoxCollider:

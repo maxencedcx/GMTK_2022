@@ -64,6 +64,7 @@ MonoBehaviour:
   - {fileID: 29948710657037939}
   _diceEffectsTable: {fileID: 11400000, guid: ed5e233d1c89ee5479056a091378659b, type: 2}
   _triggerFaceEffectTiming: 0.1
+  _collisionClip: {fileID: 11400000, guid: 498415e8346d78f46aa817f6f2ce7f8b, type: 2}
   IsTeleporting: 0
 --- !u!65 &1634237807752868067
 BoxCollider:
