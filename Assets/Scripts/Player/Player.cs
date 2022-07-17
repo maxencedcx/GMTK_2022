@@ -1,4 +1,5 @@
 using RSLib.Extensions;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -24,6 +25,9 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
 
     [SerializeField]
     private float _playerCollisionForceMultiplier;
+
+    [SerializeField]
+    private float _tacklingCollisionForceMultiplier;
 
     [SerializeField]
     private float _tackleCooldown = 0.5f;
@@ -68,6 +72,8 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
     public Team Team { get; private set; }
 
     public bool IsPlayerReady { get; set; } = false;
+
+    public bool IsTackling { get; private set; } = false;
 
     public int PlayerIndex => this._playerInput.playerIndex;
     
@@ -127,8 +133,10 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
         
         if (collision.gameObject.TryGetComponent<Dice>(out _))
         {
+            float forceMultiplier = this._diceCollisionForceMultiplier;
+            forceMultiplier *= this.IsTackling ? this._tacklingCollisionForceMultiplier : 1f;
             collisionDirection.y = Mathf.Max(0f, this._diceCollisionYForce - collisionDirection.y) ;
-            collision.rigidbody.AddForce(collisionDirection * this._diceCollisionForceMultiplier, ForceMode.Impulse);
+            collision.rigidbody.AddForce(collisionDirection * forceMultiplier, ForceMode.Impulse);
             collision.rigidbody.AddTorque(Random.Range(-360, 360), Random.Range(-360, 360), Random.Range(-360, 360));
         }
         else if (this._lastInputDirection != Vector3.zero
@@ -136,6 +144,7 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
                  && collidingPlayer.IsPlayerReady == false)
         {
             float forceMultiplier = collidingPlayer.IsStatic ? this._staticPlayerCollisionForceMultiplier : this._diceCollisionForceMultiplier;
+            forceMultiplier *= this.IsTackling ? this._tacklingCollisionForceMultiplier : 1f;
             collision.rigidbody.AddForce(collisionDirection * forceMultiplier, ForceMode.Impulse);
         }
     }
@@ -200,7 +209,16 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
             this._rigidbody.AddForce(this._lastInputDirection * this._movementForceMultiplier / 3, ForceMode.Impulse);
             this._rigidbody.velocity = this._rigidbody.velocity.ClampAll(-this._movementForceMultiplier, this._movementForceMultiplier);
             this.StartCoroutine(this.TackleCooldownCoroutine());
+            this.StartCoroutine(this.OnTackleCoroutine());
         }
+    }
+
+    private IEnumerator OnTackleCoroutine()
+    {
+        this.IsTackling = true;
+        yield return new WaitForSeconds(0.1f);
+        Debug.LogWarning($"EndOfTackle");
+        this.IsTackling = false;
     }
 
     public void OnPlayerReady(InputAction.CallbackContext context)

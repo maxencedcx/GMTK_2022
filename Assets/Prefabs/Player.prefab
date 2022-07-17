@@ -260,6 +260,7 @@ MonoBehaviour:
   _diceCollisionYForce: 0.3
   _staticPlayerCollisionForceMultiplier: 20
   _playerCollisionForceMultiplier: 5
+  _tacklingCollisionForceMultiplier: 1.5
   _tackleCooldown: 1
   _meshRenderer: {fileID: 4800052093827480029}
   _spriteRenderer: {fileID: 2361755584743634429}
