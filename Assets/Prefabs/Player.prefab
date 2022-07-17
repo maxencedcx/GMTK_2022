@@ -383,6 +383,7 @@ MonoBehaviour:
   _pinkBlobShadow: {fileID: 8270249076215860418}
   _blueAnimator: {fileID: 9100000, guid: 8c5f4c88d73629e4d9b1ccfa8dad2026, type: 2}
   _pinkAnimator: {fileID: 22100000, guid: fe50d258282b1f949b2495184b54a1be, type: 2}
+  _tackleParticles: {fileID: 1821784430875102526, guid: 5c2cd60522357a647b997a7f61584aa7, type: 3}
   _pinkTeamParticles: {fileID: 7995170261910196790, guid: 81e6ee763312a6440b3fe579e7fff7bb, type: 3}
   _blueTeamParticles: {fileID: 5824872440604982799, guid: 203d79c4fe3821b4697762809b50857e, type: 3}
   _diceHitParticles: {fileID: 6358804545531343572, guid: a3f221b01b991a54ab57d631f8b3838d, type: 3}

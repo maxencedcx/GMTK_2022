@@ -68,6 +68,9 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
     private RuntimeAnimatorController _pinkAnimator = null;
 
     [SerializeField]
+    private GameObject _tackleParticles = null;
+    
+    [SerializeField]
     private GameObject _pinkTeamParticles = null;
 
     [SerializeField]
@@ -248,6 +251,9 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
 
     private IEnumerator OnTackleCoroutine()
     {
+        Instantiate(this._tackleParticles, transform.position, this._tackleParticles.transform.rotation);
+        Manager.GameManager.Instance.CameraShake.AddTrauma(0.15f);
+        
         this._animator.SetBool("Tackling", true);
         this._animator.SetTrigger("Dash");
 
