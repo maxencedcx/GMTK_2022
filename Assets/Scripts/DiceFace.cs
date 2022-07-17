@@ -14,10 +14,23 @@ public class DiceFace : MonoBehaviour
     private DiceEffectMaterial[] _diceEffectMaterials = null;
     
     [SerializeField]
+    private MeshRenderer _faceRenderer = null;
+    
+    [SerializeField]
     private MeshRenderer _effectTypeMaterial = null;
+
+    [SerializeField]
+    private Material _invisibleMaterial = null;
+
+    private Material _initMaterial;
     
     public DiceEffectType EffectType { get; private set; }
-    
+
+    private void Awake()
+    {
+        this._initMaterial = this._faceRenderer.material;
+    }
+
     public void SetEffectType(DiceEffectType diceEffectType)
     {
         EffectType = diceEffectType;
@@ -31,5 +44,10 @@ public class DiceFace : MonoBehaviour
             this._effectTypeMaterial.material = _diceEffectMaterials.FirstOrDefault(o => o.EffectType == diceEffectType).Material;
             this._effectTypeMaterial.gameObject.SetActive(true);
         }
+    }
+
+    public void SetInvisible(bool state)
+    {
+        this._faceRenderer.material = state ? this._invisibleMaterial : this._initMaterial;
     }
 }

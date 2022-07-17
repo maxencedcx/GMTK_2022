@@ -22,3 +22,5 @@ MonoBehaviour:
   _giantDiceData: {fileID: 11400000, guid: f3234b39786cc7046af2f7abf54e1121, type: 2}
   _teleportingDiceEffectData: {fileID: 11400000, guid: b804972ea96a37b4faf205c4f515ce31, type: 2}
   _TeleportingDiceData: {fileID: 11400000, guid: fa610c8aea7e15849b5cc55d2527906c, type: 2}
+  _invisibleDiceEffectData: {fileID: 11400000, guid: d41aaf93ada5f484aa8c1f0633937b27, type: 2}
+  _InvisibleDiceData: {fileID: 11400000, guid: 85e7f19c70365ce4494b4a6ad34cd50d, type: 2}

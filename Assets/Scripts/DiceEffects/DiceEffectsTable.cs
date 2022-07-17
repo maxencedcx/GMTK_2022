@@ -21,5 +21,9 @@ public class DiceEffectsTable : ScriptableObject
     
     [Header("TELEPORT")]
     public DiceEffectData _teleportingDiceEffectData;
-    public TeleportingDiceData _TeleportingDiceData;
+    public TeleportingDiceData _teleportingDiceData;
+    
+    [Header("INVISIBLE")]
+    public DiceEffectData _invisibleDiceEffectData;
+    public InvisibleDiceData _invisibleDiceData;
 }

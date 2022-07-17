@@ -5,7 +5,8 @@ public enum DiceEffectType
     RUNNING_DICE,
     MINI_DICE,
     GIANT_DICE,
-    TELEPORT
+    TELEPORT,
+    INVISIBLE
 }
 
 public static class DiceEffectTypeExtensions
