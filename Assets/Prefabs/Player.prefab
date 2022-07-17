@@ -257,10 +257,10 @@ MonoBehaviour:
   _rigidbody: {fileID: 4800052093827480019}
   _movementForceMultiplier: 105
   _tacklingForceMultiplier: 50
-  _diceCollisionForceMultiplier: 60
-  _diceCollisionYForce: 0.1
+  _diceCollisionForceMultiplier: 40
+  _diceCollisionYForce: 0.3
   _staticPlayerCollisionForceMultiplier: 40
-  _playerCollisionForceMultiplier: 20
+  _playerCollisionForceMultiplier: 15
   _tacklingCollisionForceMultiplier: 2
   _tackleCooldown: 1
   _meshRenderer: {fileID: 4800052093827480029}
