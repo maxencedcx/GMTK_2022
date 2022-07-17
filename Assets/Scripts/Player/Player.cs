@@ -200,7 +200,7 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
     {
         if ((this.IsPlayerReady && Manager.GameManager.Instance.State == GameState.LOBBY)
             || !this._canTackle
-            || !this.IsStationary)
+            || this.IsStationary)
         {
             return;
         }
