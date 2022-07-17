@@ -53,6 +53,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e253793b89923947aebb593ce16a695, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rigidbody: {fileID: 1634237807752868069}
+  _stationaryAllowance: 0.1
   _diceFaces:
   - {fileID: 1634237808155490646}
   - {fileID: 3705179388890043854}
@@ -60,7 +62,6 @@ MonoBehaviour:
   - {fileID: 9195061755677531279}
   - {fileID: 8373124791819887542}
   - {fileID: 29948710657037939}
-  _rigidbody: {fileID: 1634237807752868069}
   _diceEffectsTable: {fileID: 11400000, guid: ed5e233d1c89ee5479056a091378659b, type: 2}
   _triggerFaceEffectTiming: 0.1
   IsTeleporting: 0
