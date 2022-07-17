@@ -256,12 +256,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 4800052093827480019}
   _movementForceMultiplier: 105
-  _tacklingForceMultiplier: 35
+  _tacklingForceMultiplier: 50
   _diceCollisionForceMultiplier: 60
   _diceCollisionYForce: 0.1
   _staticPlayerCollisionForceMultiplier: 40
   _playerCollisionForceMultiplier: 20
-  _tacklingCollisionForceMultiplier: 2.5
+  _tacklingCollisionForceMultiplier: 2
   _tackleCooldown: 1
   _meshRenderer: {fileID: 4800052093827480029}
   _spriteRenderer: {fileID: 2361755584743634429}
