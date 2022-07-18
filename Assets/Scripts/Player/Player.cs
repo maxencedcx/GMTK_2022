@@ -79,7 +79,13 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
     [SerializeField]
     private GameObject _diceHitParticles = null;
 
-    // VIEW
+    [SerializeField]
+    private Transform[] _circles = null;
+    
+    [SerializeField]
+    private GameObject[] _arrows = null;
+
+    // AUDIO
     [SerializeField]
     private RSLib.Audio.ClipProvider _tackleClip = null;
     
@@ -138,15 +144,30 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
         {
             this._rigidbody.AddForce(this._lastInputDirection * this._movementForceMultiplier, ForceMode.Acceleration);
             this._animator.SetBool("Running", true);
-
+            
+            for (int i = 0; i < this._circles.Length; ++i)
+            {
+                this._circles[i].LookAt(transform.position + this._lastInputDirection);
+                this._circles[i].SetEulerAnglesX(90f);
+            }
+            
             if (this._lastInputDirection.x != 0f && !IsTackling)
             {
                 this._spriteRenderer.flipX = this.Team == Team.PINK ? this._lastInputDirection.x > 0f : this._lastInputDirection.x < 0f;
+            }
+            
+            for (int i = 0; i < this._arrows.Length; ++i)
+            {
+                this._arrows[i].SetActive(true);
             }
         }
         else
         {
             this._animator.SetBool("Running", false);
+            for (int i = 0; i < this._arrows.Length; ++i)
+            {
+                this._arrows[i].SetActive(false);
+            }
         }
     }
 
@@ -279,6 +300,11 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
                 // TODO: Player can still dash and not change its team.
                 this._rigidbody.NullifyMovement();
                 this._animator.SetBool("Running", false);
+                
+                for (int i = 0; i < this._arrows.Length; ++i)
+                {
+                    this._arrows[i].SetActive(false);
+                }
             }
                 
             Manager.GameManager.Instance.TryStartGame();

@@ -50,13 +50,13 @@ public class TimerView : MonoBehaviour
         }
         
         if (t.Seconds != this._previousSeconds
-            && t.TotalSeconds < 10)
+            && t.TotalSeconds <= 10)
         {
             OnSecondPassed();
         }
 
         if (Manager.GameManager.Instance.State == GameState.RUNNING
-            && t.TotalSeconds < 10)
+            && t.TotalSeconds <= 10)
         {
             OnLastSeconds();
 
