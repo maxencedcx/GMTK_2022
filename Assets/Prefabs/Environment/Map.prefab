@@ -765,6 +765,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: 8477237111657435984}
   _goals: []
+  _goalAnimDuration: 3
 --- !u!95 &8477237111657435984
 Animator:
   serializedVersion: 4
@@ -1345,6 +1346,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: 4422771024441482240}
   _goals: []
+  _goalAnimDuration: 3
 --- !u!95 &4422771024441482240
 Animator:
   serializedVersion: 4
@@ -2283,6 +2285,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: 7867391989989662063}
   _goals: []
+  _goalAnimDuration: 3
 --- !u!95 &7867391989989662063
 Animator:
   serializedVersion: 4
@@ -3070,6 +3073,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: 5374840258192078973}
   _goals: []
+  _goalAnimDuration: 3
 --- !u!95 &5374840258192078973
 Animator:
   serializedVersion: 4
@@ -3443,6 +3447,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: 3518783836285799803}
   _goals: []
+  _goalAnimDuration: 3
 --- !u!95 &3518783836285799803
 Animator:
   serializedVersion: 4
@@ -3823,6 +3828,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: 5142278281542331298}
   _goals: []
+  _goalAnimDuration: 3
 --- !u!95 &5142278281542331298
 Animator:
   serializedVersion: 4
