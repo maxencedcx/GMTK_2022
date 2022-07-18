@@ -2020,6 +2020,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0.7
       objectReference: {fileID: 0}
+    - target: {fileID: 2362751520060560671, guid: 67787e3a16c629a4f89a3502c04cd770, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 2362751520060560671, guid: 67787e3a16c629a4f89a3502c04cd770, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2413105812643077492, guid: 67787e3a16c629a4f89a3502c04cd770, type: 3}
       propertyPath: m_Name
       value: Map
