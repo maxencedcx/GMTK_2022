@@ -96,6 +96,7 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
         {
             this._readyText.gameObject.SetActive(value);
             this._isPlayerReady = value;
+            this._rigidbody.isKinematic = value;
         }
     }
 
