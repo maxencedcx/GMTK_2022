@@ -1828,6 +1828,54 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &864804633
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 864804635}
+  - component: {fileID: 864804634}
+  m_Layer: 0
+  m_Name: Galaxy
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &864804634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 864804633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9257326a3b07ea46896b19504fb1ac6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _galaxies:
+  - {fileID: 951609065}
+  - {fileID: 1772939295}
+  _speed: {x: 0.02, y: 0.005}
+--- !u!4 &864804635
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 864804633}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &902700814
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2490,6 +2538,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 942498852}
   m_CullTransparentMesh: 1
+--- !u!23 &951609065 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6073909851275400502, guid: 67787e3a16c629a4f89a3502c04cd770, type: 3}
+  m_PrefabInstance: {fileID: 930476711}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1002988016
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3847,6 +3900,11 @@ Transform:
   m_Father: {fileID: 1366473719}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &1772939295 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 3495076029639601776, guid: 67787e3a16c629a4f89a3502c04cd770, type: 3}
+  m_PrefabInstance: {fileID: 930476711}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1819885452
 GameObject:
   m_ObjectHideFlags: 0
