@@ -376,7 +376,7 @@ MonoBehaviour:
   _staticPlayerCollisionForceMultiplier: 40
   _playerCollisionForceMultiplier: 15
   _tacklingCollisionForceMultiplier: 2
-  _tackleCooldown: 1
+  _tackleCooldown: 0.65
   _meshRenderer: {fileID: 4800052093827480029}
   _spriteRenderer: {fileID: 2361755584743634429}
   _animator: {fileID: 391956355469049764}
