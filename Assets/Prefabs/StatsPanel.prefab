@@ -130,7 +130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _timerText: {fileID: 5854809532430727680}
   _gameTimer: {fileID: 11400000, guid: 388d54297a0732b4bb2f328d66a365f6, type: 2}
-  _punchIntensity: 0.1
+  _punchIntensity: 0.7
   _punchDuration: 0.3
   _finalSecColor: {r: 0.78431374, g: 0.078431375, b: 0.1882353, a: 1}
   _goldenDiceImage: {fileID: 2952602205505785739}
