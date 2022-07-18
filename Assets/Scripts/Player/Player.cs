@@ -9,31 +9,23 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAction.IDiceFaceChoiceActions
 {
-    // PHYSICS
+    [Header("PHYSICS")]
     [SerializeField]
     private Rigidbody _rigidbody;
-
     [SerializeField]
     private float _movementForceMultiplier;
-
     [SerializeField]
     private float _tacklingForceMultiplier;
-
     [FormerlySerializedAs("_collisionForceMultiplier")] [SerializeField]
     private float _diceCollisionForceMultiplier;
-
     [FormerlySerializedAs("_collisionYForce")] [SerializeField] [Range(0f, 1f)]
     private float _diceCollisionYForce;
-
     [SerializeField]
     private float _staticPlayerCollisionForceMultiplier;
-
     [SerializeField]
     private float _playerCollisionForceMultiplier;
-
     [SerializeField]
     private float _tacklingCollisionForceMultiplier;
-
     [SerializeField]
     private float _tackleCooldown = 0.5f;
 
@@ -46,65 +38,66 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
     private readonly HashSet<Collider> _currentCollisions = new();
     
     // VIEW
-    [SerializeField]
-    private MeshRenderer _meshRenderer;
-
+    [Header("GENERAL")]
     [SerializeField]
     private SpriteRenderer _spriteRenderer = null;
-    
     [SerializeField]
     private Animator _animator = null;
-
-    [SerializeField]
-    private GameObject _blueBlobShadow = null;
-
-    [SerializeField]
-    private GameObject _pinkBlobShadow = null;
-
     [SerializeField]
     private RuntimeAnimatorController _blueAnimator = null;
-
     [SerializeField]
     private RuntimeAnimatorController _pinkAnimator = null;
-
-    [SerializeField]
-    private GameObject _tackleParticles = null;
     
+    [Header("BLOB SHADOW")]
     [SerializeField]
-    private GameObject _pinkTeamParticles = null;
-
+    private GameObject _blueBlobShadow = null;
     [SerializeField]
-    private GameObject _blueTeamParticles = null;
-
-    [SerializeField]
-    private GameObject _diceHitParticles = null;
-
+    private GameObject _pinkBlobShadow = null;
     [SerializeField]
     private Transform[] _circles = null;
-    
     [SerializeField]
     private GameObject[] _arrows = null;
 
-    // AUDIO
+    [Header("FEEDBACK")]
     [SerializeField]
-    private RSLib.Audio.ClipProvider _tackleClip = null;
-    
+    private GameObject _tackleParticles = null;
     [SerializeField]
-    private RSLib.Audio.ClipProvider _tackleHitClip = null;
-    
+    private GameObject _pinkTeamParticles = null;
     [SerializeField]
-    private RSLib.Audio.ClipProvider _bumpClip = null;
+    private GameObject _blueTeamParticles = null;
+    [SerializeField]
+    private GameObject _diceHitParticles = null;
 
+    [Header("WORLD UI")]
     [SerializeField]
-    private RSLib.Audio.ClipProvider _setTeamClip = null;
-
+    private TextMeshProUGUI _readyText = null;
     [SerializeField]
     private TextMeshProUGUI _indexPlayer;
+    
+    [Header("AUDIO")]
+    [SerializeField]
+    private RSLib.Audio.ClipProvider _tackleClip = null;
+    [SerializeField]
+    private RSLib.Audio.ClipProvider _tackleHitClip = null;
+    [SerializeField]
+    private RSLib.Audio.ClipProvider _bumpClip = null;
+    [SerializeField]
+    private RSLib.Audio.ClipProvider _setTeamClip = null;
 
     // GAMEPLAY
     public Team Team { get; private set; }
 
-    public bool IsPlayerReady { get; set; } = false;
+    private bool _isPlayerReady = false;
+
+    public bool IsPlayerReady
+    {
+        get => this._isPlayerReady;
+        set
+        {
+            this._readyText.gameObject.SetActive(value);
+            this._isPlayerReady = value;
+        }
+    }
 
     public bool IsTackling { get; private set; } = false;
 
@@ -124,6 +117,7 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
     {
         this._playerActionMap = this._playerInput.actions.FindActionMap(nameof(MainInputAction.Player));
         this._diceFaceChoiceActionMap = this._playerInput.actions.FindActionMap(nameof(MainInputAction.DiceFaceChoice));
+        this._readyText.gameObject.SetActive(false);
     }
 
     private void Start()
@@ -380,11 +374,13 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
     private void DisplayPlayerIndex()
     {
         int newPlayerIndex = this.PlayerIndex + 1;
-        _indexPlayer.text = "P" + newPlayerIndex.ToString();
+        _indexPlayer.text = "P" + newPlayerIndex;
     }
 
     private void UpdatePlayerColor()
     {
-        _indexPlayer.color = Team.GetTeamColor();
+        Color color = this.Team.GetTeamTextColor();
+        this._readyText.color = color;
+        this._indexPlayer.color = color;
     }
 }
