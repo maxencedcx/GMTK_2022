@@ -1,3 +1,4 @@
+using RSLib.Extensions;
 using UnityEngine;
 
 public class Goal : MonoBehaviour
@@ -16,6 +17,12 @@ public class Goal : MonoBehaviour
 
     [UnityEngine.RangeAttribute(0f, 1f)]
     public float Trauma;
+
+    [SerializeField]
+    private Transform _lightPillarHeightPivot = null;
+
+    [SerializeField]
+    private GameObject _lightPillar = null;
     
     public event System.Action<Team> GoalTriggered;
     
@@ -31,6 +38,9 @@ public class Goal : MonoBehaviour
         Manager.GameManager.Instance.CameraShake.AddTrauma(this.Trauma);
         RSLib.Audio.AudioManager.PlaySound(this._goalClip);
         RSLib.Audio.AudioManager.PlaySound(this._applauseClip);
+
+        this._lightPillar.transform.SetPositionY(this._lightPillarHeightPivot.position.y);
+        this._lightPillar.SetActive(true);
     }
     
     private void OnTriggerEnter(Collider other)

@@ -1,4 +1,3 @@
-using RSLib.Extensions;
 using UnityEngine;
 
 public class PlayerFaceCamera : MonoBehaviour
