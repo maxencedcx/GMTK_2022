@@ -1087,7 +1087,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dontDestroy: 0
   _verbose: 0
-  GameDurationInSeconds: 180
+  GameDurationInSeconds: 10
   _gameTimer: {fileID: 11400000, guid: 388d54297a0732b4bb2f328d66a365f6, type: 2}
   CountdownObject: {fileID: 423305297}
   CountdownText: {fileID: 738708887}
@@ -1099,6 +1099,7 @@ MonoBehaviour:
   _blueTeamScore: {fileID: 11400000, guid: 6fa4cb28b35ed804b8cdbe99d50ba57c, type: 2}
   _pinkTeamScore: {fileID: 11400000, guid: 468b0c4ae07a7104a88129805d2321cd, type: 2}
   _restartPauseTime: 1.5
+  _onGameEnd: {fileID: 11400000, guid: 3daab5295c72b674991cdea0661f486f, type: 2}
   _effectsIncompatibilities: {fileID: 11400000, guid: 0ff7320f1a3b1dc4eb3e7597962fad65, type: 2}
   _playerInputManager: {fileID: 720491662}
 --- !u!1 &595608233
@@ -2622,7 +2623,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8191593797671621655, guid: 6764d4a7d6687844796afc72d4599121, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6764d4a7d6687844796afc72d4599121, type: 3}
@@ -3086,6 +3087,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1428525228}
+  - component: {fileID: 1428525229}
   m_Layer: 0
   m_Name: UI
   m_TagString: Untagged
@@ -3109,6 +3111,42 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1428525229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1428525227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4881c1cc7bb275840909f5e62f19d78b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _onAwake:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1461384669}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  _onEnable:
+    m_PersistentCalls:
+      m_Calls: []
+  _onStart:
+    m_PersistentCalls:
+      m_Calls: []
+  _onDisable:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1435094894
 GameObject:
   m_ObjectHideFlags: 0

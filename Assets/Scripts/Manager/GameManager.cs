@@ -3,6 +3,7 @@ namespace Manager
     using DG.Tweening;
     using System.Collections;
     using System.Collections.Generic;
+    using RSLib;
     using TMPro;
     using UnityEngine;
     using UnityEngine.InputSystem;
@@ -57,6 +58,9 @@ namespace Manager
 
         [SerializeField]
         private float _restartPauseTime = 1.5f;
+
+        [SerializeField]
+        private RSLib.Events.GameEvent _onGameEnd = null;
         
         public Team WinningTeam => (this._blueTeamScore.Value - this._pinkTeamScore.Value) switch
         {
@@ -160,17 +164,36 @@ namespace Manager
         {
             Manager.UIManager.Instance.DisplayEndGame(this.WinningTeam);
             this.DestroyAllDices();
-            this.State = GameState.LOBBY;
-            this._playerInputManager.EnableJoining();
-            TeamManager.Instance.SetActiveTeamChoosers(true);
-            this._gameTimer.Value = this.GameDurationInSeconds * 1000;
+            
+            this.StartCoroutine(this.GameEndCoroutine());
+        }
 
+        private IEnumerator GameEndCoroutine()
+        {
+            _onGameEnd.Raise();
+            
+            foreach (Player player in TeamManager.Instance.Players)
+            {
+                player.OnGameEnd();
+            }
+            
+            yield return new WaitForSeconds(4f);
+
+            foreach (Player player in TeamManager.Instance.Players)
+            {
+                player.OnGameEndSequenceOver();
+            }
+            
+            this.State = GameState.LOBBY;
+            TeamManager.Instance.SetActiveTeamChoosers(true);
+            this._playerInputManager.EnableJoining();
+            this._gameTimer.Value = this.GameDurationInSeconds * 1000;
             this._blueTeamScore.Value = 0;
             this._pinkTeamScore.Value = 0;
             
             MusicManager.Instance.PlayLobbyMusic();
         }
-
+        
         #endregion
 
         #region Goal Management

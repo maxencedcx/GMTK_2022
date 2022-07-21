@@ -510,6 +510,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8289524864934704953}
   - component: {fileID: 7150925648580476359}
+  - component: {fileID: 8955440964893485487}
   m_Layer: 0
   m_Name: Confettis_BlueTeam
   m_TagString: Untagged
@@ -553,6 +554,37 @@ MonoBehaviour:
   _confettis:
   - {fileID: 8207497458897120423}
   - {fileID: 7658559217975935490}
+  _victoryShoots: 4
+  _victoryShootsDelay: 1
+  _victoryShootTrauma: 0.25
+--- !u!114 &8955440964893485487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1108428630932953974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4662bb313cb61614faa8d61ea10dd8ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _event: {fileID: 11400000, guid: 3daab5295c72b674991cdea0661f486f, type: 2}
+  _onEventRaised:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7150925648580476359}
+        m_TargetAssemblyTypeName: Confettis, Assembly-CSharp
+        m_MethodName: OnGameEnd
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1180851135340340390
 GameObject:
   m_ObjectHideFlags: 0
@@ -3071,6 +3103,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3008564077451141548}
   - component: {fileID: 7925116644141392740}
+  - component: {fileID: 6923788084875963729}
   m_Layer: 0
   m_Name: Confettis_PinkTeam
   m_TagString: Untagged
@@ -3114,6 +3147,37 @@ MonoBehaviour:
   _confettis:
   - {fileID: 486074656409439129}
   - {fileID: 6638209610939448645}
+  _victoryShoots: 4
+  _victoryShootsDelay: 1
+  _victoryShootTrauma: 0.25
+--- !u!114 &6923788084875963729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6594054541295023965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4662bb313cb61614faa8d61ea10dd8ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _event: {fileID: 11400000, guid: 3daab5295c72b674991cdea0661f486f, type: 2}
+  _onEventRaised:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7925116644141392740}
+        m_TargetAssemblyTypeName: Confettis, Assembly-CSharp
+        m_MethodName: OnGameEnd
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6770937588877790282
 GameObject:
   m_ObjectHideFlags: 0
