@@ -60,8 +60,14 @@ namespace Manager
         private float _restartPauseTime = 1.5f;
 
         [SerializeField]
+        private RSLib.Events.GameEvent _onGameStart = null;
+        
+        [SerializeField]
         private RSLib.Events.GameEvent _onGameEnd = null;
         
+        [SerializeField]
+        private RSLib.Events.GameEvent _onGameEndSequenceOver = null;
+
         public Team WinningTeam => (this._blueTeamScore.Value - this._pinkTeamScore.Value) switch
         {
             > 0 => Team.BLUE,
@@ -129,6 +135,8 @@ namespace Manager
 
         private IEnumerator StartGame()
         {
+            this._onGameStart.Raise();
+            
             this._playerInputManager.DisableJoining();
             Manager.UIManager.Instance.SetActiveHowToPlay(false);
             Manager.UIManager.Instance.SetActiveEndGame(false);
@@ -138,6 +146,8 @@ namespace Manager
             
             MusicManager.Instance.PlayGameMusic();
             
+            yield return new WaitForSeconds(0.7f); // UI stats panel tween.
+
             yield return this.CountDownCoroutine(3);
 
             this.State = GameState.RUNNING;
@@ -170,7 +180,7 @@ namespace Manager
 
         private IEnumerator GameEndCoroutine()
         {
-            _onGameEnd.Raise();
+            this._onGameEnd.Raise();
             
             foreach (Player player in TeamManager.Instance.Players)
             {
@@ -179,6 +189,8 @@ namespace Manager
             
             yield return new WaitForSeconds(4f);
 
+            this._onGameEndSequenceOver.Raise();
+            
             foreach (Player player in TeamManager.Instance.Players)
             {
                 player.OnGameEndSequenceOver();

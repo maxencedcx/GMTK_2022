@@ -1087,7 +1087,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dontDestroy: 0
   _verbose: 0
-  GameDurationInSeconds: 10
+  GameDurationInSeconds: 180
   _gameTimer: {fileID: 11400000, guid: 388d54297a0732b4bb2f328d66a365f6, type: 2}
   CountdownObject: {fileID: 423305297}
   CountdownText: {fileID: 738708887}
@@ -1099,7 +1099,9 @@ MonoBehaviour:
   _blueTeamScore: {fileID: 11400000, guid: 6fa4cb28b35ed804b8cdbe99d50ba57c, type: 2}
   _pinkTeamScore: {fileID: 11400000, guid: 468b0c4ae07a7104a88129805d2321cd, type: 2}
   _restartPauseTime: 1.5
+  _onGameStart: {fileID: 11400000, guid: 3dcfb9e81c97fcc4091cf4f8450d5a30, type: 2}
   _onGameEnd: {fileID: 11400000, guid: 3daab5295c72b674991cdea0661f486f, type: 2}
+  _onGameEndSequenceOver: {fileID: 11400000, guid: f77569f68e4772f4487ac9990649d522, type: 2}
   _effectsIncompatibilities: {fileID: 11400000, guid: 0ff7320f1a3b1dc4eb3e7597962fad65, type: 2}
   _playerInputManager: {fileID: 720491662}
 --- !u!1 &595608233
