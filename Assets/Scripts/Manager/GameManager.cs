@@ -190,7 +190,9 @@ namespace Manager
             this._gameTimer.Value = this.GameDurationInSeconds * 1000;
             this._blueTeamScore.Value = 0;
             this._pinkTeamScore.Value = 0;
-            
+
+            Manager.UIManager.Instance.SetActiveEndGame(false);
+            ChangeColorCircles();
             MusicManager.Instance.PlayLobbyMusic();
         }
         
@@ -227,7 +229,6 @@ namespace Manager
             Color nextColor = this.WinningTeam != Team.NONE ? this.WinningTeam.GetTeamColor() : new Color32(126, 15, 0, 255);
             _circleMaterial.DOColor(nextColor, 0.5f);
         }
-
 
         private IEnumerator ScoreGoalCoroutine(Team triggeredGoalTeam)
         {
