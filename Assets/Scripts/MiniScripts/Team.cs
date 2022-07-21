@@ -14,7 +14,7 @@ public static class TeamExtensions
         switch (team)
         {
             case Team.BLUE:
-                if (ColorUtility.TryParseHtmlString("#4891a0", out Color blueColor))
+                if (ColorUtility.TryParseHtmlString("#1A6D7F", out Color blueColor))
                 {
                     return blueColor;
                 }
