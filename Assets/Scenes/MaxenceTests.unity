@@ -234,8 +234,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.392}
-  m_RaycastTarget: 1
+  m_Color: {r: 0, g: 0, b: 0, a: 0.79607844}
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -4056,8 +4056,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -120}
-  m_SizeDelta: {x: 300, y: 100}
+  m_AnchoredPosition: {x: 0, y: -220}
+  m_SizeDelta: {x: 375.86, y: 100}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &1973815436
 GameObject:
@@ -4119,8 +4119,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Blue team won!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d8a020fd8cbc8114699b98e5ff55a1ac, type: 2}
-  m_sharedMaterial: {fileID: 8042851193053008206, guid: d8a020fd8cbc8114699b98e5ff55a1ac, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 9c7262e935086ab48bba04f93ef5d8b7, type: 2}
+  m_sharedMaterial: {fileID: -762258307035070843, guid: 9c7262e935086ab48bba04f93ef5d8b7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
