@@ -3,6 +3,7 @@ namespace Manager
     using DG.Tweening;
     using System.Collections;
     using System.Collections.Generic;
+    using RSLib;
     using TMPro;
     using UnityEngine;
     using UnityEngine.InputSystem;
@@ -57,7 +58,16 @@ namespace Manager
 
         [SerializeField]
         private float _restartPauseTime = 1.5f;
+
+        [SerializeField]
+        private RSLib.Events.GameEvent _onGameStart = null;
         
+        [SerializeField]
+        private RSLib.Events.GameEvent _onGameEnd = null;
+        
+        [SerializeField]
+        private RSLib.Events.GameEvent _onGameEndSequenceOver = null;
+
         public Team WinningTeam => (this._blueTeamScore.Value - this._pinkTeamScore.Value) switch
         {
             > 0 => Team.BLUE,
@@ -125,6 +135,8 @@ namespace Manager
 
         private IEnumerator StartGame()
         {
+            this._onGameStart.Raise();
+            
             this._playerInputManager.DisableJoining();
             Manager.UIManager.Instance.SetActiveHowToPlay(false);
             Manager.UIManager.Instance.SetActiveEndGame(false);
@@ -134,6 +146,8 @@ namespace Manager
             
             MusicManager.Instance.PlayGameMusic();
             
+            yield return new WaitForSeconds(0.7f); // UI stats panel tween.
+
             yield return this.CountDownCoroutine(3);
 
             this.State = GameState.RUNNING;
@@ -160,17 +174,40 @@ namespace Manager
         {
             Manager.UIManager.Instance.DisplayEndGame(this.WinningTeam);
             this.DestroyAllDices();
-            this.State = GameState.LOBBY;
-            this._playerInputManager.EnableJoining();
-            TeamManager.Instance.SetActiveTeamChoosers(true);
-            this._gameTimer.Value = this.GameDurationInSeconds * 1000;
-
-            this._blueTeamScore.Value = 0;
-            this._pinkTeamScore.Value = 0;
             
-            MusicManager.Instance.PlayLobbyMusic();
+            this.StartCoroutine(this.GameEndCoroutine());
         }
 
+        private IEnumerator GameEndCoroutine()
+        {
+            this._onGameEnd.Raise();
+            
+            foreach (Player player in TeamManager.Instance.Players)
+            {
+                player.OnGameEnd();
+            }
+            
+            yield return new WaitForSeconds(4f);
+
+            this._onGameEndSequenceOver.Raise();
+            
+            foreach (Player player in TeamManager.Instance.Players)
+            {
+                player.OnGameEndSequenceOver();
+            }
+            
+            this.State = GameState.LOBBY;
+            TeamManager.Instance.SetActiveTeamChoosers(true);
+            this._playerInputManager.EnableJoining();
+            this._gameTimer.Value = this.GameDurationInSeconds * 1000;
+            this._blueTeamScore.Value = 0;
+            this._pinkTeamScore.Value = 0;
+
+            Manager.UIManager.Instance.SetActiveEndGame(false);
+            ChangeColorCircles();
+            MusicManager.Instance.PlayLobbyMusic();
+        }
+        
         #endregion
 
         #region Goal Management
@@ -204,7 +241,6 @@ namespace Manager
             Color nextColor = this.WinningTeam != Team.NONE ? this.WinningTeam.GetTeamColor() : new Color32(126, 15, 0, 255);
             _circleMaterial.DOColor(nextColor, 0.5f);
         }
-
 
         private IEnumerator ScoreGoalCoroutine(Team triggeredGoalTeam)
         {

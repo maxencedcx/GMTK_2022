@@ -242,6 +242,9 @@ GameObject:
   - component: {fileID: 5854809531862064468}
   - component: {fileID: 5854809531862064470}
   - component: {fileID: 5854809531862064469}
+  - component: {fileID: 4417985445947299695}
+  - component: {fileID: 1055649673261356641}
+  - component: {fileID: 7193387209058105309}
   m_Layer: 5
   m_Name: StatsPanel
   m_TagString: Untagged
@@ -310,6 +313,79 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4417985445947299695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5854809531862064467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e484fe69c9f7b4449d72df0265a5bcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _anchorPosOffscreen: 200
+  _inDuration: 1
+  _inEase: 12
+  _outDuration: 0.8
+  _outEase: 14
+--- !u!114 &1055649673261356641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5854809531862064467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4662bb313cb61614faa8d61ea10dd8ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _event: {fileID: 11400000, guid: 3dcfb9e81c97fcc4091cf4f8450d5a30, type: 2}
+  _onEventRaised:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4417985445947299695}
+        m_TargetAssemblyTypeName: StatsPanel, Assembly-CSharp
+        m_MethodName: OnGameStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7193387209058105309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5854809531862064467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4662bb313cb61614faa8d61ea10dd8ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _event: {fileID: 11400000, guid: f77569f68e4772f4487ac9990649d522, type: 2}
+  _onEventRaised:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4417985445947299695}
+        m_TargetAssemblyTypeName: StatsPanel, Assembly-CSharp
+        m_MethodName: OnBackToLobby
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5854809532430727694
 GameObject:
   m_ObjectHideFlags: 0

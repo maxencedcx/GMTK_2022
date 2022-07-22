@@ -365,6 +365,27 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
         }
     }
 
+    public void OnGameEnd()
+    {
+        this._rigidbody.NullifyMovement();
+        this.DisablePlayerInputs();
+        
+        if (Manager.GameManager.Instance.WinningTeam == this.Team)
+        {
+            this._animator.SetTrigger("Victory");
+        }
+        else
+        {
+            this._animator.SetTrigger("Defeat");
+        }
+    }
+
+    public void OnGameEndSequenceOver()
+    {
+        this.EnablePlayerInputs();
+        this._animator.SetTrigger("Idle");
+    }
+    
     private System.Collections.IEnumerator TackleCooldownCoroutine()
     {
         this._canTackle = false;
