@@ -1,5 +1,6 @@
 using System.Linq;
 using Manager;
+using RSLib;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -28,7 +29,9 @@ public class Dice : MonoBehaviour
     // EFFECTS
     private System.Collections.Generic.List<DiceEffect> _activeEffects = new();
 
-    public event System.Action<DiceEffectType> EffectAdded;
+    public event System.Action<Dice, DiceEffect> EffectAdded;
+    
+    public event System.Action<Dice, DiceEffect> IncompatibleEffectRemoved;
 
     [SerializeField] [Range(0.1f, 2f)]
     private float _triggerFaceEffectTiming;
@@ -86,15 +89,21 @@ public class Dice : MonoBehaviour
                 return;
         }
         
-        diceEffect.OnEffectStart(new DiceEffectContext() {Players = Manager.TeamManager.Instance.Players});
+        diceEffect.OnEffectStart(new DiceEffectContext {Players = Manager.TeamManager.Instance.Players});
         
-        this.EffectAdded?.Invoke(diceEffectType);
+        this.EffectAdded?.Invoke(this, diceEffect);
         this._activeEffects.Add(diceEffect);
     }
 
     public void RemoveEffect(DiceEffect diceEffect)
     {
         this._activeEffects.Remove(diceEffect);
+    }
+
+    public void RemoveIncompatibleEffect(DiceEffect diceEffect)
+    {
+        this.IncompatibleEffectRemoved?.Invoke(this, diceEffect);
+        RemoveEffect(diceEffect);
     }
 
     public void SetInvisibility(bool state)

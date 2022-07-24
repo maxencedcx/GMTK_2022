@@ -48,6 +48,8 @@ namespace Manager
         private List<Dice> _dices = new();
 
         private DiceSettings _diceSettings = new DiceSettings();
+
+        public List<Dice> Dices => this._dices;
         
         // SCORE
         [SerializeField]
@@ -68,6 +70,10 @@ namespace Manager
         [SerializeField]
         private RSLib.Events.GameEvent _onGameEndSequenceOver = null;
 
+        // DICE EFFECTS UI
+        [SerializeField]
+        private DiceEffectsInterface _diceEffectsInterface = null;
+        
         public Team WinningTeam => (this._blueTeamScore.Value - this._pinkTeamScore.Value) switch
         {
             > 0 => Team.BLUE,
@@ -290,11 +296,13 @@ namespace Manager
         public void RegisterDice(Dice dice)
         {
             this._dices.Add(dice);
+            this._diceEffectsInterface.OnDiceRegistered(dice);
         }
 
         public void UnregisterDice(Dice dice)
         {
             this._dices.Remove(dice);
+            this._diceEffectsInterface.OnDiceUnregistered(dice);
         }
 
         #endregion

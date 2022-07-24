@@ -18,13 +18,20 @@ public abstract class DiceEffect
 
     public float Lifetime { get; private set; }
 
+    public float LifetimePercentage => this.Lifetime / this.DiceEffectData.Duration;
+    
     public bool IsOver => this.Lifetime > this.DiceEffectData.Duration;
     
-    protected virtual void OnEffectAdded(DiceEffectType effectType)
+    protected virtual void OnEffectAdded(Dice dice, DiceEffect diceEffect)
     {
-        if (this.EffectType.IsIncompatibleWith(effectType))
+        if (diceEffect == this)
         {
-            this._dice.RemoveEffect(this);
+            return;
+        }
+        
+        if (this.EffectType.IsIncompatibleWith(diceEffect.EffectType))
+        {
+            this._dice.RemoveIncompatibleEffect(this);
         }
     }
     
