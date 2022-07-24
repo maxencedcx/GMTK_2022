@@ -1,6 +1,7 @@
 using RSLib.Extensions;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
@@ -50,9 +51,7 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
     
     [Header("BLOB SHADOW")]
     [SerializeField]
-    private GameObject _blueBlobShadow = null;
-    [SerializeField]
-    private GameObject _pinkBlobShadow = null;
+    private MeshRenderer[] _teamRelatedRenderers = null;
     [SerializeField]
     private Transform[] _circles = null;
     [SerializeField]
@@ -352,10 +351,11 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
         if (!this.IsPlayerReady)
         {
             this.Team = team;
+            
             this.UpdatePlayerColor();
-            this._blueBlobShadow.SetActive(this.Team == Team.BLUE);
-            this._pinkBlobShadow.SetActive(this.Team == Team.PINK);
-
+            
+            this.DisplayPlayerIndex();
+            
             this._animator.runtimeAnimatorController = this.Team == Team.BLUE ? this._blueAnimator : this._pinkAnimator;
 
             GameObject particles = this.Team == Team.PINK ? this._pinkTeamParticles : this._blueTeamParticles;
@@ -399,10 +399,17 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
         _indexPlayer.text = "P" + newPlayerIndex;
     }
 
-    private void UpdatePlayerColor()
+    public void UpdatePlayerColor()
     {
-        Color color = this.Team.GetTeamTextColor();
+        int teamIndex = this.Team == Team.BLUE ? Manager.TeamManager.Instance.BluePlayers.IndexOf(this) : Manager.TeamManager.Instance.PinkPlayers.IndexOf(this);
+        Color color = this.Team == Team.BLUE ? Manager.TeamManager.Instance.PlayerColorsTable.GetBlueColorAtIndex(teamIndex) : Manager.TeamManager.Instance.PlayerColorsTable.GetPinkColorAtIndex(teamIndex);
+
         this._readyText.color = color;
         this._indexPlayer.color = color;
+        
+        for (int i = this._teamRelatedRenderers.Length - 1; i >= 0; --i)
+        {
+            this._teamRelatedRenderers[i].material.SetColor("_Color", color);
+        }
     }
 }
