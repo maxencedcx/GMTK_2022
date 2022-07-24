@@ -258,7 +258,11 @@ namespace Manager
             // yield return new WaitUntil(() => this.State == GameState.RUNNING);
             
             yield return new WaitForSeconds(this._restartPauseTime);
-            this.GenerateDice(this._diceSpawnPoint.position, true);
+
+            if (!this.IsTimerOver) // Avoid dice respawning if timer runs out of time while goal is being scored.
+            {
+                this.GenerateDice(this._diceSpawnPoint.position, true);
+            }
         }
 
         #endregion

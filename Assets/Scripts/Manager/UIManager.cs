@@ -1,5 +1,6 @@
 namespace Manager
 {
+    using DG.Tweening;
     using RSLib.Extensions;
     using TMPro;
     using UnityEngine;
@@ -41,6 +42,7 @@ namespace Manager
 
         public void SetActiveEndGame(bool active)
         {
+            this._endGameObject.transform.DOPunchScale(Vector3.one * 1.3f, 0.2f);
             this._endGameObject.SetActive(active);
         }
 
@@ -49,6 +51,8 @@ namespace Manager
         public void DisplayEndGame(Team team)
         {
             this._endGameText.text = $"{team.ToString().ToLower().UpperFirst()} team won!";
+            this._endGameText.color = team.GetTeamColor();
+            
             this.SetActiveEndGame(true);
         }
     }
