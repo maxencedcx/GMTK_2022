@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 570259b816304309851900592f2fee65, type: 3}
   m_Name: EffectData_Shockwave
   m_EditorClassIdentifier: 
-  Range: 4
-  ForceMinMax: {x: 75, y: 200}
+  Range: 5
+  ForceMinMax: {x: 100, y: 150}
   LayerMask:
     serializedVersion: 2
     m_Bits: 2147483647
