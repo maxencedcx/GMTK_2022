@@ -67,6 +67,7 @@ MonoBehaviour:
   _triggerFaceEffectTiming: 0.1
   _blobShadow: {fileID: 3685637789626375024}
   _collisionClip: {fileID: 11400000, guid: 498415e8346d78f46aa817f6f2ce7f8b, type: 2}
+  _applyEffectClip: {fileID: 11400000, guid: 79b6fd4023462a346b1bdb9e56a43bcb, type: 2}
   IsTeleporting: 0
 --- !u!65 &1634237807752868067
 BoxCollider:

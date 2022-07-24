@@ -39,6 +39,9 @@ public class Dice : MonoBehaviour
     [SerializeField]
     private RSLib.Audio.ClipProvider _collisionClip = null;
     
+    [SerializeField]
+    private RSLib.Audio.ClipProvider _applyEffectClip = null;
+    
     [HideInInspector]
     public bool IsTeleporting;
     
@@ -163,6 +166,8 @@ public class Dice : MonoBehaviour
                 this._lastTriggeredDiceFace = diceFace;
                 this._triggeredLastStationaryEffect = true;
                 this.AddEffect(diceFace.EffectType);
+                
+                RSLib.Audio.AudioManager.PlaySound(_applyEffectClip);
             }
         }
     }
