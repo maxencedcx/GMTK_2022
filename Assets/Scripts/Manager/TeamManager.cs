@@ -39,6 +39,11 @@ namespace Manager
             
             this.Players.Add(player);
         }
+
+        public void UnregisterPlayer(Player player)
+        {
+            this.Players.Remove(player);
+        }
         
         public void AssignTeam(Player player, Team team)
         {

@@ -90,7 +90,6 @@ namespace Manager
         public CameraShake CameraShake => this._cameraShake;
         
         // REFS
-        
         [SerializeField]
         private PlayerInputManager _playerInputManager;
         

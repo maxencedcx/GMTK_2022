@@ -1,4 +1,5 @@
 using RSLib.Extensions;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 using TMPro;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAction.IDiceFaceChoiceActions
 {
@@ -165,6 +167,12 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
         }
     }
 
+    private void OnDestroy()
+    {
+        Manager.TeamManager.Instance.UnregisterPlayer(this);
+        Manager.CameraManager.Instance.UnregisterTarget(this.transform);
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (this._currentCollisions.Contains(collision.collider))
@@ -304,7 +312,17 @@ public class Player : MonoBehaviour, MainInputAction.IPlayerActions, MainInputAc
             Manager.GameManager.Instance.TryStartGame();
         }
     }
-    
+
+    public void OnLeave(InputAction.CallbackContext context)
+    {
+        if (Manager.GameManager.Instance.State != GameState.LOBBY)
+        {
+            return;
+        }
+        
+        Destroy(this.gameObject);
+    }
+
     public void OnRotate(InputAction.CallbackContext context)
     {
         if (context.performed)

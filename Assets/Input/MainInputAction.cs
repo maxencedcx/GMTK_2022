@@ -62,6 +62,15 @@ public partial class @MainInputAction : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Leave"",
+                    ""type"": ""Button"",
+                    ""id"": ""892fe099-b7dd-415a-96f1-94470938fd14"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -238,6 +247,28 @@ public partial class @MainInputAction : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""PlayerReady"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a49cec07-91be-49b1-83f6-87ae92e8cf74"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Leave"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""46895f06-2d4f-4800-99bb-895ae108206d"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Leave"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -577,6 +608,7 @@ public partial class @MainInputAction : IInputActionCollection2, IDisposable
         m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
         m_Player_Tackle = m_Player.FindAction("Tackle", throwIfNotFound: true);
         m_Player_PlayerReady = m_Player.FindAction("PlayerReady", throwIfNotFound: true);
+        m_Player_Leave = m_Player.FindAction("Leave", throwIfNotFound: true);
         // DiceFaceChoice
         m_DiceFaceChoice = asset.FindActionMap("DiceFaceChoice", throwIfNotFound: true);
         m_DiceFaceChoice_Rotate = m_DiceFaceChoice.FindAction("Rotate", throwIfNotFound: true);
@@ -646,6 +678,7 @@ public partial class @MainInputAction : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Shoot;
     private readonly InputAction m_Player_Tackle;
     private readonly InputAction m_Player_PlayerReady;
+    private readonly InputAction m_Player_Leave;
     public struct PlayerActions
     {
         private @MainInputAction m_Wrapper;
@@ -654,6 +687,7 @@ public partial class @MainInputAction : IInputActionCollection2, IDisposable
         public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
         public InputAction @Tackle => m_Wrapper.m_Player_Tackle;
         public InputAction @PlayerReady => m_Wrapper.m_Player_PlayerReady;
+        public InputAction @Leave => m_Wrapper.m_Player_Leave;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -675,6 +709,9 @@ public partial class @MainInputAction : IInputActionCollection2, IDisposable
                 @PlayerReady.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerReady;
                 @PlayerReady.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerReady;
                 @PlayerReady.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerReady;
+                @Leave.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeave;
+                @Leave.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeave;
+                @Leave.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeave;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -691,6 +728,9 @@ public partial class @MainInputAction : IInputActionCollection2, IDisposable
                 @PlayerReady.started += instance.OnPlayerReady;
                 @PlayerReady.performed += instance.OnPlayerReady;
                 @PlayerReady.canceled += instance.OnPlayerReady;
+                @Leave.started += instance.OnLeave;
+                @Leave.performed += instance.OnLeave;
+                @Leave.canceled += instance.OnLeave;
             }
         }
     }
@@ -803,6 +843,7 @@ public partial class @MainInputAction : IInputActionCollection2, IDisposable
         void OnShoot(InputAction.CallbackContext context);
         void OnTackle(InputAction.CallbackContext context);
         void OnPlayerReady(InputAction.CallbackContext context);
+        void OnLeave(InputAction.CallbackContext context);
     }
     public interface IDiceFaceChoiceActions
     {
